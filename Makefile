@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+         #
+#    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/11 10:12:52 by tigarashi        ###   ########.fr        #
+#    Updated: 2025/07/12 22:58:17 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,14 @@ MLX_DIR		= minilibx-linux
 MLX_LIB		= $(MLX_DIR)/libmlx.a
 MLX_INC		= -I $(MLX_DIR)
 
-LIB_DIR		= lib
-LIBFT_DIR	= $(LIB_DIR)/libft
-LIBFT_LIB	= $(LIBFT_DIR)/libft.a
-LIBFT_INC	= -I $(LIBFT_DIR)
+LIB_DIR	= lib
+LIB	=\
+		libft\
+		get_next_line
+
+LIBS_HEAD = $(foreach l, $(LIB), -I $(LIB_DIR)/$(l))
+LIBS_HEAD = $(foreach l, $(LIB), $(LIB_DIR)/$(l)/$(l).a)
+
 
 MLX_FLAGS_LINUX	= -L $(MLX_DIR) -lmlx -lXext -lX11
 MLX_FLAGS_MACOS	= -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
@@ -46,4 +50,3 @@ ifeq ($(UNAME_S), Linux)
 else
 	MLX_FLAGS = $(MLX_FLAGS_MACOS)
 endif
-
