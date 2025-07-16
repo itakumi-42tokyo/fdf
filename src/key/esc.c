@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 04:14:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/17 04:45:17 by tigarashi        ###   ########.fr       */
+/*   Updated: 2025/07/17 05:01:06 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int key_hook(int keycode, void *param)
 	return (0);
 }
 
-int	main(void)
-{
-	void	*mlx = mlx_init();
-	void	*win = mlx_new_window(mlx, 900, 900, "window01");
-	void	*param[3] = {mlx, win, NULL};
-	mlx_key_hook(win, key_hook, param);
-	mlx_loop(mlx);
-	return (0);
-}
+// int	main(void)
+// {
+// 	void	*mlx = mlx_init();
+// 	void	*win = mlx_new_window(mlx, 900, 900, "window01");
+// 	void	*param[3] = {mlx, win, NULL};
+// 	mlx_key_hook(win, key_hook, param);
+// 	mlx_loop(mlx);
+// 	return (0);
+// }

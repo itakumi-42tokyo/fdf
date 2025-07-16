@@ -3,13 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   bla.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/12 22:59:32 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/17 05:13:28 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+// 1.　
 
+void	bla(int x1, int y1, int x2, int y2, void *mlx, void win)
+{
+		
+}

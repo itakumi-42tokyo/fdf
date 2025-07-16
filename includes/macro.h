@@ -21,6 +21,6 @@
 # define ESC_MACOS 53
 # define ESC_LINUX 65307
 # define X_MACOS 7
-# define X_LINUX 78
+# define X_LINUX 120
 
 #endif

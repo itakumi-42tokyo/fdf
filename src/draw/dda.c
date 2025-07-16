@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 23:08:39 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/16 23:02:43 by tigarashi        ###   ########.fr       */
+/*   Updated: 2025/07/17 05:01:20 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ int	expose_hook(void *param)
 	return (0);
 }
 
-int	main(void)
-{
-	void *mlx = mlx_init();
-	void *win = mlx_new_window(mlx, 900, 900, "Hello, World!");
-	void *param[2] = {mlx, win};
-	mlx_expose_hook(win, expose_hook, param);
-	mlx_loop(mlx);
-	return (0);
-}
+// int	main(void)
+// {
+// 	void *mlx = mlx_init();
+// 	void *win = mlx_new_window(mlx, 900, 900, "Hello, World!");
+// 	void *param[2] = {mlx, win};
+// 	mlx_expose_hook(win, expose_hook, param);
+// 	mlx_loop(mlx);
+// 	return (0);
+// }
