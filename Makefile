@@ -3,21 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/12 22:58:17 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/16 21:17:32 by tigarashi        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME ?= fdf
 
-CC 		= cc
-CFLAGS	= -Wall -Werror -Wextra -I includes
+CC 		?= cc
+CFLAGS	= -Wall -Werror -Wextra -I includes -lm
 
-SRC_DIR		= src
-DRAW_DIR	= draw
-INIT_DIR	= init
+SRC_DIR		?= src
+DRAW_DIR	?= draw
+INIT_DIR	?= init
 
 SRC		= \
 	$(DRAW_DIR)/bla.c \
@@ -26,7 +26,8 @@ SRC		= \
 	$(INIT_DIR)/init.c \
 	main.c \
 
-OBJ		=$(SRC:%.c=%.o)
+OBJ_DIR	?= build
+OBJ		=$(SRC:%.c=$(OBJ_DIR)/%.o)
 
 MLX_DIR		= minilibx-linux
 MLX_LIB		= $(MLX_DIR)/libmlx.a
@@ -34,11 +35,11 @@ MLX_INC		= -I $(MLX_DIR)
 
 LIB_DIR	= lib
 LIB	=\
-		libft\
+		libft \
 		get_next_line
 
-LIBS_HEAD = $(foreach l, $(LIB), -I $(LIB_DIR)/$(l))
-LIBS_HEAD = $(foreach l, $(LIB), $(LIB_DIR)/$(l)/$(l).a)
+LIBS_HEAD	= $(foreach l, $(LIB), -I $(LIB_DIR)/$(l))
+LIBS		= $(foreach l, $(LIB), $(LIB_DIR)/$(l)/$(l).a)
 
 
 MLX_FLAGS_LINUX	= -L $(MLX_DIR) -lmlx -lXext -lX11
@@ -50,3 +51,48 @@ ifeq ($(UNAME_S), Linux)
 else
 	MLX_FLAGS = $(MLX_FLAGS_MACOS)
 endif
+
+all: $(NAME)
+
+$(NAME): $(LIBS) $(MLX_LIB) $(OBJ)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -g $(MLX_INC) $(LIBS_HEAD) -c $< -o $@
+
+$(MLX_LIB):
+	@if [ -d $(LIB_DIR)/$(MLX_DIR) ]; then \
+		$(MAKE) -C $(MLX_DIR); \
+	else \
+		printf "\033[31mMiniLibX directory $(LIB_DIR)/$(MLX_DIR) not found.\033[0m\n"; \
+		printf "Do you want to clone it? [y/n] "; \
+		read -r ans; \
+		if [ "$$ans" = "y" ] || [ "$$ans" = "Y" ] || [ "$$ans" = "yes" ]; then \
+			git clone https://github.com/42Paris/minilibx-linux.git "$(LIB_DIR)/$(MLX_DIR)"; \
+			$(MAKE) -C "$(LIB_DIR)/$(MLX_DIR)"; \
+		else \
+			echo "Skipping MiniLibX clone, build may fail."; \
+			exit 1; \
+		fi; \
+	fi
+
+%.a:
+	$(MAKE) all -C $(dir $*)
+
+clean:
+	rm -rf $(OBJ_DIR)
+	$(foreach l, $(LIB), $(MAKE) -C $(LIB_DIR)/$(l) clean;)
+	$(MAKE) -C $(LIB_DIR)/$(MLX_DIR) clean
+
+fclean: clean
+	rm -rf $(NAME)
+	$(foreach l, $(LIB), $(MAKE) -C $(LIB_DIR)/$(l) fclean;)
+	$(MAKE) -C $(LIB_DIR)/$(MLX_DIR) fclean
+
+re: fclean all
+
+bonus:
+
+debug: CFLAGS= re
+
+PHONY: all clean fclean re bonus debug

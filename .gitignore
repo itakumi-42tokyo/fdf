@@ -1,0 +1,20 @@
+# build
+*.o
+*.a
+*.out
+*.so
+*.exe
+build/
+tmp/
+
+# bin
+a.out
+*.bin
+
+#vscode
+.vscode
+
+#lib
+lib/minilibx-linux
+*/minilibx-linux/*
+
