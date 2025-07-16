@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   macro.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: tigarashi <@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/16 23:15:15 by tigarashi        ###   ########.fr       */
+/*   Created: 2025/07/16 23:20:55 by tigarashi         #+#    #+#             */
+/*   Updated: 2025/07/16 23:20:56 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef MACRO_H
+# define MACRO_H
 
-int	main(int argc, char *argv[])
-{
-	
-}
+// Error messege
+# define FAILED_MLX_INIT "failed mix_init\n"
+# define FAILED_MLX_WIN "failed mlx_window\n"
+
+// keycode
+# define ESC_MACOS 53
+# define ESC_LINUX 65307
+# define X_MACOS 7
+# define X_LINUX 78
+
+#endif

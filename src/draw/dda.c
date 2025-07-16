@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 23:08:39 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/16 22:51:17 by tigarashi        ###   ########.fr       */
+/*   Updated: 2025/07/16 23:02:43 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,19 @@ int	my_abs(int n)
 
 void	dda(int x1, int y1, int x2, int y2, void *mlx, void *win)
 {
+	int	i;
 	int dx = x2 - x1;
 	int dy = y2 - y1;
 	int steps;
 	double x_inc, y_inc;
 	double x = x1;
 	double y = y1;
-	int i;
 
 	steps = (my_abs(dx) > my_abs(dy)) ? my_abs(dx) : my_abs(dy);
 	x_inc = dx / (double)steps;
 	y_inc = dy / (double)steps;
-	for (i = 0; i <= steps; i++)
+	i = 0;
+	while (i++ <= steps)
 	{
 		mlx_pixel_put(mlx, win, round(x), round(y), 0xFFFFFF);
 		x += x_inc;

@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   key.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 22:59:58 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/16 23:42:14 by tigarashi        ###   ########.fr       */
+/*   Created: 2025/07/17 04:14:53 by tigarashi         #+#    #+#             */
+/*   Updated: 2025/07/17 04:15:19 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "mlx.h"
-#include "macro.h"
+#ifndef KEY_H
+# define KEY_H
 
-void	init(int size_x, int size_y, char *title)
-{
-	void	*mlx;
-	void	*win;
 
-	mlx = mlx_init();
-	if (mlx == NULL)
-		(write(2, FAILED_MLX_INIT, ft_strlen(FAILED_MLX_INIT)), exit(1));
-	win = mlx_new_window(mlx, size_x, size_y, title);
-	if (win == NULL)
-		(write(2, FAILED_MLX_WIN, ft_strlen(FAILED_MLX_WIN));
-	
-}
 
+#endif
