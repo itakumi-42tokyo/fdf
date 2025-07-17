@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   esc.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 04:14:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/17 05:01:06 by tigarashi        ###   ########.fr       */
+/*   Updated: 2025/07/17 18:46:21 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,29 @@ int key_hook(int keycode, void *param)
 	void	**p;
 	void	*mlx;
 	void	*win;
+	void	*img;
 
 	p = (void **)param;
 	mlx = p[0];
 	win = p[1];
+	img = p[2];
 	if (keycode == ESC_MACOS || keycode == ESC_LINUX)
 	{
+		mlx_destroy_image(mlx, img);
 		mlx_destroy_window(mlx, win);
-		exit(0);
+		mlx_loop_end(mlx);
+		mlx_destroy_display(mlx);
+		free(mlx);
+		exit(EXIT_SUCCESS);
 	}
 	if (keycode == X_MACOS || keycode == X_LINUX)
 	{
+		mlx_destroy_image(mlx, img);
 		mlx_destroy_window(mlx, win);
-		exit(0);
+		mlx_loop_end(mlx);
+		mlx_destroy_display(mlx);
+		free(mlx);
+		exit(EXIT_SUCCESS);
 	}
 	return (0);
 }

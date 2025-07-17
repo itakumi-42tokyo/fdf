@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_abs.c                                           :+:      :+:    :+:   */
+/*   errmsg_exit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 05:32:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/17 11:48:34 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/17 17:59:17 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/17 18:01:05 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	my_abs(int n)
+#include "libft.h"
+
+void	errmsg_exit(const char *msg)
 {
-	if (n < 0)
-		return (-n);
-	return (n);
+	ft_putstr_fd(msg, 2);
+	exit(EXIT_FAILURE);
 }
