@@ -6,7 +6,7 @@
 #    By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/17 04:32:13 by tigarashi        ###   ########.fr        #
+#    Updated: 2025/07/17 05:32:07 by tigarashi        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC_DIR		?= src
 DRAW_DIR	?= draw
 INIT_DIR	?= init
 KEY_DIR		?= key
+UTILS_DIR	?= utils
 
 SRC		= \
 	$(DRAW_DIR)/bla.c \
@@ -26,6 +27,7 @@ SRC		= \
 	$(DRAW_DIR)/wla.c \
 	$(INIT_DIR)/init.c \
 	$(KEY_DIR)/esc.c \
+	$(UTILS_DIR)/my_abs.c \
 	main.c \
 
 OBJ_DIR	?= build
