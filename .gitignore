@@ -20,3 +20,6 @@ lib/minilibx-linux
 
 #shell
 *.sh
+
+#maps
+*test_maps*

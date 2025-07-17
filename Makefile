@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+         #
+#    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/17 05:32:07 by tigarashi        ###   ########.fr        #
+#    Updated: 2025/07/17 18:59:07 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,12 @@ SRC		= \
 	$(DRAW_DIR)/bla.c \
 	$(DRAW_DIR)/dda.c \
 	$(DRAW_DIR)/wla.c \
+	$(INIT_DIR)/check_map.c \
 	$(INIT_DIR)/init.c \
-	$(KEY_DIR)/esc.c \
+	$(KEY_DIR)/esc_x.c \
+	$(UTILS_DIR)/errmsg_exit.c \
 	$(UTILS_DIR)/my_abs.c \
+	$(UTILS_DIR)/ swap.c \
 	main.c \
 
 OBJ_DIR	?= build

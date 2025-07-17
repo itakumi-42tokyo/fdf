@@ -6,15 +6,16 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:50:56 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/13 11:59:17 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/17 18:56:43 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
 
-int		bla();
-int		dda();
-int		wla();
+void	bla(int x0, int y0, int x1, int y1, void *mlx, void *win);
+void	dda(int x1, int y1, int x2, int y2, void *mlx, void *win);
+void	wla(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img);
+
 
 #endif

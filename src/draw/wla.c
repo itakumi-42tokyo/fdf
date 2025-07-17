@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 23:08:48 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/17 18:46:33 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/17 18:56:37 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	wla_v(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
 		mlx_pixel_put(mlx, win, ix + 1, iy, 0xFFFFFF);
 		i++;
 	}
-
 }
 
 void	wla_h(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
@@ -133,10 +132,9 @@ void	wla_h(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
 		mlx_pixel_put(mlx, win, ix, iy + 1, 0xFFFFFF);
 		i++;
 	}
-
 }
 
-int	wla(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
+void	wla(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
 {
 	int dx;
 	int dy;
@@ -147,7 +145,6 @@ int	wla(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
 		wla_h(x0, y0, x1, y1, mlx, win, img);
 	else
 		wla_v(x0, y0, x1, y1, mlx, win, img);
-	return (0);
 }
 
 int	expose_hook(void *param)
@@ -160,21 +157,21 @@ int	expose_hook(void *param)
 	return (0);
 }
 
-#include <stdio.h>
-int	main(void)
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	void	*p[2];
+// #include <stdio.h>
+// int	main(void)
+// {
+// 	void	*mlx;
+// 	void	*win;
+// 	void	*img;
+// 	void	*p[2];
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 900, 900, "WLA00");
-	img = mlx_new_image(mlx, 900, 900);
-	p[0] = mlx;
-	p[1] = win;
-	void	*param[3] = {mlx, win, img};
-	mlx_expose_hook(win, expose_hook, p);
-	mlx_loop(mlx);
-	return (0);
-}
+// 	mlx = mlx_init();
+// 	win = mlx_new_window(mlx, 900, 900, "WLA00");
+// 	img = mlx_new_image(mlx, 900, 900);
+// 	p[0] = mlx;
+// 	p[1] = win;
+// 	void	*param[3] = {mlx, win, img};
+// 	mlx_expose_hook(win, expose_hook, p);
+// 	mlx_loop(mlx);
+// 	return (0);
+// }

@@ -23,4 +23,7 @@
 # define X_MACOS 7
 # define X_LINUX 120
 
+// map size
+# define MAP_SIZE_X 
+
 #endif
