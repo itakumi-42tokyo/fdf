@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 05:32:36 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/17 18:01:23 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/17 21:04:14 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 int		my_abs(int n);
 int		swap(int *a, int *b);
 void	errmsg_exit(const char *msg);
+void	free_2d(void **array);
 
 #endif

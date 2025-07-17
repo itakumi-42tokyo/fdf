@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_2d.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/17 20:49:20 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/17 21:02:12 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/17 21:03:34 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include "mlx.h"
-#include "utils.h"
-#include "macro.h"
+#include <stdlib.h>
 
-// 一旦引数は１つだけとする。
-int	main(int argc, char *argv[])
+void	free_2d(void **array)
 {
-	if (argc != 2)
-		errmsg_exit(SYNTAX_ERROR);
-	
-	return (0);
+	int i;
+
+	if (array == NULL)
+		return;
+	i = 0;
+	while (array[i] != NULL)
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
 }
