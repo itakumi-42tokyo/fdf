@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 11:47:33 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/18 11:48:17 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	calc_map_size(int fd, int *width, int *height)
 
 	if (width == NULL || height == NULL)
 		return (-1);
-
+	
 }
 
 t_point	**read_map(char *file_path)
