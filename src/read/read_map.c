@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 18:00:11 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/18 21:11:03 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <stddef.h>
 
+// 16進数にも対応させないといけない
 //　改行ごとにチェックする関数にするべきか？
 int	parse_token(t_point **map, char **tokens, const int y, const int width)
 {
@@ -80,14 +81,14 @@ t_point *parse_map(int fd, int width, int height)
 // XXX
 // 改行の数で、heightを決定してもよいのだろうか？
 // lseekを使用しない限り、openは２回必要になると思われる.
-int	calc_map_size(char *file_path, int *width, int *height)
+int	calc_map_size(t_control *control, char *file_path)
 {
 	int		fd;
 	char	*line;
 	char	buffer[BUFFER_SIZE];
 	ssize_t	read_bytes;
 
-	if (file_path || width == NULL || height == NULL)
+	if (control == NULL || file_path == NULL)
 		return (-1);
 	fd = open(file_path, O_RDONLY | __O_CLOEXEC);
 	if (fd == -1)
@@ -95,7 +96,7 @@ int	calc_map_size(char *file_path, int *width, int *height)
 	line = get_next_line(fd);
 	if (line == NULL)
 		return (close(fd), -1);
-	*width = ut_count_words(line);
+	control->map_width = ut_count_words(line);
 	free(line);
 	while (1)
 	{
@@ -104,7 +105,7 @@ int	calc_map_size(char *file_path, int *width, int *height)
 			return (perror(file_path), close(fd), -1);
 		else if (read_bytes == 0)
 			break;
-		*height += ut_count_target(buffer, '\n');
+		control->map_height += ut_count_target(buffer, '\n');
 	}
 	return (close(fd), 0);
 }
@@ -116,14 +117,12 @@ t_point	**read_map(t_control *control, char *file_path)
 {
 	t_point		**map;
 	int			fd;
-	int			width;
-	int			height;
 
 	if (file_path == NULL)
 		return (NULL);
 	control->map_width = 0;
 	control->map_height = 0;
-	if (calc_map_size(file_path, &width, &height) == -1)
+	if (calc_map_size(control, file_path) == -1)
 		return (NULL);
 	fd = open(file_path, O_RDONLY | __O_CLOEXEC);
 	if (fd == -1)
@@ -131,7 +130,7 @@ t_point	**read_map(t_control *control, char *file_path)
 		perror(file_path);
 		return (NULL);
 	}
-	map = parse_map(fd, width, height);
+	map = parse_map(fd, control->map_width, control->map_height);
 	if (map == NULL)
 	{
 		close(fd);

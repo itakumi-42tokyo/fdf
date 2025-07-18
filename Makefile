@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/18 18:01:23 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/18 20:15:55 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,16 @@ SRC_DIR		?= src
 DRAW_DIR	?= draw
 INIT_DIR	?= init
 KEY_DIR		?= key
+READ_DIR	?= read
 UTILS_DIR	?= utils
 
 SRC		= \
 	$(DRAW_DIR)/bla.c \
 	$(DRAW_DIR)/dda.c \
 	$(DRAW_DIR)/wla.c \
-	$(INIT_DIR)/read_map.c \
 	$(INIT_DIR)/init_mlx.c \
+	$(INIT_DIR)/init_control.c \
+	$(READ_DIR)/read_map.c \
 	$(KEY_DIR)/esc_x.c \
 	$(UTILS_DIR)/errmsg_exit.c \
 	$(UTILS_DIR)/free_2d.c \

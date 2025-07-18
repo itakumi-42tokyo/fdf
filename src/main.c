@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 18:02:29 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/18 18:50:43 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 // 一旦引数は１つだけとする。
 // よくよく考えたら、マップのサイズはどのようにして確認すればよいのか？
+// read_mapでcontrolのmapに格納するべきかそれとも、返り値で格納するべきか？
 int	main(int argc, char *argv[])
 {
 	t_control	*control;
@@ -30,12 +31,12 @@ int	main(int argc, char *argv[])
 	if (control == NULL)
 		errmsg_exit(MALLOC_ERROR);
 	init_control(control);
-	control->map = read_map(argv[1]);
+	control->map = read_map(control, argv[1]);
 	if (control->map == NULL)
 	{
 		free(control);
 		errmsg_exit(MAP_READ_ERROR);
 	}
-
+	init_mlx(control);
 	return (0);
 }

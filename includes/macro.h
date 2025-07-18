@@ -26,9 +26,12 @@
 # define X_MACOS 7
 # define X_LINUX 120
 
-// map size
-# define MAP_SIZE_X 3000
-# define MAP_SIZE_Y 2000
+// window size
+# define DEFAULT_WIN_SIZE_X 3000
+# define DEFAULT_WIN_SIZE_Y 2000
+
+// title
+# define DEFAULT_TITLE "FDF"
 
 // buffer size
 # define BUFFER_SIZE 8192

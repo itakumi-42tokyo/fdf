@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   isometric.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 12:00:04 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 18:51:15 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/18 19:11:04 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
-# define INIT_H
+#include <math.h>
+#include <stddef.h>
+#include "struct.h"
 
-# include "struct.h"
+void	iso_proj(t_control *ctrl)
+{
+	int i;
+	int j;
 
-void	init_control(t_control *control);
-void	init_mlx(t_control *ctrl);
-t_point	**read_map(t_control *control, char *file_path);
-
-#endif
+	if (ctrl == NULL)
+		return;
+	i = 0;
+	while (i < ctrl->map_height)
+	{
+		j = 0;
+		while (j < ctrl->map_width)
+		{
+			
+			j++;
+		}
+		i++;
+	}
