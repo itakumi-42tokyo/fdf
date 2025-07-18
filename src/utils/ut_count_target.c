@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ut_count_target.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 05:32:36 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/18 17:43:53 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/18 17:38:32 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/18 17:43:36 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include <stddef.h>
 
-# include <stdbool.h>
-// bool
+int	ut_count_target(char *str, char target)
+{
+	int	count;
 
-int		my_abs(int n);
-int		swap(int *a, int *b);
-void	errmsg_exit(const char *msg);
-void	free_2d(void **array);
-int		ut_atoi_with_error(const char *nptr, bool *error);
-int		ut_issign(int c);
-int		ut_isspace(int c);
-int		ut_count_words(const char *str);
-int		ut_count_target(char *str, char target);
-
-#endif
+	if (str == NULL)
+		return (-1);
+	count = 0;
+	while (*str != '\0')
+	{
+		if (*str == target)
+			count++;
+		str++;
+	}
+	return (count);
+}

@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/18 10:57:57 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/18 17:38:29 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SRC		= \
 	$(UTILS_DIR)/my_abs.c \
 	$(UTILS_DIR)/ swap.c \
 	$(UTILS_DIR)/ut_atoi_with_error.c \
+	$(UTILS_DIR)/ut_count_target.c \
+	$(UTILS_DIR)/ut_count_words.c \
 	$(UTILS_DIR)/ut_issign.c \
 	$(UTILS_DIR)/ut_isspace.c \
 	main.c \

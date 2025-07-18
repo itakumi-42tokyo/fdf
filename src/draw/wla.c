@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 23:08:48 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/17 18:56:37 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/18 17:54:54 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,6 @@ void	wla_v(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
 		swap(&x0, &x1);
 		swap(&y0, &y1);
 	}
-	// int bits_per_pixel = 32;
-	// int size_line = 900 * 4;
-	// int endian = 0;
-	// void    *data = mlx_get_data_addr(img, &bits_per_pixel, &size_line, &endian);
 	int gb_color = 0x000000; // 背景色（黒）
 	int fg_color = 0xFFFFFF; // 描画色（白）
 	dx = x1 - x0;
@@ -107,10 +103,6 @@ void	wla_h(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
 		swap(&x0, &x1);
 		swap(&y0, &y1);
 	}
-	// int bits_per_pixel = 32;
-	// int size_line = 900 * 4;
-	// int endian = 0;
-	// void    *data = mlx_get_data_addr(img, &bits_per_pixel, &size_line, &endian);
 	int gb_color = 0x000000; // 背景色（黒）
 	int fg_color = 0xFFFFFF; // 描画色（白）
 	dx = x1 - x0;

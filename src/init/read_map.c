@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 11:48:17 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/18 17:56:25 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 #include <stddef.h>
 
 //　改行ごとにチェックする関数にするべきか？
-int	parse_token(t_point **map, char **tokens, const int y)
+int	parse_token(t_point **map, char **tokens, const int y, const int width)
 {
 	int		i;
 	bool	error;
 
 	if (map == NULL || tokens == NULL)
 		return (-1);
-	map[y] = malloc(sizeof(t_point) * MAP_SIZE_X);
+	map[y] = malloc(sizeof(t_point) * (width));
 	if (map[y] == NULL)
 		return (-1);
 	error = false;
@@ -47,14 +47,14 @@ int	parse_token(t_point **map, char **tokens, const int y)
 // ここでlineを解析して、必要な情報を抽出する
 // 例えば、空白で区切られた整数を取得するなど
 // 解析後はlineを解放する
-t_point *parse_map(int fd)
+t_point *parse_map(int fd, int width, int height)
 {
 	t_point	**map;
 	char 	**tokens;
 	char	*line;
 	int		y;
 
-	map = malloc(sizeof(t_point *) * MAP_SIZE_Y);
+	map = malloc(sizeof(t_point *) * (width + 1));
 	if (map == NULL)
 		return (NULL);
 	y = 0;
@@ -66,30 +66,64 @@ t_point *parse_map(int fd)
 		tokens = ft_split(line, ' ');
 		if (tokens == NULL)
 			return (free(line), free_2d((void **)map), NULL);
-		if (parse_tokens(map, tokens, y) == -1)
+		if (parse_tokens(map, tokens, y, width) == -1)
 			return (free(line), free_2d((void **)tokens), free_2d((void **)map), NULL);
-		free_2d((void **)tokens);
-		free(line);
+		(free(line), free_2d((void **)tokens));
 		y++;
 	}
+	map[y] = NULL;
 	return (map);
 }
 
-int	calc_map_size(int fd, int *width, int *height)
+// TODO
+// FIXME
+// XXX
+// 改行の数で、heightを決定してもよいのだろうか？
+// lseekを使用しない限り、openは２回必要になると思われる.
+int	calc_map_size(char *file_path, int *width, int *height)
 {
-	int	i;
+	int		fd;
+	char	*line;
+	char	buffer[BUFFER_SIZE];
+	ssize_t	read_bytes;
 
-	if (width == NULL || height == NULL)
+	if (file_path || width == NULL || height == NULL)
 		return (-1);
-	
+	fd = open(file_path, O_RDONLY | __O_CLOEXEC);
+	if (fd == -1)
+		return (perror(file_path), -1);
+	line = get_next_line(fd);
+	if (line == NULL)
+		return (close(fd), -1);
+	*width = ut_count_words(line);
+	free(line);
+	while (1)
+	{
+		read_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (read_bytes == -1)
+			return (perror(file_path), close(fd), -1);
+		else if (read_bytes == 0)
+			break;
+		*height += ut_count_target(buffer, '\n');
+	}
+	return (close(fd), 0);
 }
+// 改行だけでheightを確認するのは怪しいので、他の方法はないかな？
+// １．数字の直後の改行を見て、判断する。
+// ２．
 
 t_point	**read_map(char *file_path)
 {
 	t_point		**map;
 	int			fd;
+	int			width;
+	int			height;
 
 	if (file_path == NULL)
+		return (NULL);
+	width = 0;
+	height = 0;
+	if (calc_map_size(file_path, &width, &height) == -1)
 		return (NULL);
 	fd = open(file_path, O_RDONLY | __O_CLOEXEC);
 	if (fd == -1)
@@ -97,7 +131,7 @@ t_point	**read_map(char *file_path)
 		perror(file_path);
 		return (NULL);
 	}
-	map = parse_map(fd);
+	map = parse_map(fd, width, height);
 	if (map == NULL)
 	{
 		close(fd);

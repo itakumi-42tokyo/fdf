@@ -30,4 +30,7 @@
 # define MAP_SIZE_X 3000
 # define MAP_SIZE_Y 2000
 
+// buffer size
+# define BUFFER_SIZE 8192
+
 #endif
