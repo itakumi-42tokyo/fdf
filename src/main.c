@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 11:45:09 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/18 18:02:29 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ int	main(int argc, char *argv[])
 	control = malloc(sizeof(t_control));
 	if (control == NULL)
 		errmsg_exit(MALLOC_ERROR);
+	init_control(control);
 	control->map = read_map(argv[1]);
 	if (control->map == NULL)
 	{
 		free(control);
 		errmsg_exit(MAP_READ_ERROR);
 	}
+
 	return (0);
 }

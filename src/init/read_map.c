@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 17:56:25 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/18 18:00:11 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	calc_map_size(char *file_path, int *width, int *height)
 // １．数字の直後の改行を見て、判断する。
 // ２．
 
-t_point	**read_map(char *file_path)
+t_point	**read_map(t_control *control, char *file_path)
 {
 	t_point		**map;
 	int			fd;
@@ -121,8 +121,8 @@ t_point	**read_map(char *file_path)
 
 	if (file_path == NULL)
 		return (NULL);
-	width = 0;
-	height = 0;
+	control->map_width = 0;
+	control->map_height = 0;
 	if (calc_map_size(file_path, &width, &height) == -1)
 		return (NULL);
 	fd = open(file_path, O_RDONLY | __O_CLOEXEC);

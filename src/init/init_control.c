@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   init_control.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 12:00:04 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 18:01:32 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/18 18:12:14 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
-# define INIT_H
+#include <stddef.h>
+#include "struct.h"
 
-# include "struct.h"
-
-void	init_mlx(int size_x, int size_y, char *title);
-
-t_point	**read_map(char *file_path);
-
-#endif
+void	init_control(t_control *control)
+{
+	control->mlx = NULL;
+	control->win = NULL;
+	control->img = NULL;
+	
+}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:58 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/17 18:51:21 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/18 18:01:56 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <unistd.h>
 #include "libft.h"
 
-void	init(int size_x, int size_y, char *title)
+void	init_mlx(int size_x, int size_y, char *title)
 {
 	void	*mlx;
 	void	*win;
@@ -32,5 +32,4 @@ void	init(int size_x, int size_y, char *title)
 		free(mlx);
 		errmsg_exit(FAILED_MLX_WIN);
 	}
-	
 }
