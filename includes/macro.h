@@ -15,6 +15,8 @@
 
 // Error messege
 # define SYNTAX_ERROR "Usage: ./fdf <filename>\n"
+# define MALLOC_ERROR "malloc error\n"
+# define MAP_READ_ERROR "map read error\n"
 # define FAILED_MLX_INIT "failed mix_init\n"
 # define FAILED_MLX_WIN "failed mlx_window\n"
 

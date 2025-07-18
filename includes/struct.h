@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/17 18:54:49 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/18 11:30:44 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_point
 	int	z;
 }	t_point;
 
+// mapはおそらく方形と捉えて良さそう。
 typedef struct s_control
 {
 	void	*mlx;

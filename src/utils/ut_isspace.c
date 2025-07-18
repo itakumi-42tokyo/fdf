@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.h                                             :+:      :+:    :+:   */
+/*   ut_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 12:00:04 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 11:38:56 by itakumi          ###   ########.fr       */
+/*   Created: 2025/06/25 09:21:21 by itakumi           #+#    #+#             */
+/*   Updated: 2025/06/25 09:22:36 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
-# define INIT_H
-
-# include "struct.h"
-
-void	init(int size_x, int size_y, char *title);
-t_point	**read_map(char *file_path);
-
-#endif
+int	ut_isspace(int c)
+{
+	if ((c >= '\t' && c <= '\r') || c == ' ')
+		return (1);
+	return (0);
+}

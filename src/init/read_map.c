@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/17 21:35:41 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/18 11:47:33 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,36 @@
 #include <stddef.h>
 
 //　改行ごとにチェックする関数にするべきか？
-int	parse_token(t_point **map, char **tokens, int y)
+int	parse_token(t_point **map, char **tokens, const int y)
 {
-	int	i;
+	int		i;
+	bool	error;
 
 	if (map == NULL || tokens == NULL)
 		return (-1);
+	map[y] = malloc(sizeof(t_point) * MAP_SIZE_X);
+	if (map[y] == NULL)
+		return (-1);
+	error = false;
 	i = 0;
 	while (tokens[i] != NULL)
 	{
-		map[i] = malloc(sizeof(t_point));
-		if (map[i] == NULL)
-		{
-			free_2d((void **)map);
+		(map[y][i]).x = i;
+		(map[y][i]).y = y;
+		(map[y][i]).z = ut_atoi_with_error(tokens[i], &error);
+		if (error == true)
 			return (-1);
-		}
-		map[y][i]->x = i;
+		i++;
 	}
 }
+// 整数はどの型までを許容するか？　整数で来ない場合もあるのかな？
+// ut_atoi_with_errorは、数字以外が入力されているときも反応する。
 
-t_control *parse_map(int fd)
+
+// ここでlineを解析して、必要な情報を抽出する
+// 例えば、空白で区切られた整数を取得するなど
+// 解析後はlineを解放する
+t_point *parse_map(int fd)
 {
 	t_point	**map;
 	char 	**tokens;
@@ -53,14 +63,11 @@ t_control *parse_map(int fd)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break;
-		// ここでlineを解析して、必要な情報を抽出する
-		// 例えば、空白で区切られた整数を取得するなど
 		tokens = ft_split(line, ' ');
 		if (tokens == NULL)
 			return (free(line), free_2d((void **)map), NULL);
 		if (parse_tokens(map, tokens, y) == -1)
 			return (free(line), free_2d((void **)tokens), free_2d((void **)map), NULL);
-		// 解析後はlineを解放する
 		free_2d((void **)tokens);
 		free(line);
 		y++;
@@ -68,24 +75,34 @@ t_control *parse_map(int fd)
 	return (map);
 }
 
-t_control	*read_map(char *file_path)
+int	calc_map_size(int fd, int *width, int *height)
 {
-	t_point	**map;
-	int		fd;
+	int	i;
 
+	if (width == NULL || height == NULL)
+		return (-1);
+
+}
+
+t_point	**read_map(char *file_path)
+{
+	t_point		**map;
+	int			fd;
 
 	if (file_path == NULL)
-		return (-1);
+		return (NULL);
 	fd = open(file_path, O_RDONLY | __O_CLOEXEC);
 	if (fd == -1)
 	{
 		perror(file_path);
-		return (-1);
+		return (NULL);
 	}
 	map = parse_map(fd);
 	if (map == NULL)
 	{
 		close(fd);
-		return (-1);
+		return (NULL);
 	}
+	close(fd);
+	return (map);
 }
