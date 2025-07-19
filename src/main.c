@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/19 15:36:57 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/19 18:19:39 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "macro.h"
 #include "struct.h"
 #include "init.h"
+#include "projection.h"
 #include <stddef.h>
 
 // 一旦引数は１つだけとする。
@@ -38,5 +39,7 @@ int	main(int argc, char *argv[])
 		errmsg_exit(MAP_READ_ERROR);
 	}
 	init_mlx(control);
+	iso_proj(control);
+
 	return (0);
 }

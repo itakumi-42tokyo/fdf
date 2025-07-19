@@ -6,15 +6,14 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/19 15:38:49 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/19 17:37:12 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "fdf.h"
 #include "mlx.h"
 #include "utils.h"
-#include <math.h>
-#include <stdlib.h>
 
 // p_initial = 2*dy - dx;
 // py = m * (i + 1) + y0;

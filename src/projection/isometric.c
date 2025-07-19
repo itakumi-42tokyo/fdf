@@ -6,14 +6,14 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/19 17:24:54 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/19 18:21:04 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include <stddef.h>
 #include "struct.h"
-#include "projction.h"
+#include "projection.h"
 
 void	iso_proj(t_control *ctrl)
 {
@@ -45,3 +45,4 @@ void	iso_proj(t_control *ctrl)
 		}
 		i++;
 	}
+}

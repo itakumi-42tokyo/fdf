@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 23:08:39 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/19 15:38:38 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/19 18:20:40 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 // ２．ラスタライズする
 // ３．1 < 1 > で場合分けする
 
-#include "../../lib/minilibx-linux/mlx.h"
+#include "mlx.h"
 #include <math.h>
 #include <stdlib.h>
 
-int	my_abs(int n)
+static int	my_abs(int n)
 {
 	if (n < 0)
 		return (-n);
@@ -37,7 +37,7 @@ void	dda(int x1, int y1, int x2, int y2, void *mlx, void *win)
 	double x = x1;
 	double y = y1;
 
-	steps = (fabs(dx) > fabs(dy)) ? fabs(dx) : fabs(dy);
+	steps = (my_abs(dx) > my_abs(dy)) ? my_abs(dx) : my_abs(dy);
 	x_inc = dx / (double)steps;
 	y_inc = dy / (double)steps;
 	i = 0;

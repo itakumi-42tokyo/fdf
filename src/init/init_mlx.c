@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:58 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 18:50:24 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/19 18:03:57 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "macro.h"
 #include "libft.h"
 #include "struct.h"
+#include "utils.h"
 
 void	init_mlx(t_control *ctrl)
 {

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 23:08:48 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 17:54:54 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/19 17:57:06 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	wla_v(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
 	int		ix;
 	int		iy;
 	double	dist;
+	char	*data;
 
 	if (y0 > y1)
 	{
