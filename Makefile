@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/18 20:15:55 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/19 17:04:11 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC_DIR		?= src
 DRAW_DIR	?= draw
 INIT_DIR	?= init
 KEY_DIR		?= key
+PROJ_DIR	?= projection
 READ_DIR	?= read
 UTILS_DIR	?= utils
 
@@ -30,6 +31,9 @@ SRC		= \
 	$(INIT_DIR)/init_control.c \
 	$(READ_DIR)/read_map.c \
 	$(KEY_DIR)/esc_x.c \
+	$(PROJ_DIR)/isometric.c \
+	$(PROJ_DIR)/perspective.c \
+	$(PROJ_DIR)/rad_deg.c \
 	$(UTILS_DIR)/errmsg_exit.c \
 	$(UTILS_DIR)/free_2d.c \
 	$(UTILS_DIR)/my_abs.c \

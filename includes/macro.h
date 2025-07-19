@@ -36,4 +36,8 @@
 // buffer size
 # define BUFFER_SIZE 8192
 
+# ifndef M_PI
+# define M_PI 3.14159265359
+# endif
+
 #endif

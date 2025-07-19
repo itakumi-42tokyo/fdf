@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perspective.c                                      :+:      :+:    :+:   */
+/*   rad_deg.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/19 17:09:46 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/19 17:10:50 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/19 16:42:40 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/19 17:11:33 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "struct.h"
+#include "macro.h"
 
-void	persp_proj(t_control *ctrl)
+double	deg_to_rad(double deg)
 {
-	
+	return (deg * M_PI / 180);
+}
+
+double	rad_to_deg(double rad)
+{
+	return (rad * 180 / M_PI);
 }

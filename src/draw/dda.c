@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 23:08:39 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/17 05:01:20 by tigarashi        ###   ########.fr       */
+/*   Updated: 2025/07/19 15:38:38 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	dda(int x1, int y1, int x2, int y2, void *mlx, void *win)
 	double x = x1;
 	double y = y1;
 
-	steps = (my_abs(dx) > my_abs(dy)) ? my_abs(dx) : my_abs(dy);
+	steps = (fabs(dx) > fabs(dy)) ? fabs(dx) : fabs(dy);
 	x_inc = dx / (double)steps;
 	y_inc = dy / (double)steps;
 	i = 0;
