@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/20 18:33:26 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/20 22:13:45 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,33 +20,30 @@ LD_FLAGS = -lm
 INC = -I includes
 
 SRC_DIR		?= src
-DRAW_DIR	?= draw
-INIT_DIR	?= init
-KEY_DIR		?= key
-PROJ_DIR	?= projection
-READ_DIR	?= read
-UTILS_DIR	?= utils
 
 SRC		= \
-	$(DRAW_DIR)/bla.c \
-	$(DRAW_DIR)/dda.c \
-	$(DRAW_DIR)/wla.c \
-	$(INIT_DIR)/init_mlx.c \
-	$(INIT_DIR)/init_control.c \
-	$(READ_DIR)/read_map.c \
-	$(KEY_DIR)/esc_x.c \
-	$(PROJ_DIR)/isometric.c \
-	$(PROJ_DIR)/perspective.c \
-	$(PROJ_DIR)/rad_deg.c \
-	$(UTILS_DIR)/errmsg_exit.c \
-	$(UTILS_DIR)/free_2d.c \
-	$(UTILS_DIR)/my_abs.c \
-	$(UTILS_DIR)/swap.c \
-	$(UTILS_DIR)/ut_atoi_with_error.c \
-	$(UTILS_DIR)/ut_count_target.c \
-	$(UTILS_DIR)/ut_count_words.c \
-	$(UTILS_DIR)/ut_issign.c \
-	$(UTILS_DIR)/ut_isspace.c \
+	draw/bla.c \
+	draw/dda.c \
+	draw/wla.c \
+	execute/exec.c \
+	free/free_exit.c \
+	init/init_mlx.c \
+	init/init_control.c \
+	read/read_map.c \
+	key/esc_x.c \
+	projection/isometric.c \
+	projection/perspective.c \
+	projection/rad_deg.c \
+	utils/errmsg_exit.c \
+	utils/free_2d.c \
+	utils/my_abs.c \
+	utils/swap.c \
+	utils/ut_atoi_with_error.c \
+	utils/ut_count_target.c \
+	utils/ut_count_words.c \
+	utils/ut_issign.c \
+	utils/ut_isspace.c \
+	utils/ut_split.c \
 	main.c \
 
 OBJ_DIR	?= build

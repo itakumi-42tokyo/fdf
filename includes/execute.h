@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key.h                                              :+:      :+:    :+:   */
+/*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 04:14:53 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/20 19:41:40 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/20 18:39:54 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/20 22:15:00 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KEY_H
-# define KEY_H
+#ifndef EXECUTE_H
+# define EXECUTE_H
 
-int 	key_hook(t_control **ctrl, int keycode);
+# include "struct.h"
+
+void	exec(t_control *ctrl);
 
 #endif

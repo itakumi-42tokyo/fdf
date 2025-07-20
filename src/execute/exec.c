@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   esc_x.c                                            :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 04:14:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/20 19:40:50 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/20 18:38:55 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/20 19:12:15 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <stdlib.h>
 #include "mlx.h"
-#include "struct.h"
 #include "macro.h"
-#include "free.h"
+#include "struct.h"
+#include "draw.h"
+#include "key.h"
 
-int key_hook(t_control **ctrl, int keycode)
+// 描画する線をどのように決定するのか？
+void	exec(t_control *ctrl)
 {
-	if (keycode == ESC_MACOS || keycode == ESC_LINUX)
-		free_exit(ctrl);
-	if (keycode == X_MACOS || keycode == X_LINUX)
-		free_exit(ctrl);
-	return (-1);
-}
+	const void	*param[3] = {ctrl->mlx, ctrl->win, NULL};
 
-// int	main(void)
-// {
-// 	void	*mlx = mlx_init();
-// 	void	*win = mlx_new_window(mlx, 900, 900, "window01");
-// 	void	*param[3] = {mlx, win, NULL};
-// 	mlx_key_hook(win, key_hook, param);
-// 	mlx_loop(mlx);
-// 	return (0);
-// }
+	mlx_key_hook(ctrl->win, key_hook, param);
+	mlx_expose_hook(ctrl->win, hook_bla, param);// hook_blaですべての描画する直線を決定しないといけない。
+	mlx_loop(ctrl->mlx);
+}

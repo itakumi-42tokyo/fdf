@@ -6,16 +6,18 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/20 18:16:28 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/20 22:35:24 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// XXX
+#include <stdio.h>
 
 #include <fcntl.h>
 #include <stddef.h>
 #include "get_next_line_bonus.h"
 #include "struct.h"
 #include "macro.h"
-#include "libft.h"
 #include "utils.h"
 
 
@@ -33,6 +35,7 @@ int	parse_tokens(t_point **map, char **tokens, const int y, const int width)
 		return (-1);
 	error = false;
 	i = 0;
+	int count = 0;
 	while (tokens[i] != NULL)
 	{
 		(map[y][i]).x = i;
@@ -51,7 +54,8 @@ int	parse_tokens(t_point **map, char **tokens, const int y, const int width)
 // ここでlineを解析して、必要な情報を抽出する
 // 例えば、空白で区切られた整数を取得するなど
 // 解析後はlineを解放する
-t_point *parse_map(int fd, int width, int height)
+// width + 1 にしなくてもよいのかな？
+t_point **parse_map(int fd, int width, int height)
 {
 	t_point	**map;
 	char 	**tokens;
@@ -67,7 +71,7 @@ t_point *parse_map(int fd, int width, int height)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break;
-		tokens = ft_split(line, ' ');
+		tokens = ut_split(line, SEP);
 		if (tokens == NULL)
 			return (free(line), free_2d((void **)map), NULL);
 		if (parse_tokens(map, tokens, y, width) == -1)
@@ -100,15 +104,14 @@ int	calc_map_size(t_control *control, char *file_path)
 	if (line == NULL)
 		return (close(fd), -1);
 	control->map_width = ut_count_words(line);
-	free(line);
+	control->map_height += 1;
 	while (1)
 	{
-		read_bytes = read(fd, buffer, BUFFER_SIZE);
-		if (read_bytes == -1)
-			return (perror(file_path), close(fd), -1);
-		else if (read_bytes == 0)
+		free(line);
+		line = get_next_line(fd);
+		if (line == NULL)
 			break;
-		control->map_height += ut_count_target(buffer, '\n');
+		control->map_height += 1;
 	}
 	return (close(fd), 0);
 }
@@ -123,8 +126,6 @@ t_point	**read_map(t_control *control, char *file_path)
 
 	if (file_path == NULL)
 		return (NULL);
-	control->map_width = 0;
-	control->map_height = 0;
 	if (calc_map_size(control, file_path) == -1)
 		return (NULL);
 	fd = open(file_path, O_RDONLY | __O_CLOEXEC);

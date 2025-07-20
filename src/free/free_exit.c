@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   esc_x.c                                            :+:      :+:    :+:   */
+/*   free_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 04:14:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/20 19:40:50 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/20 19:13:23 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/20 19:41:03 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <stdlib.h>
 #include "mlx.h"
+#include "libft.h"
 #include "struct.h"
-#include "macro.h"
-#include "free.h"
 
-int key_hook(t_control **ctrl, int keycode)
+void	free_exit(t_control **ctrl)
 {
-	if (keycode == ESC_MACOS || keycode == ESC_LINUX)
-		free_exit(ctrl);
-	if (keycode == X_MACOS || keycode == X_LINUX)
-		free_exit(ctrl);
-	return (-1);
+	if (ctrl == NULL || *ctrl == NULL)
+		(ft_putstr_fd("invalid argument: ctrl", 2), exit(EXIT_FAILURE));
+	mlx_destroy_image((*ctrl)->mlx, (*ctrl)->img);
+	mlx_destroy_window((*ctrl)->mlx, (*ctrl)->win);
+	mlx_loop_end((*ctrl)->mlx);
+	mlx_destroy_display((*ctrl)->mlx);
+	free((*ctrl)->mlx);
+	exit(EXIT_SUCCESS);
 }
-
-// int	main(void)
-// {
-// 	void	*mlx = mlx_init();
-// 	void	*win = mlx_new_window(mlx, 900, 900, "window01");
-// 	void	*param[3] = {mlx, win, NULL};
-// 	mlx_key_hook(win, key_hook, param);
-// 	mlx_loop(mlx);
-// 	return (0);
-// }

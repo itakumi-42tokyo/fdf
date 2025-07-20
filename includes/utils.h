@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 05:32:36 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/18 17:43:53 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/20 22:11:43 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int		ut_issign(int c);
 int		ut_isspace(int c);
 int		ut_count_words(const char *str);
 int		ut_count_target(char *str, char target);
+char	**ut_split(const char *str, const char *sep);
 
 #endif

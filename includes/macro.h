@@ -42,4 +42,8 @@
 # define M_PI 3.14159265359
 # endif
 
+# ifndef SEP
+# define SEP " \t\n"
+# endif
+
 #endif
