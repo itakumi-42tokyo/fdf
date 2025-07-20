@@ -6,12 +6,13 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/20 18:50:55 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/20 22:51:33 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "mlx.h"
+#include "struct.h"
 #include "utils.h"
 
 // p_initial = 2*dy - dx;
@@ -125,10 +126,16 @@ void	bla(int x0, int y0, int x1, int y1, void *mlx, void *win)
 
 int	hook_bla(void *param)
 {
-	void	**p = (void **)param;
-	void	*mlx = p[0];
-	void	*win = p[1];
-	bla(0, 0, 900, 900, mlx, win);
+	t_control	*ctrl;
+	int			i;
+
+	ctrl = (t_control *)param;
+	i = 0;
+	while (i < ctrl->map_height)
+	{
+		bla(0, 0, 900, 900, ctrl->mlx, ctrl->win);
+		i++;
+	}
 	return (0);
 }
 
