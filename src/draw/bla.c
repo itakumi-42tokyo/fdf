@@ -6,12 +6,11 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/19 17:37:12 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/20 17:47:07 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "fdf.h"
 #include "mlx.h"
 #include "utils.h"
 
@@ -124,7 +123,7 @@ void	bla(int x0, int y0, int x1, int y1, void *mlx, void *win)
 		bla_v(x0, y0, x1, y1, mlx, win);
 }
 
-int	expose_hook(void *param)
+int	hook_bla(void *param)
 {
 	void	**p = (void **)param;
 	void	*mlx = p[0];

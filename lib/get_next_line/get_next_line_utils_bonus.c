@@ -6,13 +6,13 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:00:18 by itakumi           #+#    #+#             */
-/*   Updated: 2025/05/16 14:33:55 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/20 18:19:15 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(char *s)
+size_t	_strlen(char *s)
 {
 	size_t	l;
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(char *s)
 	return (l);
 }
 
-void	ft_bzero(char *s, size_t n)
+void	_bzero(char *s, size_t n)
 {
 	if (!s)
 		return ;
@@ -32,7 +32,7 @@ void	ft_bzero(char *s, size_t n)
 		*s++ = 0;
 }
 
-char	*ft_calloc(size_t nmnb, size_t size)
+char	*_calloc(size_t nmnb, size_t size)
 {
 	char	*tmp;
 
@@ -43,11 +43,11 @@ char	*ft_calloc(size_t nmnb, size_t size)
 	tmp = (char *)malloc(nmnb * size);
 	if (!tmp)
 		return (NULL);
-	ft_bzero(tmp, nmnb);
+	_bzero(tmp, nmnb);
 	return (tmp);
 }
 
-char	*ft_strchr(char *s, char c)
+char	*_strchr(char *s, char c)
 {
 	if (!s)
 		return (NULL);
@@ -62,7 +62,7 @@ char	*ft_strchr(char *s, char c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*_strjoin(char *s1, char *s2)
 {
 	size_t	i;
 	size_t	s1_len;
@@ -77,7 +77,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	s2_len = 0;
 	while (s2[s2_len])
 		s2_len++;
-	tmp = ft_calloc((s1_len + s2_len + 1), sizeof(char));
+	tmp = _calloc((s1_len + s2_len + 1), sizeof(char));
 	if (!tmp)
 		return (NULL);
 	i = 0;

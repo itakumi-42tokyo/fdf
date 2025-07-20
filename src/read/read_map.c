@@ -6,20 +6,22 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 21:11:03 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/20 18:16:28 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
+#include <stddef.h>
+#include "get_next_line_bonus.h"
 #include "struct.h"
 #include "macro.h"
 #include "libft.h"
 #include "utils.h"
-#include <fcntl.h>
-#include <stddef.h>
+
 
 // 16進数にも対応させないといけない
 //　改行ごとにチェックする関数にするべきか？
-int	parse_token(t_point **map, char **tokens, const int y, const int width)
+int	parse_tokens(t_point **map, char **tokens, const int y, const int width)
 {
 	int		i;
 	bool	error;
@@ -40,6 +42,7 @@ int	parse_token(t_point **map, char **tokens, const int y, const int width)
 			return (-1);
 		i++;
 	}
+	return (0);
 }
 // 整数はどの型までを許容するか？　整数で来ない場合もあるのかな？
 // ut_atoi_with_errorは、数字以外が入力されているときも反応する。

@@ -6,12 +6,13 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 09:16:48 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 10:55:25 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/20 18:08:08 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include "libft.h"
+#include "utils.h"
 
 // check if nptr does'nt have string and any forbit sign and overflow underflow
 int	ut_atoi_with_error(const char *nptr, bool *error)

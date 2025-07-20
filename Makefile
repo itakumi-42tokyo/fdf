@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/19 18:24:47 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/20 18:33:26 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME ?= fdf
 CC 		?= cc
 CFLAGS	= -Wall -Werror -Wextra
 
-LDFlAGS = -lm
+LD_FLAGS = -lm
 
 INC = -I includes
 
@@ -78,11 +78,11 @@ endif
 all: $(NAME)
 
 $(NAME): $(LIBS) $(MLX_LIB) $(OBJ)
-	$(CC) $(CFLAGS) $(INC) $(MLX_FLAGS) $(LIBS_HEAD) $(LIBS) $(MLX_LIB) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(LD_FLAGS) $(OBJ) $(INC) $(MLX_FLAGS) $(MLX_INC) $(LIBS_HEAD) $(LIBS) $(MLX_LIB) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -g $(LIBS) $(MLX_LIB) $(INC) $(MLX_INC) $(LIBS_HEAD) -c $< -o $@
+	$(CC) $(CFLAGS) -g $(INC) $(MLX_INC) $(LIBS_HEAD) -c $< -o $@
 
 $(MLX_LIB):
 	@if [ -d $(MLX_DIR) ]; then \

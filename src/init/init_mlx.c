@@ -6,14 +6,13 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:58 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/19 18:03:57 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/20 18:06:23 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <stdlib.h>
 #include "mlx.h"
 #include "macro.h"
-#include "libft.h"
 #include "struct.h"
 #include "utils.h"
 

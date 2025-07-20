@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 23:08:39 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/19 18:20:40 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/20 17:42:32 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	dda(int x1, int y1, int x2, int y2, void *mlx, void *win)
 	}
 }
 
-int	expose_hook(void *param)
+int	hook_dda(void *param)
 {
 	void **p = (void **)param;
 	void *mlx = p[0];

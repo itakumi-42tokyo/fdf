@@ -6,11 +6,10 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 23:08:48 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/19 17:57:06 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/20 18:05:50 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include "mlx.h"
 #include "utils.h"
 
@@ -140,13 +139,13 @@ void	wla(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
 		wla_v(x0, y0, x1, y1, mlx, win, img);
 }
 
-int	expose_hook(void *param)
+int	hook_wla(void *param)
 {
 	void **p = (void **)param;
 	void *mlx = p[0];
 	void *win = p[1];
 	void *img = p[2];
-	wla(900, 900, 0, 0, mlx, win, img);
+	wla(900, 0, 0, 900, mlx, win, img);
 	return (0);
 }
 
@@ -164,7 +163,7 @@ int	expose_hook(void *param)
 // 	p[0] = mlx;
 // 	p[1] = win;
 // 	void	*param[3] = {mlx, win, img};
-// 	mlx_expose_hook(win, expose_hook, p);
+// 	mlx_expose_hook(win, hook_wla, p);
 // 	mlx_loop(mlx);
 // 	return (0);
 // }

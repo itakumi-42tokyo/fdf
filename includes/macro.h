@@ -34,7 +34,9 @@
 # define DEFAULT_TITLE "FDF"
 
 // buffer size
+# ifndef BUFFER_SIZE
 # define BUFFER_SIZE 8192
+# endif
 
 # ifndef M_PI
 # define M_PI 3.14159265359
