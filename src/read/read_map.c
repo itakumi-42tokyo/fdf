@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/20 22:35:24 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/21 18:58:20 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <fcntl.h>
 #include <stddef.h>
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 #include "struct.h"
 #include "macro.h"
 #include "utils.h"

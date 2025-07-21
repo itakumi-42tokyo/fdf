@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.h                                          :+:      :+:    :+:   */
+/*   scale.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/20 18:39:54 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/21 18:09:47 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/21 18:21:46 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/21 18:23:01 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTE_H
-# define EXECUTE_H
+#include "macro.h"
+#include "struct.h"
 
-# include "struct.h"
-
-void	exec(t_control **ctrl);
-
-#endif
+void	scale(t_control *ctrl)
+{
+	
+}

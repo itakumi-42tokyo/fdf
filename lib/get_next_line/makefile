@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/14 17:15:58 by itakumi           #+#    #+#              #
-#    Updated: 2025/07/13 20:48:35 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/21 18:55:30 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 NAME = get_next_line.a
 
-SRCS = get_next_line_bonus.c get_next_line_utils_bonus.c
+SRCS = get_next_line.c get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init0_control.c                                    :+:      :+:    :+:   */
+/*   init_control.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 18:41:36 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/21 18:45:23 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	init0_control(t_control *control)
 	control->map = NULL;
 	control->map_width = 0;
 	control->map_height = 0;
+	control->offset_x = 0;
+	control->offset_y = 0;
+	control->scale = 0;
 }
 
 void	init_control(t_control *control)
@@ -41,4 +44,7 @@ void	init_control(t_control *control)
 	control->title = DEFAULT_TITLE;
 	control->map_width = 0;
 	control->map_height = 0;
+	control->offset_x = DEFAULT_WIN_SIZE_X / 2;
+	control->offset_y = DEFAULT_WIN_SIZE_Y / 2;
+	control->scale = 30;
 }

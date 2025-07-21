@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/20 22:13:45 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/21 18:21:37 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC		= \
 	projection/isometric.c \
 	projection/perspective.c \
 	projection/rad_deg.c \
+	projection/scale.c \
 	utils/errmsg_exit.c \
 	utils/free_2d.c \
 	utils/my_abs.c \

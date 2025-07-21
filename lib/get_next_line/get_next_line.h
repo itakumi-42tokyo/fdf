@@ -6,19 +6,15 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:00:12 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/20 18:26:13 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/21 18:56:41 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
-# endif
-
-# ifndef NUMBER_FD
-#  define NUMBER_FD 1024
 # endif
 
 # include <unistd.h>

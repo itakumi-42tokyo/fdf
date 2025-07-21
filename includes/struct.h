@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/18 19:06:51 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/21 18:24:10 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ typedef struct s_control
 	t_perspective	**persp_map; // 2D配列のポインタ
 	int				map_width; // マップの幅
 	int				map_height; // マップの高さ
+	int				offset_x;
+	int				offset_y;
+	int				scale;
 }	t_control;
 
 #endif

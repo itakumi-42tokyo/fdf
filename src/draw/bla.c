@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/20 22:51:33 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/21 18:38:18 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,14 +126,29 @@ void	bla(int x0, int y0, int x1, int y1, void *mlx, void *win)
 
 int	hook_bla(void *param)
 {
-	t_control	*ctrl;
+	t_control	**ctrl;
 	int			i;
+	int			j;
 
-	ctrl = (t_control *)param;
+	ctrl = (t_control **)param;
 	i = 0;
-	while (i < ctrl->map_height)
+	while (i < (*ctrl)->map_height)
 	{
-		bla(0, 0, 900, 900, ctrl->mlx, ctrl->win);
+		j = 0;
+		while (j < (*ctrl)->map_width)
+		{
+			if (j + 1 < (*ctrl)->map_width)
+			{
+				bla((*ctrl)->iso_map[i][j].iso_x + (*ctrl)->offset_x, (*ctrl)->iso_map[i][j].iso_x + (*ctrl)->offset_y,
+					 (*ctrl)->iso_map[i][j + 1].iso_x + (*ctrl)->offset_x, (*ctrl)->iso_map[i][j + 1].iso_y + (*ctrl)->offset_y, (*ctrl)->mlx, (*ctrl)->win);
+			}
+			if (i + 1 < (*ctrl)->map_height)
+			{
+				bla((*ctrl)->iso_map[i][j].iso_x + (*ctrl)->offset_x, (*ctrl)->iso_map[i][j].iso_x + (*ctrl)->offset_y,
+					 (*ctrl)->iso_map[i + 1][j].iso_x + (*ctrl)->offset_x, (*ctrl)->iso_map[i + 1][j].iso_y + (*ctrl)->offset_y, (*ctrl)->mlx, (*ctrl)->win);
+			}
+			j++;
+		}
 		i++;
 	}
 	return (0);

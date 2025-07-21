@@ -6,11 +6,11 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:00:18 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/20 18:19:15 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/21 18:55:41 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 size_t	_strlen(char *s)
 {

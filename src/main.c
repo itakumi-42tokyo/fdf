@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/21 17:40:24 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/21 18:58:38 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char *argv[])
 	}
 	init_mlx(control);
 	if (iso_proj(control) == -1)
-		free_exit(control);
-	exec(control);
+		free_exit(&control);
+	exec(&control);
 	return (0);
 }

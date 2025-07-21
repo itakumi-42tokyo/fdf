@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:00:15 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/20 18:25:48 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/21 18:58:00 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 char	*move_next(char *stuck)
 {
@@ -109,17 +109,17 @@ char	*read_file(int fd, char **stuck)
 
 char	*get_next_line(int fd)
 {
-	static char		*stuck[NUMBER_FD] = {NULL};
+	static char		*stuck = NULL;
 	char			*tmp;
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || NUMBER_FD <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	tmp = read_file(fd, &stuck[fd]);
+	tmp = read_file(fd, &stuck);
 	if (!tmp || !*tmp)
 	{
-		free(stuck[fd]);
-		stuck[fd] = NULL;
+		free(stuck);
+		stuck = NULL;
 		return (NULL);
 	}
 	line = extract_line(tmp);
@@ -129,7 +129,7 @@ char	*get_next_line(int fd)
 		tmp = NULL;
 		return (NULL);
 	}
-	stuck[fd] = move_next(tmp);
+	stuck = move_next(tmp);
 	return (line);
 }
 
