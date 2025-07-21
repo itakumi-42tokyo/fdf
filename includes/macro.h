@@ -27,8 +27,8 @@
 # define X_LINUX 120
 
 // window size
-# define DEFAULT_WIN_SIZE_X 3000
-# define DEFAULT_WIN_SIZE_Y 2000
+# define DEFAULT_WIN_SIZE_X 1000
+# define DEFAULT_WIN_SIZE_Y 1000
 
 // title
 # define DEFAULT_TITLE "FDF"
