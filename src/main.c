@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/22 17:33:20 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/22 19:52:39 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 #include "execute.h"
 #include "free.h"
 #include "draw.h"
+#include "read.h"
 
 // 一旦引数は１つだけとする。
-// よくよく考えたら、マップのサイズはどのようにして確認すればよいのか？
 // read_mapでcontrolのmapに格納するべきかそれとも、返り値で格納するべきか？
 int	main(int argc, char *argv[])
 {

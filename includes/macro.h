@@ -38,10 +38,12 @@
 # define BUFFER_SIZE 8192
 # endif
 
+// π
 # ifndef M_PI
 # define M_PI 3.14159265359
 # endif
 
+// separate chars
 # ifndef SEP
 # define SEP " \t\n"
 # endif

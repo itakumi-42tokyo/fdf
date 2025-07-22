@@ -25,3 +25,4 @@ lib/minilibx-linux
 #maps
 *test_maps*
 *.txt
+*.fdf

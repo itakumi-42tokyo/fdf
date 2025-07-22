@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/22 17:56:56 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/22 20:09:57 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ void	bla_h(int x0, int y0, int x1, int y1, void *mlx, void *win)
 	int		i;
 	int		p;
 
-	if (y0 > y1)
+	if (x0 > x1)
 	{
 		swap(&x0, &x1);
 		swap(&y0, &y1);
 	}
 	dx = x1 - x0;
-	dy = y1 - y0;;
+	dy = y1 - y0;
 	if (dy < 0)
 		dir = -1;
 	else
@@ -88,8 +88,8 @@ void	bla_v(int x0, int y0, int x1, int y1, void *mlx, void *win)
 		swap(&y0, &y1);
 	}
 	dx = x1 - x0;
-	dy = y1 - y0;;
-	if (dy < 0)
+	dy = y1 - y0;
+	if (dx < 0)
 		dir = -1;
 	else
 		dir = 1;
@@ -151,6 +151,54 @@ static int	calc_scale(t_control *ctrl, int point, bool x)
 	return (scaled);
 }
 
+// static int scale_coord(int point, int min_val, double scale)
+// {
+//     return (int)((point - min_val) * scale);
+// }
+// static int calc_x(t_control *ctrl, int iso_x)
+// {
+//     // スケール後に offset_x（中央寄せ位置）を足す
+//     return scale_coord(iso_x, ctrl->iso_min_x0_y1[0], ctrl->scale)
+//            + ctrl->offset_x;
+// }
+// static int calc_y(t_control *ctrl, int iso_y)
+// {
+//     return scale_coord(iso_y, ctrl->iso_min_x0_y1[1], ctrl->scale)
+//            + ctrl->offset_y;
+// }
+
+// // 2) hook_bla は「右」と「下」のみを結ぶ
+// int hook_bla(void *param)
+// {
+//     t_control *ctrl = *(t_control **)param;
+//     int i, j;
+
+//     for (i = 0; i < ctrl->map_height; i++)
+//     {
+//         for (j = 0; j < ctrl->map_width; j++)
+//         {
+//             int x0 = calc_x(ctrl, ctrl->iso_map[i][j].iso_x);
+//             int y0 = calc_y(ctrl, ctrl->iso_map[i][j].iso_y);
+
+//             // 右隣と結ぶ
+//             if (j + 1 < ctrl->map_width)
+//             {
+//                 int x1 = calc_x(ctrl, ctrl->iso_map[i][j+1].iso_x);
+//                 int y1 = calc_y(ctrl, ctrl->iso_map[i][j+1].iso_y);
+//                 bla(x0, y0, x1, y1, ctrl->mlx, ctrl->win);
+//             }
+//             // 下隣と結ぶ
+//             if (i + 1 < ctrl->map_height)
+//             {
+//                 int x1 = calc_x(ctrl, ctrl->iso_map[i+1][j].iso_x);
+//                 int y1 = calc_y(ctrl, ctrl->iso_map[i+1][j].iso_y);
+//                 bla(x0, y0, x1, y1, ctrl->mlx, ctrl->win);
+//             }
+//         }
+//     }
+//     return 0;
+// }
+
 int	hook_bla(void *param)
 {
 	t_control	**ctrl;
@@ -168,28 +216,15 @@ int	hook_bla(void *param)
 		j = 0;
 		while (j < (*ctrl)->map_width)
 		{
-			if (j - 1 > 0)
-			{
-				x0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_x, true) + (*ctrl)->offset_x - 500;
-				y0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_y, false) + (*ctrl)->offset_y - 500;
-				x1 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j - 1].iso_x, true) + (*ctrl)->offset_x - 500;
-				y1 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j - 1].iso_y, false) + (*ctrl)->offset_y - 500;
-				bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
-			}
 			if (j + 1 < (*ctrl)->map_width)
 			{
 				x0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_x, true) + (*ctrl)->offset_x - 500;
 				y0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_y, false) + (*ctrl)->offset_y - 500;
 				x1 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j + 1].iso_x, true) + (*ctrl)->offset_x - 500;
 				y1 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j + 1].iso_y, false) + (*ctrl)->offset_y - 500;
-				bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
-			}
-			if (i - 1 > 0)
-			{
-				x0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_x, true) + (*ctrl)->offset_x - 500;
-				y0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_y, false) + (*ctrl)->offset_y - 500;
-				x1 = calc_scale(*ctrl, (*ctrl)->iso_map[i - 1][j].iso_x, true) + (*ctrl)->offset_x - 500;
-				y1 = calc_scale(*ctrl, (*ctrl)->iso_map[i - 1][j].iso_y, false) + (*ctrl)->offset_y - 500;
+				// printf("----------\n");
+				// printf("x0:%d; y0:%d\n", x0, y0);
+				// printf("x1:%d; y1:%d\n", x1, y1);
 				bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
 			}
 			if (i + 1 < (*ctrl)->map_height)
@@ -198,6 +233,9 @@ int	hook_bla(void *param)
 				y0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_y, false) + (*ctrl)->offset_y - 500;
 				x1 = calc_scale(*ctrl, (*ctrl)->iso_map[i + 1][j].iso_x, true) + (*ctrl)->offset_x - 500;
 				y1 = calc_scale(*ctrl, (*ctrl)->iso_map[i + 1][j].iso_y, false) + (*ctrl)->offset_y - 500;
+				// printf("----------\n");
+				// printf("x0:%d; y0:%d\n", x0, y0);
+				// printf("x1:%d; y1:%d\n", x1, y1);
 				bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
 			}
 			j++;
