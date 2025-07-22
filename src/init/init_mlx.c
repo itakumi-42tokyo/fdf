@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:58 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/20 18:06:23 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/22 14:30:44 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_mlx(t_control *ctrl)
 	ctrl->mlx = mlx_init();
 	if (ctrl->mlx == NULL)
 		(errmsg_exit(FAILED_MLX_INIT));
-	ctrl->win = mlx_new_window(ctrl->mlx, ctrl->size_x, ctrl->size_y, ctrl->title);
+	ctrl->win = mlx_new_window(ctrl->mlx, ctrl->win_size_x, ctrl->win_size_y, ctrl->title);
 	if (ctrl->win == NULL)
 	{
 		mlx_destroy_display(ctrl->mlx);

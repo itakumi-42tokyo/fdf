@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/21 18:24:10 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/22 14:39:17 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ typedef struct s_perspective
 	int	persp_y;
 }	t_perspective;
 
-
+// scale前とscale後のマップはどちらも保持したほうが良いか？
 // mapはおそらく方形と捉えて良さそう。
 typedef struct s_control
 {
 	void			*mlx;
 	void			*win;
 	void			*img;
-	int				size_x;
-	int				size_y;
+	int				win_size_x;
+	int				win_size_y;
 	char			*title;
 	int				bits_per_pixel;
 	int				size_line;
@@ -48,12 +48,13 @@ typedef struct s_control
 	char			*data_addr;
 	t_point			**map; // 2D配列のポインタ
 	t_isometric		**iso_map; // 2D配列のポインタ
+	int				iso_min_x0_y1[2];
 	t_perspective	**persp_map; // 2D配列のポインタ
 	int				map_width; // マップの幅
 	int				map_height; // マップの高さ
 	int				offset_x;
 	int				offset_y;
-	int				scale;
+	double			scale;
 }	t_control;
 
 #endif
