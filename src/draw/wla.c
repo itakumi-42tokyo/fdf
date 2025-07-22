@@ -6,12 +6,14 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 23:08:48 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/20 18:05:50 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/22 20:35:07 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
 #include "mlx.h"
 #include "utils.h"
+#include "struct.h"
 
 void	put_pixel_to_image(char *data, int x, int y, int color, int width)
 {
@@ -139,13 +141,73 @@ void	wla(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
 		wla_v(x0, y0, x1, y1, mlx, win, img);
 }
 
-int	hook_wla(void *param)
+static int	calc_scale(t_control *ctrl, int point, bool x)
 {
-	void **p = (void **)param;
-	void *mlx = p[0];
-	void *win = p[1];
-	void *img = p[2];
-	wla(900, 0, 0, 900, mlx, win, img);
+	int scaled;
+
+	if (ctrl == NULL)
+		return (-1);
+	if (x == true)
+	{
+		scaled = (int)((point - ctrl->iso_min_x0_y1[0]) * ctrl->scale + (ctrl->win_size_x * 0.05));
+	}
+	else
+	{
+		scaled = (int)((point - ctrl->iso_min_x0_y1[1]) * ctrl->scale + (ctrl->win_size_y * 0.05));
+	}
+	// printf("-------------\n");
+	// printf("point: %d\n", point);
+	// printf("ctrl->iso_min_x0_y1: %d\n", ctrl->iso_min_x0_y1[0]);
+	// printf("y1: %d\n", ctrl->iso_min_x0_y1[1]);
+	// printf("ctrl->scale: %f\n", ctrl->scale);
+	// printf("ctrl->win_size_x: %d\n", ctrl->win_size_x);
+	// printf("scaled: %d\n", scaled);
+	return (scaled);
+}
+
+int	hook_wla(const void *param)
+{
+	t_control	**ctrl;
+	int			i;
+	int			j;
+	int			x0;
+	int			y0;
+	int			x1;
+	int			y1;
+
+	ctrl = (t_control **)param;
+	i = 0;
+	while (i < (*ctrl)->map_height)
+	{
+		j = 0;
+		while (j < (*ctrl)->map_width)
+		{
+			if (j + 1 < (*ctrl)->map_width)
+			{
+				x0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_x, true) + (*ctrl)->offset_x - 500;
+				y0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_y, false) + (*ctrl)->offset_y - 500;
+				x1 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j + 1].iso_x, true) + (*ctrl)->offset_x - 500;
+				y1 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j + 1].iso_y, false) + (*ctrl)->offset_y - 500;
+				// printf("----------\n");
+				// printf("x0:%d; y0:%d\n", x0, y0);
+				// printf("x1:%d; y1:%d\n", x1, y1);
+				wla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win, (*ctrl)->img);
+			}
+			if (i + 1 < (*ctrl)->map_height)
+			{
+				x0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_x, true) + (*ctrl)->offset_x - 500;
+				y0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_y, false) + (*ctrl)->offset_y - 500;
+				x1 = calc_scale(*ctrl, (*ctrl)->iso_map[i + 1][j].iso_x, true) + (*ctrl)->offset_x - 500;
+				y1 = calc_scale(*ctrl, (*ctrl)->iso_map[i + 1][j].iso_y, false) + (*ctrl)->offset_y - 500;
+				// printf("----------\n");
+				// printf("x0:%d; y0:%d\n", x0, y0);
+				// printf("x1:%d; y1:%d\n", x1, y1);
+				wla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win, (*ctrl)->img);
+			}
+			j++;
+		}
+		i++;
+	}
 	return (0);
 }
 
