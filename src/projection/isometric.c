@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/21 17:44:19 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/22 16:59:56 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int	iso_proj(t_control *ctrl)
 		j = 0;
 		ctrl->iso_map[i] = malloc(sizeof(t_control) * ctrl->map_width);
 		if (ctrl->iso_map[i] == NULL)
-			return (free_2d(ctrl->iso_map), -1);
+			return (free_2d((void **)ctrl->iso_map), -1);
 		while (j < ctrl->map_width)
 		{
 			x_new = (map[i][j]).x * cos(deg_to_rad(45)) + (map[i][j]).z * sin(deg_to_rad(45));
 			y_new = (map[i][j]).y;
-			z_new = -(map[i][j]).x * cos(deg_to_rad(45)) + (map[i][j]).z * cos(deg_to_rad(45));
+			z_new = -1 * (map[i][j]).x * sin(deg_to_rad(45)) + (map[i][j]).z * cos(deg_to_rad(45));
 
-			x_new = x_new;
-			y_new = (map[i][j]).y * cos(deg_to_rad(-35.26)) - z_new * sin(deg_to_rad(-35.26));
+			x_new = x_new ;
+			y_new = y_new * cos(deg_to_rad(-35.26)) - z_new * sin(deg_to_rad(-35.26));
 			ctrl->iso_map[i][j].iso_x = x_new;
 			ctrl->iso_map[i][j].iso_y = y_new;
 			j++;
@@ -53,4 +53,5 @@ int	iso_proj(t_control *ctrl)
 		i++;
 	}
 	ctrl->iso_map[i] = NULL;
+	return (0);
 }

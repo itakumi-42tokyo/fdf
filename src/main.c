@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/21 18:58:38 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/22 17:33:20 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "projection.h"
 #include "execute.h"
 #include "free.h"
+#include "draw.h"
 
 // 一旦引数は１つだけとする。
 // よくよく考えたら、マップのサイズはどのようにして確認すればよいのか？
@@ -43,6 +44,7 @@ int	main(int argc, char *argv[])
 	init_mlx(control);
 	if (iso_proj(control) == -1)
 		free_exit(&control);
+	scale(control);
 	exec(&control);
 	return (0);
 }

@@ -6,122 +6,87 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 18:21:46 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/22 14:39:39 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/22 17:46:37 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// XXX
+#include <stdio.h>
 
 #include <stddef.h>
 #include <limits.h>
 #include <math.h>
+#include "libft.h"
 #include "macro.h"
 #include "struct.h"
 
-static max_iso_y(t_control *ctrl)
+static inline void calc_bounds_iso(t_control *ctrl, int *iso_max_x, int *iso_max_y)
 {
 	int	i;
 	int	j;
-	int	max;
+	int	min_x0_y1[2];
+	int	max_x0_y1[2];
 
-	if (ctrl == NULL)
-		return (-1);
-	max = INT_MIN;
+	if (ctrl == NULL || iso_max_x == NULL || iso_max_y == NULL)
+		return ;
+	min_x0_y1[0] = INT_MAX;
+	min_x0_y1[1] = INT_MAX;
+	max_x0_y1[0] = INT_MIN;
+	max_x0_y1[1] = INT_MIN;
 	i = 0;
 	while (i < ctrl->map_height)
 	{
 		j = 0;
 		while (j < ctrl->map_width)
 		{
-			if (max < ctrl->iso_map[i][j].iso_y)
-				max = ctrl->iso_map[i][j].iso_y;
+			if (min_x0_y1[0] > (ctrl->iso_map[i][j]).iso_x)
+				min_x0_y1[0] = (ctrl->iso_map[i][j]).iso_x;
+			if (min_x0_y1[1] > (ctrl->iso_map[i][j]).iso_y)
+				min_x0_y1[1] = (ctrl->iso_map[i][j]).iso_y;
+			if (max_x0_y1[0] < (ctrl->iso_map[i][j]).iso_x)
+				max_x0_y1[0] = (ctrl->iso_map[i][j]).iso_x;
+			if (max_x0_y1[1] < (ctrl->iso_map[i][j]).iso_y)
+				max_x0_y1[1] = (ctrl->iso_map[i][j]).iso_y;
 			j++;
 		}
 		i++;
 	}
-	return (max);
+	ctrl->iso_min_x0_y1[0] = min_x0_y1[0];
+	ctrl->iso_min_x0_y1[1] = min_x0_y1[1];
+	*iso_max_x = max_x0_y1[0];
+	*iso_max_y = max_x0_y1[1];
 }
 
-static int	max_iso_x(t_control *ctrl)
+// XXX
+void	debug(t_control *ctrl)
 {
-	int	i;
-	int	j;
-	int	max;
-
-	if (ctrl == NULL)
-		return (-1);
-	max = INT_MIN;
-	i = 0;
-	while (i < ctrl->map_height)
+	for (int i = 0; i < ctrl->map_height; i++)
 	{
-		j = 0;
-		while (j < ctrl->map_width)
+		for(int j = 0; j < ctrl->map_width; j++)
 		{
-			if (max < ctrl->iso_map[i][j].iso_x)
-				max = ctrl->iso_map[i][j].iso_x;
-			j++;
+			puts("---------------");
+			printf("iso_x[%d][%d]: %d\n", i, j, ctrl->iso_map[i][j].iso_x);
+			printf("iso_y[%d][%d]: %d\n", i, j, ctrl->iso_map[i][j].iso_y);
 		}
-		i++;
 	}
-	return (max);
-}
 
-static inline int min_iso_x(t_control *ctrl)
-{
-	int	i;
-	int	j;
-	int	min;
-
-	if (ctrl == NULL)
-		return (-1);
-	min = INT_MAX;
-	i = 0;
-	while (i < ctrl->map_height)
-	{
-		j = 0;
-		while (j < ctrl->map_width)
-		{
-			if (min > (ctrl->iso_map[i][j]).iso_x)
-				min = (ctrl->iso_map[i][j]).iso_x;
-			j++;
-		}
-		i++;
-	}
-	return (min);
-}
-
-static inline int min_iso_y(t_control *ctrl)
-{
-	int	i;
-	int	j;
-	int	min;
-
-	if (ctrl == NULL)
-		return (-1);
-	min = INT_MAX;
-	i = 0;
-	while (i < ctrl->map_height)
-	{
-		j = 0;
-		while (j < ctrl->map_width)
-		{
-			if (min > ctrl->iso_map[i][j].iso_x)
-				min = ctrl->iso_map[i][j].iso_x;
-			j++;
-		}
-		i++;
-	}
-	return (min);
 }
 
 void	scale(t_control *ctrl)
 {
 	int		iso_width0_hight1[2];
+	int		iso_max_x;
+	int		iso_max_y;
 	double	scale_x0_y1[2];
 
-	ctrl->iso_min_x0_y1[0] = min_iso_x(ctrl);
-	ctrl->iso_min_x0_y1[1] = min_iso_y(ctrl);
-	iso_width0_hight1[0] = max_iso_x(ctrl) - ctrl->iso_min_x0_y1[0];
-	iso_width0_hight1[1] = max_iso_y(ctrl) - ctrl->iso_min_x0_y1[1];
+	calc_bounds_iso(ctrl, &iso_max_x, &iso_max_y);
+	iso_width0_hight1[0] = iso_max_x - ctrl->iso_min_x0_y1[0];
+	iso_width0_hight1[1] = iso_max_y - ctrl->iso_min_x0_y1[1];
+	if (iso_width0_hight1[0] <= 0)
+		iso_width0_hight1[0] = 1;
 	scale_x0_y1[0] = (ctrl->win_size_x * 0.9) / iso_width0_hight1[0];
+	if (iso_width0_hight1[1] <= 0)
+		iso_width0_hight1[1] = 1;
 	scale_x0_y1[1] = (ctrl->win_size_y * 0.9) / iso_width0_hight1[1];
-	ctrl->scale = fmax(scale_x0_y1[0], scale_x0_y1[1]);
+	ctrl->scale = fmin(scale_x0_y1[0], scale_x0_y1[1]);
 }
