@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/21 18:58:20 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/23 12:10:05 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_point **parse_map(int fd, int width, int height)
 	char	*line;
 	int		y;
 
-	map = malloc(sizeof(t_point *) * (width + 1));
+	map = malloc(sizeof(t_point *) * (height + 1));
 	if (map == NULL)
 		return (NULL);
 	y = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bla.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/22 22:53:28 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/23 14:06:08 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ void	bla_h(int x0, int y0, int x1, int y1, void *mlx, void *win)
 		y = y0;
 		i = 0;
 		p = 2*dy - dx;
-		while (i <= dx + 1)
+		while (i <= dx)
 		{
 			mlx_pixel_put(mlx, win, x0 + i, y, 0xFFFFFF);
 			if (p >= 0)
 			{
 				y += dir;
-				p = p + 2*dy - 2*dx*(1);
+				p = p + 2*dy - 2*dx;
 			}
 			else
-				p = p + 2*dy - 2*dx*(0);
+				p = p + 2*dy;
 			i++;
 		}
 	}
@@ -85,15 +85,16 @@ void	bla_v(int x0, int y0, int x1, int y1, void *mlx, void *win)
 		x = x0;
 		i = 0;
 		p = 2*dx - dy;
-		while (i <= dy + 1)
+		while (i <= dy)
 		{
 			mlx_pixel_put(mlx, win, x, y0 + i, 0xFFFFFF);
 			if (p >= 0)
 			{
 				x += dir;
-				p = p - 2*dy;
+				p = p + 2*dx - 2*dy;
 			}
-			p = p + 2*dx;
+			else
+				p = p + 2*dx;
 			i++;
 		}
 	}
@@ -115,24 +116,19 @@ void	bla(int x0, int y0, int x1, int y1, void *mlx, void *win)
 static int	calc_scale(t_control *ctrl, int point, bool x)
 {
 	int scaled;
+	int	margin;
 
 	if (ctrl == NULL)
 		return (-1);
+	margin = fmin(ctrl->win_size_x, ctrl->win_size_y) * 0.05;
 	if (x == true)
 	{
-		scaled = (int)((point - ctrl->iso_min_x0_y1[0]) * ctrl->scale + (ctrl->win_size_x * 0.05));
+		scaled = (int)round(((point - ctrl->iso_min_x0_y1[0]) * ctrl->scale + margin));
 	}
 	else
 	{
-		scaled = (int)((point - ctrl->iso_min_x0_y1[1]) * ctrl->scale + (ctrl->win_size_y * 0.05));
+		scaled = (int)round(((point - ctrl->iso_min_x0_y1[1]) * ctrl->scale + margin));
 	}
-	// printf("-------------\n");
-	// printf("point: %d\n", point);
-	// printf("ctrl->iso_min_x0_y1: %d\n", ctrl->iso_min_x0_y1[0]);
-	// printf("y1: %d\n", ctrl->iso_min_x0_y1[1]);
-	// printf("ctrl->scale: %f\n", ctrl->scale);
-	// printf("ctrl->win_size_x: %d\n", ctrl->win_size_x);
-	// printf("scaled: %d\n", scaled);
 	return (scaled);
 }
 

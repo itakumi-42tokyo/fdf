@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
+#    By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/21 18:21:37 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/23 12:00:16 by tigarashi        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ endif
 all: $(NAME)
 
 $(NAME): $(LIBS) $(MLX_LIB) $(OBJ)
-	$(CC) $(CFLAGS) $(LD_FLAGS) $(OBJ) $(INC) $(MLX_FLAGS) $(MLX_INC) $(LIBS_HEAD) $(LIBS) $(MLX_LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) $(LD_FLAGS) $(INC) $(MLX_FLAGS) $(MLX_INC) $(LIBS_HEAD) $(LIBS) $(MLX_LIB) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(dir $@)
