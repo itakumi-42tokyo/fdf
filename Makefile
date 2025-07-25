@@ -32,6 +32,7 @@ SRC		= \
 	read/read_map.c \
 	key/esc_x.c \
 	projection/isometric.c \
+	projection/offset.c \
 	projection/perspective.c \
 	projection/rad_deg.c \
 	projection/scale.c \
@@ -45,6 +46,8 @@ SRC		= \
 	utils/ut_issign.c \
 	utils/ut_isspace.c \
 	utils/ut_split.c \
+	view/auto_fit_scale.c \
+	view/affine_transform.c \
 	main.c \
 
 OBJ_DIR	?= build

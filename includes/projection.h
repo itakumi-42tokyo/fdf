@@ -20,5 +20,7 @@ int		persp_proj(t_control *ctrl);
 double	deg_to_rad(double deg);
 double	rad_to_deg(double rad);
 void	scale(t_control *ctrl);
+void	offset(t_control *ctrl);
+void	auto_fit_scale(t_control *ctrl, double fit_ratio);
 
 #endif

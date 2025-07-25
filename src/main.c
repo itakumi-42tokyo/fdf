@@ -22,6 +22,7 @@
 #include "free.h"
 #include "draw.h"
 #include "read.h"
+#include "view.h"
 
 // 一旦引数は１つだけとする。
 // read_mapでcontrolのmapに格納するべきかそれとも、返り値で格納するべきか？
@@ -44,7 +45,7 @@ int	main(int argc, char *argv[])
 	init_mlx(control);
 	if (iso_proj(control) == -1)
 		free_exit(&control);
-	scale(control);
+	auto_fit_scale(control, 0.9);
 	exec(&control);
 	return (0);
 }

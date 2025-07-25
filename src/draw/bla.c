@@ -114,69 +114,59 @@ void	bla(int x0, int y0, int x1, int y1, void *mlx, void *win)
 		bla_v(x0, y0, x1, y1, mlx, win);
 }
 
-static int	calc_scale(t_control *ctrl, int point, bool x)
+static int	transform_coord(double value, double scale, int offset)
 {
-	int scaled;
-	int	margin;
-
-	if (ctrl == NULL)
-		return (-1);
-	margin = fmin(ctrl->win_size_x, ctrl->win_size_y) * 0.05;
-	if (x == true)
-	{
-		scaled = (int)round(((point - ctrl->iso_min_x0_y1[0]) * ctrl->scale + margin));
-	}
-	else
-	{
-		scaled = (int)round(((point - ctrl->iso_min_x0_y1[1]) * ctrl->scale + margin));
-	}
-	return (scaled);
+    return (int)round(value * scale + offset);
 }
 
 int	hook_bla(void *param)
 {
-	t_control	**ctrl;
-	int			i;
-	int			j;
-	int			x0;
-	int			y0;
-	int			x1;
-	int			y1;
+    t_control	**ctrl = (t_control **)param;
+    int			i;
+    int			j;
+    int			x0;
+    int			y0;
+    int			x1;
+    int			y1;
 
-	ctrl = (t_control **)param;
-	i = 0;
-	while (i < (*ctrl)->map_height)
-	{
-		j = 0;
-		while (j < (*ctrl)->map_width)
-		{
-			if (j + 1 < (*ctrl)->map_width)
-			{
-				x0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_x, true) + (*ctrl)->offset_x;
-				y0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_y, false) + (*ctrl)->offset_y;
-				x1 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j + 1].iso_x, true) + (*ctrl)->offset_x;
-				y1 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j + 1].iso_y, false) + (*ctrl)->offset_y;
-				printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
-				printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
-				bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
-				// mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
-			}
-			if (i + 1 < (*ctrl)->map_height)
-			{
-				x0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_x, true) + (*ctrl)->offset_x;
-				y0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_y, false) + (*ctrl)->offset_y;
-				x1 = calc_scale(*ctrl, (*ctrl)->iso_map[i + 1][j].iso_x, true) + (*ctrl)->offset_x;
-				y1 = calc_scale(*ctrl, (*ctrl)->iso_map[i + 1][j].iso_y, false) + (*ctrl)->offset_y;
-				printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
-				printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
-				bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
-				// mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000); 
-			}
-			j++;
-		}
-		i++;
-	}
-	return (0);
+    i = 0;
+    while (i < (*ctrl)->map_height)
+    {
+        j = 0;
+        while (j < (*ctrl)->map_width)
+        {
+            x0 = transform_coord((*ctrl)->iso_map[i][j].iso_x,
+                                 (*ctrl)->scale, (*ctrl)->offset_x);
+            y0 = transform_coord((*ctrl)->iso_map[i][j].iso_y,
+                                 (*ctrl)->scale, (*ctrl)->offset_y);
+            if (j + 1 < (*ctrl)->map_width)
+            {
+
+                x1 = transform_coord((*ctrl)->iso_map[i][j + 1].iso_x,
+                                     (*ctrl)->scale, (*ctrl)->offset_x);
+                y1 = transform_coord((*ctrl)->iso_map[i][j + 1].iso_y,
+                                     (*ctrl)->scale, (*ctrl)->offset_y);
+                printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
+                printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
+                bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
+                // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
+            }
+            if (i + 1 < (*ctrl)->map_height)
+            {
+                x1 = transform_coord((*ctrl)->iso_map[i + 1][j].iso_x,
+                                     (*ctrl)->scale, (*ctrl)->offset_x);
+                y1 = transform_coord((*ctrl)->iso_map[i + 1][j].iso_y,
+                                     (*ctrl)->scale, (*ctrl)->offset_y);
+                printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
+                printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
+                bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
+                // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000); 
+            }
+            j++;
+        }
+        i++;
+    }
+    return (0);
 }
 
 // int	hook_bla(void *param)
@@ -187,6 +177,14 @@ int	hook_bla(void *param)
 // }
 
 // int	main(void)
+// {
+//     void *mlx = mlx_init();
+//     void *win = mlx_new_window(mlx, 900, 900, "win0");
+//     t_control ctrl = {mlx, win, NULL};
+//     mlx_expose_hook(win, hook_bla, &ctrl);
+//     mlx_loop(mlx);
+//     return (0);
+// }
 // {
 //     void *mlx = mlx_init();
 //     void *win = mlx_new_window(mlx, 900, 900, "win0");

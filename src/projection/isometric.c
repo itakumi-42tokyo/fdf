@@ -53,8 +53,8 @@ int	iso_proj(t_control *ctrl)
 			x_new = (x - y) * cos(angle);
 			y_new = (x + y) * sin(angle) - z;
 
-			ctrl->iso_map[i][j].iso_x = round(x_new);
-			ctrl->iso_map[i][j].iso_y = round(y_new);
+			ctrl->iso_map[i][j].iso_x = x_new;
+			ctrl->iso_map[i][j].iso_y = y_new;
 			j++;
 		}
 		// while (j < ctrl->map_width)
@@ -71,12 +71,6 @@ int	iso_proj(t_control *ctrl)
 		// }
 		i++;
 	}
-// isometric.c の iso_proj 関数の最後に追加
-// ...
-printf("--- Step 2: Projection Check ---\n");
-printf("iso_map[0][0] -> iso_x:%d, iso_y:%d\n", ctrl->iso_map[0][0].iso_x, ctrl->iso_map[0][0].iso_y);
-printf("Last iso_Point -> iso_x:%d, iso_y:%d\n", ctrl->iso_map[ctrl->map_height - 1][ctrl->map_width - 1].iso_x, ctrl->iso_map[ctrl->map_height - 1][ctrl->map_width - 1].iso_y);
-
 ctrl->iso_map[i] = NULL;
 return (0);
 }

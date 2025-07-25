@@ -65,8 +65,8 @@ void	wla_v(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
 		swap(&x0, &x1);
 		swap(&y0, &y1);
 	}
-	int gb_color = 0x000000; // 背景色（黒）
-	int fg_color = 0xFFFFFF; // 描画色（白）
+	int gb_color = 0x000000;// background color (black)
+	int fg_color = 0xFFFFFF;// foreground color (white)
 	dx = x1 - x0;
 	dy = y1 - y0;
 	if  (dx != 0)
@@ -105,8 +105,8 @@ void	wla_h(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img)
 		swap(&x0, &x1);
 		swap(&y0, &y1);
 	}
-	int gb_color = 0x000000; // 背景色（黒）
-	int fg_color = 0xFFFFFF; // 描画色（白）
+	int gb_color = 0x000000;// background color (black)
+	int fg_color = 0xFFFFFF; // foreground color (white)
 	dx = x1 - x0;
 	dy = y1 - y0;
 	if  (dx != 0)

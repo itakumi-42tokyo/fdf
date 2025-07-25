@@ -20,14 +20,14 @@
 #include "macro.h"
 #include "struct.h"
 
-static inline void calc_bounds_iso(t_control *ctrl, int *iso_max_x, int *iso_max_y)
+static inline void calc_bounds_iso(t_control *ctrl)
 {
 	int	i;
 	int	j;
 	int	min_x0_y1[2];
 	int	max_x0_y1[2];
 
-	if (ctrl == NULL || iso_max_x == NULL || iso_max_y == NULL)
+	if (ctrl == NULL)
 		return ;
 	min_x0_y1[0] = INT_MAX;
 	min_x0_y1[1] = INT_MAX;
@@ -53,8 +53,8 @@ static inline void calc_bounds_iso(t_control *ctrl, int *iso_max_x, int *iso_max
 	}
 	ctrl->iso_min_x0_y1[0] = min_x0_y1[0];
 	ctrl->iso_min_x0_y1[1] = min_x0_y1[1];
-	*iso_max_x = max_x0_y1[0];
-	*iso_max_y = max_x0_y1[1];
+	ctrl->iso_max_x0_y1[0] = max_x0_y1[0];
+	ctrl->iso_max_x0_y1[1] = max_x0_y1[1];
 }
 
 // XXX
@@ -75,13 +75,11 @@ void	debug(t_control *ctrl)
 void	scale(t_control *ctrl)
 {
 	int		iso_width0_hight1[2];
-	int		iso_max_x;
-	int		iso_max_y;
 	double	scale_x0_y1[2];
 
-	calc_bounds_iso(ctrl, &iso_max_x, &iso_max_y);
-	iso_width0_hight1[0] = iso_max_x - ctrl->iso_min_x0_y1[0];
-	iso_width0_hight1[1] = iso_max_y - ctrl->iso_min_x0_y1[1];
+	calc_bounds_iso(ctrl);
+	iso_width0_hight1[0] = ctrl->iso_max_x0_y1[0] - ctrl->iso_min_x0_y1[0];
+	iso_width0_hight1[1] = ctrl->iso_max_x0_y1[1] - ctrl->iso_min_x0_y1[1];
 	if (iso_width0_hight1[0] <= 0)
 		iso_width0_hight1[0] = 1;
 	scale_x0_y1[0] = (ctrl->win_size_x * 0.9) / iso_width0_hight1[0];

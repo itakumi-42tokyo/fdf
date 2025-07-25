@@ -12,9 +12,21 @@
 
 #include <unistd.h>
 
-// １．直線の方程式を求める。
-// ２．ラスタライズする
-// ３．1 < 1 > で場合分けする
+// １．calculate the difference in x and y coordinates
+// ２．determine the number of steps required
+// ３．calculate the increment in x and y coordinates
+// ４．draw the pixels by incrementing x and y coordinates
+// ５．use mlx_pixel_put to draw each pixel
+// ６．handle the case where the line is steep or shallow
+// ７．use a loop to iterate through the steps
+// ８．round the x and y coordinates to the nearest integer
+// ９．use mlx_pixel_put to draw the pixel at the rounded coordinates
+// １０．handle the case where the line is vertical or horizontal
+// １１．use a function to calculate the absolute value of a number
+// １２．use a function to handle the case where the line is steep or shallow
+// １３．use a function to handle the case where the line is vertical or horizontal
+// １４．use a function to handle the case where the line is steep or shallow
+// １５．use a function to handle the case where the line is vertical or horizontal
 
 #include "mlx.h"
 #include <math.h>

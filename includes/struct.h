@@ -22,8 +22,8 @@ typedef struct s_point
 
 typedef struct s_isometric
 {
-	int	iso_x;
-	int	iso_y;
+	double	iso_x;
+	double	iso_y;
 }	t_isometric;
 
 typedef struct s_perspective
@@ -49,6 +49,7 @@ typedef struct s_control
 	t_point			**map; // 2D配列のポインタ
 	t_isometric		**iso_map; // 2D配列のポインタ
 	int				iso_min_x0_y1[2];
+	int				iso_max_x0_y1[2];
 	t_perspective	**persp_map; // 2D配列のポインタ
 	int				map_width; // マップの幅
 	int				map_height; // マップの高さ
