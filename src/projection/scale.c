@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scale.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 18:21:46 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/22 17:46:37 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/23 15:08:17 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,6 @@ void	scale(t_control *ctrl)
 		iso_width0_hight1[1] = 1;
 	scale_x0_y1[1] = (ctrl->win_size_y * 0.9) / iso_width0_hight1[1];
 	ctrl->scale = fmin(scale_x0_y1[0], scale_x0_y1[1]);
+	ctrl->offset_x = (ctrl->win_size_x / 2) - (iso_width0_hight1[0] / 2);
+	ctrl->offset_y = (ctrl->win_size_y / 2) - (iso_width0_hight1[1] / 2);
 }

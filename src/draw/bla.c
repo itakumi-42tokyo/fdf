@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/23 14:06:08 by tigarashi        ###   ########.fr       */
+/*   Updated: 2025/07/23 15:08:33 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 
 #include <stdlib.h>
+#include <math.h>
 #include "mlx.h"
 #include "struct.h"
 #include "utils.h"
@@ -151,25 +152,25 @@ int	hook_bla(void *param)
 		{
 			if (j + 1 < (*ctrl)->map_width)
 			{
-				x0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_x, true) + (*ctrl)->offset_x - 500;
-				y0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_y, false) + (*ctrl)->offset_y - 500;
-				x1 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j + 1].iso_x, true) + (*ctrl)->offset_x - 500;
-				y1 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j + 1].iso_y, false) + (*ctrl)->offset_y - 500;
-				// printf("----------\n");
-				// printf("x0:%d; y0:%d\n", x0, y0);
-				// printf("x1:%d; y1:%d\n", x1, y1);
+				x0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_x, true) + (*ctrl)->offset_x;
+				y0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_y, false) + (*ctrl)->offset_y;
+				x1 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j + 1].iso_x, true) + (*ctrl)->offset_x;
+				y1 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j + 1].iso_y, false) + (*ctrl)->offset_y;
+				printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
+				printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
 				bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
+				// mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
 			}
 			if (i + 1 < (*ctrl)->map_height)
 			{
-				x0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_x, true) + (*ctrl)->offset_x - 500;
-				y0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_y, false) + (*ctrl)->offset_y - 500;
-				x1 = calc_scale(*ctrl, (*ctrl)->iso_map[i + 1][j].iso_x, true) + (*ctrl)->offset_x - 500;
-				y1 = calc_scale(*ctrl, (*ctrl)->iso_map[i + 1][j].iso_y, false) + (*ctrl)->offset_y - 500;
-				// printf("----------\n");
-				// printf("x0:%d; y0:%d\n", x0, y0);
-				// printf("x1:%d; y1:%d\n", x1, y1);
+				x0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_x, true) + (*ctrl)->offset_x;
+				y0 = calc_scale(*ctrl, (*ctrl)->iso_map[i][j].iso_y, false) + (*ctrl)->offset_y;
+				x1 = calc_scale(*ctrl, (*ctrl)->iso_map[i + 1][j].iso_x, true) + (*ctrl)->offset_x;
+				y1 = calc_scale(*ctrl, (*ctrl)->iso_map[i + 1][j].iso_y, false) + (*ctrl)->offset_y;
+				printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
+				printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
 				bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
+				// mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000); 
 			}
 			j++;
 		}

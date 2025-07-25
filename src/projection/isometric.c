@@ -6,7 +6,7 @@
 /*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/23 13:41:03 by tigarashi        ###   ########.fr       */
+/*   Updated: 2025/07/23 14:29:25 by tigarashi        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,12 @@ int	iso_proj(t_control *ctrl)
 		// }
 		i++;
 	}
-	ctrl->iso_map[i] = NULL;
-	return (0);
+// isometric.c の iso_proj 関数の最後に追加
+// ...
+printf("--- Step 2: Projection Check ---\n");
+printf("iso_map[0][0] -> iso_x:%d, iso_y:%d\n", ctrl->iso_map[0][0].iso_x, ctrl->iso_map[0][0].iso_y);
+printf("Last iso_Point -> iso_x:%d, iso_y:%d\n", ctrl->iso_map[ctrl->map_height - 1][ctrl->map_width - 1].iso_x, ctrl->iso_map[ctrl->map_height - 1][ctrl->map_width - 1].iso_y);
+
+ctrl->iso_map[i] = NULL;
+return (0);
 }
