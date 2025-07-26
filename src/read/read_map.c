@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 13:19:49 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/26 13:50:11 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ t_point **parse_map(int fd, int width, int height)
 			break;
 		tokens = ut_split(line, SEP);
 		if (tokens == NULL)
-			return (free(line), free_2d((void **)map), NULL);
+			return (free(line), free_2d((void **)map), NULL);// XXX invalid free
 		if (parse_tokens(map, tokens, y, width) == -1)
-			return (free(line), free_2d((void **)tokens), free_2d((void **)map), NULL);
+			return (free(line), free_2d((void **)tokens), free_2d((void **)map), NULL);// XXX　invalid free
 		(free(line), free_2d((void **)tokens));
 		y++;
 	}

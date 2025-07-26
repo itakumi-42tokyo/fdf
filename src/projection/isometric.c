@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 12:22:38 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/26 16:16:04 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,23 @@ int	iso_proj(t_control *ctrl)
 			ctrl->iso_map[i][j].color = map[i][j].color;
 			j++;
 		}
-		// while (j < ctrl->map_width)
-		// {
-		// 	x_new = (map[i][j]).x * cos(deg_to_rad(45)) + (map[i][j]).z * sin(deg_to_rad(45));
-		// 	// y_new = (map[i][j]).y;
-		// 	z_new = -1 * (map[i][j]).x * sin(deg_to_rad(45)) + (map[i][j]).z * cos(deg_to_rad(45));
 
-		// 	// x_new = x_new;
-		// 	y_new = (map[i][j]).y * cos(deg_to_rad(-35.26)) - z_new * sin(deg_to_rad(-35.26));
-		// 	ctrl->iso_map[i][j].iso_x = round(x_new);
-		// 	ctrl->iso_map[i][j].iso_y = round(y_new);
-		// 	j++;
-		// }
 		i++;
 	}
-ctrl->iso_map[i] = NULL;
-return (0);
+	ctrl->iso_map[i] = NULL;
+	return (0);
 }
+
+// ___OLD___
+// while (j < ctrl->map_width)
+// {
+// 	x_new = (map[i][j]).x * cos(deg_to_rad(45)) + (map[i][j]).z * sin(deg_to_rad(45));
+// 	// y_new = (map[i][j]).y;
+// 	z_new = -1 * (map[i][j]).x * sin(deg_to_rad(45)) + (map[i][j]).z * cos(deg_to_rad(45));
+
+// 	// x_new = x_new;
+// 	y_new = (map[i][j]).y * cos(deg_to_rad(-35.26)) - z_new * sin(deg_to_rad(-35.26));
+// 	ctrl->iso_map[i][j].iso_x = round(x_new);
+// 	ctrl->iso_map[i][j].iso_y = round(y_new);
+// 	j++;
+// }
