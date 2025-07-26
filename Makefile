@@ -6,22 +6,22 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/26 12:58:05 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/26 20:43:54 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME ?= fdf
+override NAME		= fdf
 
-CC 		?= cc
-CFLAGS	= -Wall -Werror -Wextra
+CC 					?= cc
+override CFLAGS		= -Wall -Werror -Wextra
 
-LD_FLAGS = -lm
+LD_FLAGS	 		= -lm
 
-INC = -I includes
+INC 				= -I includes
 
-SRC_DIR		?= src
+SRC_DIR				?= src
 
-SRC		= \
+SRC					= \
 	draw/bla.c \
 	draw/dda.c \
 	draw/wla.c \
@@ -52,30 +52,30 @@ SRC		= \
 	view/affine_transform.c \
 	main.c \
 
-OBJ_DIR	?= build
-OBJ		=$(SRC:%.c=$(OBJ_DIR)/%.o)
+OBJ_DIR				?= build
+OBJ					=$(SRC:%.c=$(OBJ_DIR)/%.o)
 
-MLX_DIR		= $(LIB_DIR)/minilibx-linux
-MLX_LIB		= $(MLX_DIR)/libmlx.a
-MLX_INC		= -I $(MLX_DIR)
+MLX_DIR				= $(LIB_DIR)/minilibx-linux
+MLX_LIB				= $(MLX_DIR)/libmlx.a
+MLX_INC				= -I $(MLX_DIR)
 
-LIB_DIR	= lib
-LIB	=\
+LIB_DIR				= lib
+LIB					=\
 		libft \
 		get_next_line
 
-LIBS_HEAD	= $(foreach l, $(LIB), -I $(LIB_DIR)/$(l))
-LIBS		= $(foreach l, $(LIB), $(LIB_DIR)/$(l)/$(l).a)
+LIBS_HEAD			= $(foreach l, $(LIB), -I $(LIB_DIR)/$(l))
+LIBS				= $(foreach l, $(LIB), $(LIB_DIR)/$(l)/$(l).a)
 
 
-MLX_FLAGS_LINUX	= -L $(MLX_DIR) -lmlx -lXext -lX11
-MLX_FLAGS_MACOS	= -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS_LINUX		= -L $(MLX_DIR) -lmlx -lXext -lX11
+MLX_FLAGS_MACOS		= -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 
-UNAME_S	:= $(shell uname -s)
+UNAME_S				:= $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
-	MLX_FLAGS = $(MLX_FLAGS_LINUX)
+	MLX_FLAGS 		= $(MLX_FLAGS_LINUX)
 else
-	MLX_FLAGS = $(MLX_FLAGS_MACOS)
+	MLX_FLAGS 		= $(MLX_FLAGS_MACOS)
 endif
 
 all: $(NAME)

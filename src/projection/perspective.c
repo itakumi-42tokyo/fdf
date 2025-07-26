@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 17:09:46 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 16:14:59 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/26 20:57:52 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,13 @@ int	persp_proj(t_control *ctrl)
 			int y = ctrl->map[i][j].y;
 			int	z = ctrl->map[i][j].z;
 
-			double angle = 
+			ctrl->persp_map[i][j].persp_x = (x / (z * tan(ctrl->mag_rate)));
+			ctrl->persp_map[i][j].persp_y = (y / (z * tan(ctrl->mag_rate)));
+			ctrl->persp_map[i][j].color = ctrl->map[i][j].color;
 			j++;
 		}
 		i++;
 	}
+	ctrl->persp_map[i] = NULL;
+	return (0);
 }

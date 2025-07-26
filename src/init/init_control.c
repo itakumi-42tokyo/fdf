@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/22 14:41:32 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/26 20:54:47 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init0_control(t_control *control)
 	control->offset_x = 0;
 	control->offset_y = 0;
 	control->scale = 0;
+	control->mag_rate = 0;
 }
 
 void	init_control(t_control *control)
@@ -51,4 +52,5 @@ void	init_control(t_control *control)
 	control->offset_x = DEFAULT_WIN_SIZE_X / 2;
 	control->offset_y = DEFAULT_WIN_SIZE_Y / 2;
 	control->scale = 30;
+	control->mag_rate = 45;
 }

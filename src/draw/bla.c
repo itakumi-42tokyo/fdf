@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bla.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/23 15:08:33 by tigarashi        ###   ########.fr       */
+/*   Updated: 2025/07/26 21:03:47 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,16 +135,16 @@ int	hook_bla(void *param)
         j = 0;
         while (j < (*ctrl)->map_width)
         {
-            x0 = transform_coord((*ctrl)->iso_map[i][j].iso_x,
+            x0 = transform_coord((*ctrl)->persp_map[i][j].persp_x,
                                  (*ctrl)->scale, (*ctrl)->offset_x);
-            y0 = transform_coord((*ctrl)->iso_map[i][j].iso_y,
+            y0 = transform_coord((*ctrl)->persp_map[i][j].persp_y,
                                  (*ctrl)->scale, (*ctrl)->offset_y);
             if (j + 1 < (*ctrl)->map_width)
             {
 
-                x1 = transform_coord((*ctrl)->iso_map[i][j + 1].iso_x,
+                x1 = transform_coord((*ctrl)->persp_map[i][j + 1].persp_x,
                                      (*ctrl)->scale, (*ctrl)->offset_x);
-                y1 = transform_coord((*ctrl)->iso_map[i][j + 1].iso_y,
+                y1 = transform_coord((*ctrl)->persp_map[i][j + 1].persp_y,
                                      (*ctrl)->scale, (*ctrl)->offset_y);
                 printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
                 printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
@@ -153,14 +153,14 @@ int	hook_bla(void *param)
             }
             if (i + 1 < (*ctrl)->map_height)
             {
-                x1 = transform_coord((*ctrl)->iso_map[i + 1][j].iso_x,
+                x1 = transform_coord((*ctrl)->persp_map[i + 1][j].persp_x,
                                      (*ctrl)->scale, (*ctrl)->offset_x);
-                y1 = transform_coord((*ctrl)->iso_map[i + 1][j].iso_y,
+                y1 = transform_coord((*ctrl)->persp_map[i + 1][j].persp_y,
                                      (*ctrl)->scale, (*ctrl)->offset_y);
                 printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
                 printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
                 bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
-                // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000); 
+                // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
             }
             j++;
         }

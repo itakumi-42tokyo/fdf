@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 16:16:04 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/26 19:36:16 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	iso_proj(t_control *ctrl)
 			ctrl->iso_map[i][j].color = map[i][j].color;
 			j++;
 		}
-
 		i++;
 	}
 	ctrl->iso_map[i] = NULL;
