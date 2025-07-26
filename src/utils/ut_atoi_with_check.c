@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_atoi_with_error.c                               :+:      :+:    :+:   */
+/*   ut_atoi_with_check.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 09:16:48 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/20 18:08:08 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/26 13:23:20 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utils.h"
 
 // check if nptr does'nt have string and any forbit sign and overflow underflow
-int	ut_atoi_with_error(const char *nptr, bool *error)
+int	ut_atoi_with_check(const char *nptr, int *check)
 {
 	int			sign;
 	long long	result;
@@ -34,13 +34,15 @@ int	ut_atoi_with_error(const char *nptr, bool *error)
 	{
 		result = result * 10 + *nptr - '0';
 		if (sign == 1 && result > INT_MAX)
-			return (*error = true, -1);
+			return (*check = -1, -1);
 		if (sign == -1 && (sign * result) < INT_MIN)
-			return (*error = true, -1);
+			return (*check = -1, -1);
 		nptr++;
 	}
+	if (*nptr == ',')
+		return (*check = 1, sign * (int)result);
 	if (*nptr != '\0')
-		return (*error = true, -1);
+		return (*check = -1, -1);
 	return (sign * (int)result);
 }
 

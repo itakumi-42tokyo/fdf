@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+         #
+#    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/23 12:00:16 by tigarashi        ###   ########.fr        #
+#    Updated: 2025/07/26 12:58:05 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ SRC		= \
 	free/free_exit.c \
 	init/init_mlx.c \
 	init/init_control.c \
+	read/atoi_base_with_check.c \
+	read/calc_row.c \
 	read/read_map.c \
 	key/esc_x.c \
 	projection/isometric.c \
@@ -40,7 +42,7 @@ SRC		= \
 	utils/free_2d.c \
 	utils/my_abs.c \
 	utils/swap.c \
-	utils/ut_atoi_with_error.c \
+	utils/ut_atoi_with_check.c \
 	utils/ut_count_target.c \
 	utils/ut_count_words.c \
 	utils/ut_issign.c \

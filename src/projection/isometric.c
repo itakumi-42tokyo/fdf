@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   isometric.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        +#+  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/23 14:29:25 by tigarashi        ###   ########.fr       */
+/*   Updated: 2025/07/26 12:22:38 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	iso_proj(t_control *ctrl)
 			int x = map[i][j].x;
 			int y = map[i][j].y;
 			int z = map[i][j].z;
-			
+
 			// 一般的なアイソメトリック投影の公式を使用
 			double angle = 0.523599; // 30度をラジアンに変換した値
 
@@ -55,6 +55,7 @@ int	iso_proj(t_control *ctrl)
 
 			ctrl->iso_map[i][j].iso_x = x_new;
 			ctrl->iso_map[i][j].iso_y = y_new;
+			ctrl->iso_map[i][j].color = map[i][j].color;
 			j++;
 		}
 		// while (j < ctrl->map_width)

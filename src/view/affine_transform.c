@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   affine_transform.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        #+#  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-07-25 21:34:26 by tigarashi         #+#    #+#             */
-/*   Updated: 2025-07-25 21:34:26 by tigarashi        ###   ########.fr       */
+/*   Created: 2025/07/25 21:34:26 by tigarashi         #+#    #+#             */
+/*   Updated: 2025/07/26 13:15:34 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "view.h"
 
 void compute_affine_matrix(double scale, double tx, double ty, double matrix[3][3])

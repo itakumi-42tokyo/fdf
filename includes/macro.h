@@ -48,4 +48,14 @@
 # define SEP " \t\n"
 # endif
 
+// color information in map
+# ifndef COLOR_INFO
+# define COLOR_INFO "0x"
+# endif
+
+// hexadecimal table
+# ifndef HEX_TABLE
+# define HEX_TABLE "0123456789ABCDEF"
+# endif
+
 #endif

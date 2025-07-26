@@ -8,6 +8,7 @@ build/
 tmp/
 
 # bin
+fdf_linux
 fdf
 Code
 Cursor

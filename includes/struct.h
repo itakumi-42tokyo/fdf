@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/22 14:39:17 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/26 10:12:00 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,21 @@ typedef struct s_point
 	int	x;
 	int	y;
 	int	z;
+	int	color;
 }	t_point;
 
 typedef struct s_isometric
 {
 	double	iso_x;
 	double	iso_y;
+	int		color;
 }	t_isometric;
 
 typedef struct s_perspective
 {
-	int	persp_x;
-	int	persp_y;
+	double	persp_x;
+	double	persp_y;
+	int		color;
 }	t_perspective;
 
 // scale前とscale後のマップはどちらも保持したほうが良いか？
