@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 10:31:01 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 13:14:51 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/26 13:45:16 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	get_unit_digit(const char *table, char digit)
 {
 	int			count;
 	const char d = (const char)digit;
+	const char	*table_x = "0123456789abcdef";
 
 	if (table == NULL)
 		return (-1);
@@ -44,6 +45,14 @@ static int	get_unit_digit(const char *table, char digit)
 		if (*table == d)
 			return (count);
 		table++;
+		count++;
+	}
+	count = 0;
+	while (*table_x != '\0')
+	{
+		if (*table_x == d)
+			return (count);
+		table_x++;
 		count++;
 	}
 	return (-1);
