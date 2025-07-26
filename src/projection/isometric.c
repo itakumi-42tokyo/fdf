@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 19:36:16 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/26 21:33:15 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,10 @@ int	iso_proj(t_control *ctrl)
 			int x = map[i][j].x;
 			int y = map[i][j].y;
 			int z = map[i][j].z;
-
 			// 一般的なアイソメトリック投影の公式を使用
 			double angle = 0.523599; // 30度をラジアンに変換した値
-
 			x_new = (x - y) * cos(angle);
 			y_new = (x + y) * sin(angle) - z;
-
 			ctrl->iso_map[i][j].iso_x = x_new;
 			ctrl->iso_map[i][j].iso_y = y_new;
 			ctrl->iso_map[i][j].color = map[i][j].color;

@@ -6,23 +6,29 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 04:14:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/20 19:40:50 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/26 21:59:20 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// XXX
+#include <stdio.h>
 
+#include <linux/input-event-codes.h>
 #include <stdlib.h>
 #include "mlx.h"
 #include "struct.h"
 #include "macro.h"
 #include "free.h"
 
+
+// macOS 対応は要検討
 int key_hook(t_control **ctrl, int keycode)
 {
-	if (keycode == ESC_MACOS || keycode == ESC_LINUX)
+	if (keycode == KEY_ESC)
 		free_exit(ctrl);
-	if (keycode == X_MACOS || keycode == X_LINUX)
-		free_exit(ctrl);
+	if (keycode == KEY_MINUS)
+		return (0);
+	printf("keycode: %d\n", keycode);
 	return (-1);
 }
 
