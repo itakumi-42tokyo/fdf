@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 20:56:55 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/27 15:58:56 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "init.h"
 #include "projection.h"
 #include "execute.h"
-#include "free.h"
+#include "exit.h"
 #include "draw.h"
 #include "read.h"
 #include "view.h"

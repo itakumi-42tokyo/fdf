@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.h                                             :+:      :+:    :+:   */
+/*   mouse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/20 19:19:42 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/20 22:18:11 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/27 15:31:18 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/27 15:51:46 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FREE_H
-# define FREE_H
+#ifndef MOUSE_H
+# define MOUSE_H
 
-#include "struct.h"
-
-void	free_exit(t_control **ctrl);
+int		mouse_press(int button, int x, int y, void *param);
+int		mouse_release(int button, int x, int y, void *param);
+int		mouse_move(int x, int y, void *param);
+int		close_window(void *param);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/26 20:43:54 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/27 15:58:33 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,14 @@ SRC					= \
 	draw/dda.c \
 	draw/wla.c \
 	execute/exec.c \
-	free/free_exit.c \
+	exit/free_exit.c \
 	init/init_mlx.c \
 	init/init_control.c \
 	read/atoi_base_with_check.c \
 	read/calc_row.c \
 	read/read_map.c \
-	key/esc_x.c \
+	key/key.c \
+	mouse/mouse.c \
 	projection/isometric.c \
 	projection/offset.c \
 	projection/perspective.c \
