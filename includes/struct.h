@@ -6,12 +6,21 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 20:52:44 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/27 21:53:33 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+
+
+typedef struct s_mouse
+{
+	int	is_pressed;
+	int	x;
+	int	y;
+}	t_mouse;
 
 typedef struct s_point
 {
@@ -60,6 +69,7 @@ typedef struct s_control
 	int				offset_y;
 	double			scale;
 	double			mag_rate;
+	t_mouse			mouse;
 }	t_control;
 
 #endif
