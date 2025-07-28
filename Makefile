@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/28 19:44:21 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/28 21:21:20 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,16 @@ override NAME		= fdf
 CC 					?= cc
 override CFLAGS		= -Wall -Werror -Wextra
 
-override PROJ		= iso persp
+override PROJS		= iso persp
+PROJ				= $(firstword $(PROJS))
+
+ifeq ($(strip $(PROJ)), iso)
+    PROJ_FLAG = -D PROJ=0
+else ifeq ($(strip $(PROJ)), persp)
+    PROJ_FLAG = -D PROJ=1
+else
+    PROJ_FLAG = -D PROJ=0
+endif
 
 LD_FLAGS	 		= -lm
 
@@ -87,12 +96,12 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(LIBS) $(MLX_LIB) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LD_FLAGS) $(INC) $(MLX_FLAGS) $(MLX_INC) $(LIBS_HEAD) $(LIBS) $(MLX_LIB) -o $(NAME)
+$(NAME): $(PROJ_CHECK) $(LIBS) $(MLX_LIB) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LD_FLAGS) $(INC) $(MLX_FLAGS) $(MLX_INC) $(LIBS_HEAD) $(LIBS) $(MLX_LIB) $(PROJ_FLAG) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -g $(INC) $(MLX_INC) $(LIBS_HEAD) -c $< -o $@
+	$(CC) $(CFLAGS) $(PROJ_FLAG) -g $(INC) $(MLX_INC) $(LIBS_HEAD) -c $< -o $@
 
 $(MLX_LIB):
 	@if [ -d $(MLX_DIR) ]; then \
@@ -109,6 +118,16 @@ $(MLX_LIB):
 			exit 1; \
 		fi; \
 	fi
+
+#PROJ
+define PROJ_CHECK
+	ifeq ("$(filter $(PROJ), $(PROJS))", "")
+		@echo "$(PROJ) is incorrect projection"
+		@exit 1
+	else
+		@echo "PROJ: $(PROJ)"
+	endif
+endef
 
 %.a:
 	$(MAKE) all -C $(dir $*)

@@ -59,6 +59,8 @@
 // projection select
 # define ISO 0
 # define PERSP 1
+// PROJはMakefileから渡される
+
 # ifndef PROJ
 # define PROJ ISO
 # endif
