@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 21:03:47 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/28 18:18:08 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	bla(int x0, int y0, int x1, int y1, void *mlx, void *win)
 
 static int	transform_coord(double value, double scale, int offset)
 {
-    return (int)round(value * scale + offset);
+    return ((int)round(value * scale + offset));
 }
 
 int	hook_bla(void *param)

@@ -6,11 +6,12 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 20:54:47 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/28 17:00:15 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include <stdbool.h>
 #include "libft.h"
 #include "struct.h"
 #include "macro.h"
@@ -37,6 +38,9 @@ void	init0_control(t_control *control)
 	control->offset_y = 0;
 	control->scale = 0;
 	control->mag_rate = 0;
+	control->mouse.x = 0;
+	control->mouse.y = 0;
+	control->mouse.is_pressed = false;
 }
 
 void	init_control(t_control *control)
