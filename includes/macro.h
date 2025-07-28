@@ -44,9 +44,7 @@
 # endif
 
 // separate chars
-# ifndef SEP
 # define SEP " \t\n"
-# endif
 
 // color information in map
 # ifndef COLOR_INFO
@@ -56,6 +54,13 @@
 // hexadecimal table
 # ifndef HEX_TABLE
 # define HEX_TABLE "0123456789ABCDEF"
+# endif
+
+// projection select
+# define ISO 0
+# define PERSP 1
+# ifndef PROJ
+# define PROJ ISO
 # endif
 
 #endif

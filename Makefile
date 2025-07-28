@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/27 15:58:33 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/28 19:44:21 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ override NAME		= fdf
 
 CC 					?= cc
 override CFLAGS		= -Wall -Werror -Wextra
+
+override PROJ		= iso persp
 
 LD_FLAGS	 		= -lm
 
@@ -32,6 +34,10 @@ SRC					= \
 	read/atoi_base_with_check.c \
 	read/calc_row.c \
 	read/read_map.c \
+	rotate/euler_angles.c \
+	rotate/quaternion.c \
+	rotate/rotate_matrix.c \
+	translate/translate.c \
 	key/key.c \
 	mouse/mouse.c \
 	projection/isometric.c \

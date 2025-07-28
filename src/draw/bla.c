@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/28 18:18:08 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/28 20:03:50 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "mlx.h"
 #include "struct.h"
 #include "utils.h"
+#include "macro.h"
 
 void	bla_h(int x0, int y0, int x1, int y1, void *mlx, void *win)
 {
@@ -119,7 +120,7 @@ static int	transform_coord(double value, double scale, int offset)
     return ((int)round(value * scale + offset));
 }
 
-int	hook_bla(void *param)
+static int	drawline_persp(void *param)
 {
     t_control	**ctrl = (t_control **)param;
     int			i;
@@ -146,7 +147,7 @@ int	hook_bla(void *param)
                                      (*ctrl)->scale, (*ctrl)->offset_x);
                 y1 = transform_coord((*ctrl)->persp_map[i][j + 1].persp_y,
                                      (*ctrl)->scale, (*ctrl)->offset_y);
-                printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
+                printf("--- Step 3: Draw Coords ---\n");
                 printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
                 bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
                 // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
@@ -169,6 +170,64 @@ int	hook_bla(void *param)
     return (0);
 }
 
+int	drawline_iso(void *param)
+{
+	t_control	**ctrl = (t_control **)param;
+    int			i;
+    int			j;
+    int			x0;
+    int			y0;
+    int			x1;
+    int			y1;
+
+    i = 0;
+    while (i < (*ctrl)->map_height)
+    {
+        j = 0;
+        while (j < (*ctrl)->map_width)
+        {
+            x0 = transform_coord((*ctrl)->iso_map[i][j].iso_x,
+                                 (*ctrl)->scale, (*ctrl)->offset_x);
+            y0 = transform_coord((*ctrl)->iso_map[i][j].iso_y,
+                                 (*ctrl)->scale, (*ctrl)->offset_y);
+            if (j + 1 < (*ctrl)->map_width)
+            {
+
+                x1 = transform_coord((*ctrl)->iso_map[i][j + 1].iso_x,
+                                     (*ctrl)->scale, (*ctrl)->offset_x);
+                y1 = transform_coord((*ctrl)->iso_map[i][j + 1].iso_y,
+                                     (*ctrl)->scale, (*ctrl)->offset_y);
+                printf("--- Step 3: Draw Coords ---\n");
+                printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
+                bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
+                // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
+            }
+            if (i + 1 < (*ctrl)->map_height)
+            {
+                x1 = transform_coord((*ctrl)->iso_map[i + 1][j].iso_x,
+                                     (*ctrl)->scale, (*ctrl)->offset_x);
+                y1 = transform_coord((*ctrl)->iso_map[i + 1][j].iso_y,
+                                     (*ctrl)->scale, (*ctrl)->offset_y);
+                printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
+                printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
+                bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
+                // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
+            }
+            j++;
+        }
+        i++;
+    }
+    return (0);
+}
+
+int	hook_bla(void *param)
+{
+	if (PROJ == ISO)
+		drawline_iso(param);
+	else if (PROJ == PERSP)
+		drawline_persp(param);
+	return (0);
+}
 // int	hook_bla(void *param)
 // {
 //     t_control *ctrl = (t_control *)param;
