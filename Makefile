@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/29 14:20:32 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/29 19:27:34 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,12 @@ override CFLAGS		= -Wall -Werror -Wextra
 
 override PROJS		= iso persp
 PROJ				= $(firstword $(PROJS))
+PROJ_FLAG			= -D PROJ=0
 
-ifeq ($(strip $(PROJ)), iso)
-    PROJ_FLAG = -D PROJ=0
-else ifeq ($(strip $(PROJ)), persp)
-    PROJ_FLAG = -D PROJ=1
-else
-    PROJ_FLAG = -D PROJ=0
+ifeq ($(PROJ), persp)
+	PROJ_FLAG		= -D PROJ=1
 endif
+
 
 LD_FLAGS	 		= -lm
 
@@ -120,6 +118,16 @@ $(MLX_LIB):
 		fi; \
 	fi
 
+# $(MAKECMDGOALS):
+# 	PROJ_FLAG = -D PROJ=0
+# 	for i in ${!$(MAKECMDGOALS)[@]}
+# 	do
+# 		if [ $i = "persp" ]; then \
+# 			PROJ_FLAG = -D PROJ=1; \
+# 		fi
+# 	done
+
+
 #PROJ
 define PROJ_CHECK
 	ifeq ("$(filter $(PROJ), $(PROJS))", "")
@@ -149,4 +157,10 @@ bonus:
 debug: CFLAGS=
 debug: all
 
-PHONY: all clean fclean re bonus debug
+persp:
+	$(MAKE) debug PROJ=persp
+
+iso:
+	$(MAKE) debug PROJ=iso
+
+.PHONY: all clean fclean re bonus debug persp iso

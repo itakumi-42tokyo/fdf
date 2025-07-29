@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 14:24:06 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/29 14:25:35 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	render(void *param)
 		return (-1);
 	mlx_clear_window((*ctrl)->mlx, (*ctrl)->win);
 	auto_fit_scale((*ctrl), (*ctrl)->zoom);
-	if (hook_bla(param))
+	if (hook_bla(param) == -1)
 		return (-1);
 	return (0);
 }
