@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 18:38:55 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 14:01:15 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/29 14:17:30 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 #include "mouse.h"
 
 // 描画する線をどのように決定するのか？
-//
+// 実際はマスクは(1L << 0) のような指定をしたほうが良さそう
 void	exec(t_control **ctrl)
 {
 	void	*param = (void *)ctrl;
 
-	mlx_expose_hook((*ctrl)->win, hook_bla, param);
+	mlx_expose_hook((*ctrl)->win, render, param);
 	mlx_hook((*ctrl)->win, KeyPress, KeyPressMask, key_press, param);
 	mlx_hook((*ctrl)->win, MotionNotify, PointerMotionMask, mouse_move, param);
 	mlx_hook((*ctrl)->win, ButtonPress, ButtonPressMask, mouse_press, param);

@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.h                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 11:50:56 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 14:14:44 by itakumi          ###   ########.fr       */
+/*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
+/*   Updated: 2025/07/29 14:24:06 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_H
-# define DRAW_H
+// XXX
+#include <stdio.h>
 
-int		render(void *param);
-void	bla(int x0, int y0, int x1, int y1, void *mlx, void *win);
-void	dda(int x1, int y1, int x2, int y2, void *mlx, void *win);
-void	wla(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img);
-int		hook_bla(void *param);
-int		hook_dda(void *param);
-int		hook_wla(void *param);
+#include <mlx.h>
+#include "struct.h"
+#include "view.h"
+#include "draw.h"
 
-#endif
+int	render(void *param)
+{
+	t_control	**ctrl;
+
+	ctrl = (t_control **)param;
+	if (ctrl == NULL || *ctrl == NULL)
+		return (-1);
+	mlx_clear_window((*ctrl)->mlx, (*ctrl)->win);
+	auto_fit_scale((*ctrl), (*ctrl)->zoom);
+	if (hook_bla(param))
+		return (-1);
+	return (0);
+}

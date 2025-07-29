@@ -6,13 +6,14 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:28:50 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 14:09:39 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/29 14:20:03 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // XXX
 #include <stdio.h>
 
+#include <mlx.h>
 #include <stdbool.h>
 #include "struct.h"
 #include "exit.h"
@@ -27,6 +28,7 @@ int	mouse_role_up(int x, int y, void *param)
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
 	(*ctrl)->zoom *= 1.1;
+	render(param);
 	puts("role_up");
 	return (0);
 }
@@ -40,6 +42,7 @@ int		mouse_role_down(int x, int y, void *param)
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
 	(*ctrl)->zoom /= 1.1;
+	render(param);
 	puts("role_down");
 	return (0);
 }

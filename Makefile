@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/28 21:21:20 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/29 14:20:32 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC					= \
 	draw/bla.c \
 	draw/dda.c \
 	draw/wla.c \
+	draw/render.c \
 	execute/exec.c \
 	exit/free_exit.c \
 	init/init_mlx.c \

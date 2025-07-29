@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 13:36:55 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/29 14:15:28 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	main(int argc, char *argv[])
 		if (persp_proj(control) == -1)
 			free_exit(&control);
 	}
-	auto_fit_scale(control, control->zoom);
 	exec(&control);
 	return (0);
 }
