@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:28:50 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 14:20:03 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/29 19:53:29 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "view.h"
 
 // increase scale
-int	mouse_role_up(int x, int y, void *param)
+int	mouse_scroll_up(int x, int y, void *param)
 {
 	t_control	**ctrl;
 
@@ -34,7 +34,7 @@ int	mouse_role_up(int x, int y, void *param)
 }
 
 // decrease scale
-int		mouse_role_down(int x, int y, void *param)
+int		mouse_scroll_down(int x, int y, void *param)
 {
 	t_control	**ctrl;
 
@@ -71,11 +71,11 @@ int	mouse_press(int button, int x, int y, void *param)
 	}
 	else if (button == 4)
 	{
-		mouse_role_up(x, y, param);
+		mouse_scroll_up(x, y, param);
 	}
 	else if (button == 5)
 	{
-		mouse_role_down(x, y, param);
+		mouse_scroll_down(x, y, param);
 	}
 	return (0);
 }
@@ -109,6 +109,7 @@ int mouse_move(int x, int y, void *param)
 	{
 		// rotate
 		// 差分だけコントロールするようにすればいいかな
+
 		(*ctrl)->angle_x += (y - prev_y) * 0.005;
 		(*ctrl)->angle_y += (x - prev_x) * 0.005;
 	}

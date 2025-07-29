@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:27:00 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 19:34:13 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/29 19:53:04 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "struct.h"
 #include "projection.h"
 
-int	calc_euler(t_control *ctrl)
+int	calc_euler(t_control *ctrl, double x, double y, double z)
 {
 
 }
