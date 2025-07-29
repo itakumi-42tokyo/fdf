@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/27 21:53:33 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/29 13:01:40 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ typedef struct s_control
 	double			scale;
 	double			mag_rate;
 	t_mouse			mouse;
+	double			angle_x;
+	double			angle_y;
+	float			zoom;
 }	t_control;
 
 #endif

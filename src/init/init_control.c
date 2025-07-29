@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/28 17:00:15 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/29 13:37:21 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void	init0_control(t_control *control)
 	control->mouse.x = 0;
 	control->mouse.y = 0;
 	control->mouse.is_pressed = false;
+	control->angle_x = 0;
+	control->angle_y = 0;
+	control->zoom = 0;
 }
 
 void	init_control(t_control *control)
@@ -57,4 +60,5 @@ void	init_control(t_control *control)
 	control->offset_y = DEFAULT_WIN_SIZE_Y / 2;
 	control->scale = 30;
 	control->mag_rate = 45;
+	control->zoom = 0.9;
 }

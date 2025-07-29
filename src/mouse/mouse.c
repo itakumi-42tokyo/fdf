@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:28:50 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/28 19:14:25 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/29 14:09:39 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,33 @@
 #include <stdbool.h>
 #include "struct.h"
 #include "exit.h"
+#include "view.h"
+
+// increase scale
+int	mouse_role_up(int x, int y, void *param)
+{
+	t_control	**ctrl;
+
+	ctrl = (t_control **)param;
+	if (ctrl == NULL || *ctrl == NULL)
+		return (-1);
+	(*ctrl)->zoom *= 1.1;
+	puts("role_up");
+	return (0);
+}
+
+// decrease scale
+int		mouse_role_down(int x, int y, void *param)
+{
+	t_control	**ctrl;
+
+	ctrl = (t_control **)param;
+	if (ctrl == NULL || *ctrl == NULL)
+		return (-1);
+	(*ctrl)->zoom /= 1.1;
+	puts("role_down");
+	return (0);
+}
 
 int	mouse_press(int button, int x, int y, void *param)
 {
@@ -24,7 +51,29 @@ int	mouse_press(int button, int x, int y, void *param)
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
-	(*ctrl)->mouse.is_pressed = true;
+	if (button == 1)
+	{
+		(*ctrl)->mouse.is_pressed = true;
+		(*ctrl)->mouse.x = x;
+		(*ctrl)->mouse.y = y;
+		puts("left_mouse_button");
+	}
+	else if (button == 2)
+	{
+		puts("middle_mouse_button");
+	}
+	else if (button == 3)
+	{
+		puts("right_mouse_button");
+	}
+	else if (button == 4)
+	{
+		mouse_role_up(x, y, param);
+	}
+	else if (button == 5)
+	{
+		mouse_role_down(x, y, param);
+	}
 	return (0);
 }
 
@@ -36,45 +85,32 @@ int	mouse_release(int button, int x, int y, void *param)
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
 	(*ctrl)->mouse.is_pressed = false;
+	puts("release_button");
 	return (0);
 }
 
 int mouse_move(int x, int y, void *param)
 {
 	t_control	**ctrl;
+	int			prev_x;
+	int			prev_y;
 
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
+	prev_x = (*ctrl)->mouse.x;
+	prev_y = (*ctrl)->mouse.y;
+	(*ctrl)->mouse.x = x;
+	(*ctrl)->mouse.y = y;
 	if ((*ctrl)->mouse.is_pressed == true)
 	{
 		// rotate
-
+		// 差分だけコントロールするようにすればいいかな
+		(*ctrl)->angle_x += (y - prev_y) * 0.005;
+		(*ctrl)->angle_y += (x - prev_x) * 0.005;
 	}
 	printf("x: %d; y: %d\n", x, y);
 	return (0);
-}
-
-// increase scale
-int	mouse_role_up(int x, int y, void *param)
-{
-	t_control	**ctrl;
-
-	ctrl = (t_control **)param;
-	if (ctrl == NULL || *ctrl == NULL)
-		return (-1);
-
-}
-
-// decrease scale
-int		mouse_role_down(int x, int y, void *param)
-{
-	t_control	**ctrl;
-
-	ctrl = (t_control **)param;
-	if (ctrl == NULL || *ctrl == NULL)
-		return (-1);
-
 }
 
 int	close_window(void *param)
