@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 16:28:56 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 22:10:16 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@
 #include "draw.h"
 #include "macro.h"
 #include "projection.h"
+#include "exit.h"
 
 // １．mapを変換する。
 // 2. 投影変換したマップをスケーリングする。
 // ３．描画する
+
 int	render(void *param)
 {
 	t_control	**ctrl;
@@ -41,6 +43,7 @@ int	render(void *param)
 		if (persp_proj(*ctrl) == -1)
 			free_exit(ctrl);
 	}
+	puts("yes");
 	auto_fit_scale((*ctrl), (*ctrl)->zoom);
 	if (hook_bla(param) == -1)
 		return (-1);

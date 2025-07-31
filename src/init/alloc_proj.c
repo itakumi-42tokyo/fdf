@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:00:29 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 19:30:26 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 21:38:53 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,25 @@ t_perspective	**calloc_persp(int height, int width)
 	{
 		persp_map[i] = ft_calloc(sizeof(t_perspective) * width, 1);
 		if (persp_map[i] == NULL)
-			return (free_2d((void **)persp_map), NULL);
+			return (free_2d((void **)persp_map), NULL);// FIXME
 		i++;
 	}
 	return (persp_map);
 }
 
-int	alloc_proj(t_control *ctrl, int proj_flag)
+int	alloc_proj(t_control *ctrl)
 {
 	if (ctrl == NULL)
 		return (-1);
-	if (proj_flag == ISO)
+	if (PROJ == ISO)
 	{
-		ctrl->iso_map = calloc_iso();
+		ctrl->iso_map = calloc_iso(ctrl->map_height, ctrl->map_width);
 		if (ctrl->iso_map == NULL)
 			return (-1);
 	}
-	else if (proj_flag == PERSP)
+	else if (PROJ == PERSP)
 	{
-		ctrl->persp_map = calloc_persp();
+		ctrl->persp_map = calloc_persp(ctrl->map_height, ctrl->map_width);
 		if (ctrl->persp_map == NULL)
 			return (-1);
 	}

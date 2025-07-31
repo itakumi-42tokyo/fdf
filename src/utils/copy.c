@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:26:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 16:36:31 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 21:35:21 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_cur_point	**copy_map(t_control	*ctrl)
 			cur_map[i][j].y = ctrl->map[i][j].y;
 			cur_map[i][j].z = ctrl->map[i][j].z;
 			cur_map[i][j].color = ctrl->map[i][j].color;
-			printf("x: %f; y: %f; z: %f\n", cur_map[i][j].x, cur_map[i][j].y, cur_map[i][j].z);
 			j++;
 		}
 		i++;

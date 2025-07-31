@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/31 16:12:51 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/31 21:27:12 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC					= \
 	draw/render.c \
 	execute/exec.c \
 	exit/free_exit.c \
+	init/alloc_proj.c \
 	init/init_mlx.c \
 	init/init_control.c \
 	read/atoi_base_with_check.c \

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 17:44:24 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 21:25:12 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,14 @@ int	iso_proj(t_control *ctrl)
 	double		y_new;
 	double		z_new;
 
-	if (ctrl == NULL)
-		return (-1);
-	ctrl->iso_map = malloc(sizeof(t_isometric *) * (ctrl->map_height + 1));
-	if (ctrl->iso_map == NULL)
+	if (ctrl == NULL || ctrl->cur_map)
 		return (-1);
 	cur_map = ctrl->cur_map;
 	i = 0;
 	while (i < ctrl->map_height)
 	{
 		j = 0;
-		ctrl->iso_map[i] = malloc(sizeof(t_isometric) * ctrl->map_width);
-		if (ctrl->iso_map[i] == NULL)
-			return (free_2d((void **)ctrl->iso_map), -1);
 		// 修正後の isometric.c の while ループ部分
-
 		while (j < ctrl->map_width)
 		{
 			// 元の座標を分かりやすい変数に格納
@@ -60,7 +53,6 @@ int	iso_proj(t_control *ctrl)
 		}
 		i++;
 	}
-	ctrl->iso_map[i] = NULL;
 	return (0);
 }
 

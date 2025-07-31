@@ -6,9 +6,12 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 19:44:45 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 21:36:55 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// XXX
+#include <stdio.h>
 
 #include <stdlib.h>
 #include "fdf.h"
@@ -44,8 +47,11 @@ int	main(int argc, char *argv[])
 	}
 	init_mlx(control);
 	control->cur_map = copy_map(control);
-
 	if (control->cur_map == NULL)
+	{
+		free_exit(&control);
+	}
+	if (alloc_proj(control) == -1)
 	{
 		free_exit(&control);
 	}
