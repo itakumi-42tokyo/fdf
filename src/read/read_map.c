@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 13:50:11 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 19:42:53 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	parse_tokens(t_point **map, char **tokens, const int y, const int width)
 
 	if (map == NULL || tokens == NULL)
 		return (-1);
-	map[y] = malloc(sizeof(t_point) * (width));
+	map[y] = malloc(sizeof(t_point) * width);
 	if (map[y] == NULL)
 		return (-1);
 	i = 0;

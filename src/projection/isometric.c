@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 16:38:23 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 17:44:24 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "projection.h"
 #include "utils.h"
 
-// 方針1. 毎回フリーする
+// 方針1. 毎回フリーする Xh
 // 方針2. 上書きする（static）を用いて
 
 int	iso_proj(t_control *ctrl)

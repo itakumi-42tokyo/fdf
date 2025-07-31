@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 16:39:05 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 19:44:45 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int argc, char *argv[])
 	}
 	init_mlx(control);
 	control->cur_map = copy_map(control);
+
 	if (control->cur_map == NULL)
 	{
 		free_exit(&control);
