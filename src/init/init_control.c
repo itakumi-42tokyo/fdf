@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 13:37:21 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 16:16:35 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	init0_control(t_control *control)
 	control->endian = 0;
 	control->data_addr = NULL;
 	control->map = NULL;
+	control->cur_map = NULL;
 	control->iso_map = NULL;
 	ft_bzero(control->iso_min_x0_y1, 2);
 	control->persp_map = NULL;

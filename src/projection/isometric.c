@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 12:59:50 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 16:38:23 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 #include "projection.h"
 #include "utils.h"
 
+// 方針1. 毎回フリーする
+// 方針2. 上書きする（static）を用いて
+
 int	iso_proj(t_control *ctrl)
 {
-	t_point	**map;
+	t_cur_point	**cur_map;
 	int 		i;
 	int 		j;
 	double		x_new;
@@ -30,7 +33,7 @@ int	iso_proj(t_control *ctrl)
 	ctrl->iso_map = malloc(sizeof(t_isometric *) * (ctrl->map_height + 1));
 	if (ctrl->iso_map == NULL)
 		return (-1);
-	map = ctrl->map;
+	cur_map = ctrl->cur_map;
 	i = 0;
 	while (i < ctrl->map_height)
 	{
@@ -43,16 +46,16 @@ int	iso_proj(t_control *ctrl)
 		while (j < ctrl->map_width)
 		{
 			// 元の座標を分かりやすい変数に格納
-			int x = map[i][j].x;
-			int y = map[i][j].y;
-			int z = map[i][j].z;
+			int x = cur_map[i][j].x;
+			int y = cur_map[i][j].y;
+			int z = cur_map[i][j].z;
 			// 一般的なアイソメトリック投影の公式を使用
 			double angle = 0.523599; // 30度をラジアンに変換した値
 			x_new = ((x - y)/ sqrt(2)) * cos(angle);
 			y_new = ((x + y) / sqrt(2)) * sin(angle) - z;
 			ctrl->iso_map[i][j].iso_x = x_new;
 			ctrl->iso_map[i][j].iso_y = y_new;
-			ctrl->iso_map[i][j].color = map[i][j].color;
+			ctrl->iso_map[i][j].color = cur_map[i][j].color;
 			j++;
 		}
 		i++;

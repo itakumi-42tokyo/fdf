@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 19:13:23 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/27 21:29:40 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 16:03:52 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	free_exit(t_control **ctrl)
 	mlx_destroy_display((*ctrl)->mlx);
 	free((*ctrl)->mlx);
 	free_2d((void **)((*ctrl)->map));
+	free_2d((void **)(*ctrl)->cur_map);
 	free_2d((void **)((*ctrl)->iso_map));
 	free_2d((void **)((*ctrl)->persp_map));
 	free((*ctrl));

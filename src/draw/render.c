@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 19:53:27 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 16:28:56 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include "struct.h"
 #include "view.h"
 #include "draw.h"
+#include "macro.h"
+#include "projection.h"
 
 // １．mapを変換する。
 // 2. 投影変換したマップをスケーリングする。
@@ -28,8 +30,17 @@ int	render(void *param)
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
-
 	mlx_clear_window((*ctrl)->mlx, (*ctrl)->win);
+	if (PROJ == ISO)
+	{
+		if (iso_proj(*ctrl) == -1)// freeするか、値だけ、上書きしないといけない。
+			free_exit(ctrl);
+	}
+	else if (PROJ == PERSP)
+	{
+		if (persp_proj(*ctrl) == -1)
+			free_exit(ctrl);
+	}
 	auto_fit_scale((*ctrl), (*ctrl)->zoom);
 	if (hook_bla(param) == -1)
 		return (-1);

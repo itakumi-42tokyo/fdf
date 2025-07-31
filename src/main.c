@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 14:15:28 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 16:39:05 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,10 @@ int	main(int argc, char *argv[])
 		errmsg_exit(MAP_READ_ERROR);
 	}
 	init_mlx(control);
-	if (PROJ == ISO)
+	control->cur_map = copy_map(control);
+	if (control->cur_map == NULL)
 	{
-		if (iso_proj(control) == -1)
-			free_exit(&control);
-	}
-	else if (PROJ == PERSP)
-	{
-		if (persp_proj(control) == -1)
-			free_exit(&control);
+		free_exit(&control);
 	}
 	exec(&control);
 	return (0);

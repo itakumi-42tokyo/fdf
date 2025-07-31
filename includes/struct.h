@@ -6,12 +6,27 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 19:53:25 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/07/31 15:24:08 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef struct s_vector3
+{
+	double		x;
+	double		y;
+	double		z;
+}	t_vector3;
+
+typedef struct s_quaternion
+{
+	double	x;
+	double	y;
+	double	z;
+	double	w;
+}	t_quaternion;
 
 typedef struct s_mouse
 {
@@ -19,6 +34,14 @@ typedef struct s_mouse
 	int	x;
 	int	y;
 }	t_mouse;
+
+typedef struct s_cur_point
+{
+	double	x;
+	double	y;
+	double	z;
+	int		color;
+}	t_cur_point;
 
 typedef struct s_point
 {
@@ -57,6 +80,7 @@ typedef struct s_control
 	int				endian;
 	char			*data_addr;
 	t_point			**map; // 2D配列のポインタ
+	t_cur_point		**cur_map;
 	t_isometric		**iso_map; // 2D配列のポインタ
 	int				iso_min_x0_y1[2];
 	int				iso_max_x0_y1[2];

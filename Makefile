@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/29 19:27:34 by itakumi          ###   ########.fr        #
+#    Updated: 2025/07/31 16:12:51 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,11 @@ SRC					= \
 	read/atoi_base_with_check.c \
 	read/calc_row.c \
 	read/read_map.c \
+	rotate/conversion.c \
 	rotate/euler_angles.c \
 	rotate/quaternion.c \
 	rotate/rotate_matrix.c \
+	rotate/slerp.c \
 	translate/translate.c \
 	key/key.c \
 	mouse/mouse.c \
@@ -53,6 +55,7 @@ SRC					= \
 	projection/perspective.c \
 	projection/rad_deg.c \
 	projection/scale.c \
+	utils/copy.c \
 	utils/errmsg_exit.c \
 	utils/free_2d.c \
 	utils/my_abs.c \
