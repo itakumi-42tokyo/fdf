@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 05:32:36 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/31 16:02:21 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/01 16:05:08 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 #include "struct.h"
 
+double	deg_to_rad(double deg);
+double	rad_to_deg(double rad);
 t_cur_point	**copy_map(t_control	*ctrl);
 int		my_abs(int n);
 int		swap(int *a, int *b);

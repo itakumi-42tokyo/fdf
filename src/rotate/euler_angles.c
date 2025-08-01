@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:27:00 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 16:11:58 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/01 16:07:34 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <math.h>
 #include "struct.h"
-#include "projection.h"
+#include "utils.h"
 
 //
 static void	rotate_x(double deg_x, double *y, double *z)

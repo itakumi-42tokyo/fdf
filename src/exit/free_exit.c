@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 19:13:23 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 16:03:52 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/01 16:24:20 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	free_exit(t_control **ctrl)
 		(ft_putstr_fd("invalid argument: ctrl", 2), exit(EXIT_FAILURE));
 	if ((*ctrl)->img != NULL)
 		mlx_destroy_image((*ctrl)->mlx, (*ctrl)->img);
-	mlx_destroy_window((*ctrl)->mlx, (*ctrl)->win);
 	mlx_loop_end((*ctrl)->mlx);
+	mlx_destroy_window((*ctrl)->mlx, (*ctrl)->win);
 	mlx_destroy_display((*ctrl)->mlx);
 	free((*ctrl)->mlx);
 	free_2d((void **)((*ctrl)->map));

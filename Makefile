@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/07/31 21:27:12 by itakumi          ###   ########.fr        #
+#    Updated: 2025/08/01 16:08:10 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,10 +52,8 @@ SRC					= \
 	key/key.c \
 	mouse/mouse.c \
 	projection/isometric.c \
-	projection/offset.c \
 	projection/perspective.c \
-	projection/rad_deg.c \
-	projection/scale.c \
+	utils/rad_deg.c \
 	utils/copy.c \
 	utils/errmsg_exit.c \
 	utils/free_2d.c \
@@ -69,6 +67,8 @@ SRC					= \
 	utils/ut_split.c \
 	view/auto_fit_scale.c \
 	view/affine_transform.c \
+	view/offset.c \
+	view/scale.c \
 	main.c \
 
 OBJ_DIR				?= build

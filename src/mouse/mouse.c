@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:28:50 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 19:53:29 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/01 16:05:34 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "struct.h"
 #include "exit.h"
 #include "view.h"
+#include "draw.h"
 
 // increase scale
 int	mouse_scroll_up(int x, int y, void *param)

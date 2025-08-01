@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 10:19:34 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 10:26:06 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/01 16:06:53 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "libft.h"
 #include "macro.h"
 #include "struct.h"
+#include "utils.h"
 
 int	calc_row(const char *line)
 {
