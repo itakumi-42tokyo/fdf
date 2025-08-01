@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:28:50 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/01 16:05:34 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/01 23:09:34 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "exit.h"
 #include "view.h"
 #include "draw.h"
+#include "rotate.h"
 
 // increase scale
 int	mouse_scroll_up(int x, int y, void *param)
@@ -96,23 +97,27 @@ int	mouse_release(int button, int x, int y, void *param)
 int mouse_move(int x, int y, void *param)
 {
 	t_control	**ctrl;
-	int			prev_x;
-	int			prev_y;
+	double		delta_x;
+	double		delta_y;
 
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
-	prev_x = (*ctrl)->mouse.x;
-	prev_y = (*ctrl)->mouse.y;
+	delta_x = x - (*ctrl)->mouse.x;
+	delta_y = y - (*ctrl)->mouse.y;
 	(*ctrl)->mouse.x = x;
 	(*ctrl)->mouse.y = y;
 	if ((*ctrl)->mouse.is_pressed == true)
 	{
 		// rotate
 		// 差分だけコントロールするようにすればいいかな
+		double	deg_x = delta_x * 0.5;
+		double	deg_y = delta_y * 0.5;
 
-		(*ctrl)->angle_x += (y - prev_y) * 0.005;
-		(*ctrl)->angle_y += (x - prev_x) * 0.005;
+		calc_euler((*ctrl), deg_x, deg_y, 0);
+		render(param);
+		// (*ctrl)->angle_x += (y - prev_y) * 0.005;// unused
+		// (*ctrl)->angle_y += (x - prev_x) * 0.005;// unused
 	}
 	printf("x: %d; y: %d\n", x, y);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:00:29 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/01 15:50:40 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/01 22:05:09 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_isometric	**calloc_iso(int height, int width)
 	t_isometric		**iso_map;
 	int				i;
 
-	iso_map = ft_calloc(sizeof(t_isometric *) * height + 1, 1);
+	iso_map = ft_calloc(sizeof(t_isometric *) * (height + 1), 1);
 	if (iso_map == NULL)
 		return (NULL);
 	i = 0;
@@ -35,6 +35,7 @@ t_isometric	**calloc_iso(int height, int width)
 			return (free_2d((void **)iso_map), NULL);
 		i++;
 	}
+	iso_map[i] == NULL;
 	return (iso_map);
 }
 
@@ -43,7 +44,7 @@ t_perspective	**calloc_persp(int height, int width)
 	t_perspective	**persp_map;
 	int				i;
 
-	persp_map = ft_calloc(sizeof(t_perspective *) * height + 1, 1);
+	persp_map = ft_calloc(sizeof(t_perspective *) * (height + 1), 1);
 	if (persp_map == NULL)
 		return (NULL);
 	i = 0;
@@ -54,6 +55,7 @@ t_perspective	**calloc_persp(int height, int width)
 			return (free_2d((void **)persp_map), NULL);// FIXME
 		i++;
 	}
+	persp_map[i] = NULL;
 	return (persp_map);
 }
 

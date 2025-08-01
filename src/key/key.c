@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 04:14:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/27 15:58:47 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/01 21:55:26 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@
 
 
 // macOS 対応は要検討
-int key_press(int keycode, t_control **ctrl)
+int key_press(int keycode, void	*param)
 {
+	t_control	**ctrl;
+
+	ctrl = (t_control **)param;
+	if (ctrl == NULL || *ctrl == NULL)
+		return (-1);
 	if (keycode == ESC_LINUX)
 		free_exit(ctrl);
 	printf("keycode: %d\n", keycode);
