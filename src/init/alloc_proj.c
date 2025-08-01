@@ -6,13 +6,12 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:00:29 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 21:38:53 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/01 15:50:40 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // XXX
 #include <stdio.h>
-
 
 #include <stdlib.h>
 #include "libft.h"

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 21:25:12 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/01 15:57:23 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	iso_proj(t_control *ctrl)
 	double		y_new;
 	double		z_new;
 
-	if (ctrl == NULL || ctrl->cur_map)
+	if (ctrl == NULL || ctrl->cur_map == NULL)
 		return (-1);
 	cur_map = ctrl->cur_map;
 	i = 0;
