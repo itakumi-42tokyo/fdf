@@ -13,10 +13,11 @@
 // XXX
 #include <stdio.h>
 
+#include <stdlib.h>
 #include "struct.h"
 #include "utils.h"
 
-t_cur_point	**copy_map(t_control	*ctrl)
+t_cur_point	**alloc_map(t_control	*ctrl)
 {
 	t_cur_point		**cur_map;
 	int				i;

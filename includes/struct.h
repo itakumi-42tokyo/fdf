@@ -92,8 +92,8 @@ typedef struct s_control
 	double			scale;
 	double			mag_rate;
 	t_mouse			mouse;
-	double			angle_x;
-	double			angle_y;
+	double			total_angle_x; // 回転角度
+	double			total_angle_y; // 回転角度
 	float			zoom;
 }	t_control;
 

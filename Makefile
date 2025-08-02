@@ -54,7 +54,8 @@ SRC					= \
 	projection/isometric.c \
 	projection/perspective.c \
 	utils/rad_deg.c \
-	utils/copy.c \
+	utils/alloc_map.c \
+	utils/copy_map.c \
 	utils/errmsg_exit.c \
 	utils/free_2d.c \
 	utils/my_abs.c \

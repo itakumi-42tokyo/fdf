@@ -29,7 +29,7 @@ static void	rotate_x(double deg_x, double *y, double *z)
 	*z = prev_y * sin(deg_to_rad(deg_x)) + prev_z * cos(deg_to_rad(deg_x));
 }
 
-static void	rotate_y(double deg_y, double *x, double *z)
+static void	rotate_y(double deg_y, double *z, double *x)
 {
 	double	prev_x;
 	double	prev_z;
@@ -55,40 +55,43 @@ static void	rotate_z(double deg_z, double *x, double *y)
 
 int	calc_euler(t_control *ctrl, double deg_x, double deg_y, double deg_z)
 {
-	int i, j;
-	double center_x = ctrl->map_width / 2.0;
-	double center_y = ctrl->map_height / 2.0;
+	int		i;
+	int		j;
+	double center_x;
+	double center_y;
+	double x, y, z;
 		if (ctrl == NULL)
 			return (-1);
-
+	center_x = (ctrl->map_width - 1) / 2.0;
+	center_y = (ctrl->map_height - 1) / 2.0;
 		// 回転の中心に移動
-	for (i = 0; i < ctrl->map_height; i++)
+	i = 0;
+	while (i < ctrl->map_height)
 	{
-		for (j = 0; j < ctrl->map_width; j++)
+		j = 0;
+		while (j < ctrl->map_width)
 		{
-			ctrl->cur_map[i][j].x -= center_x;
-			ctrl->cur_map[i][j].y -= center_y;
-		}
-	}
-		// 回転を適用
-	for (i = 0; i < ctrl->map_height; i++)
-	{
-		for (j = 0; j < ctrl->map_width; j++)
-		{
-			rotate_x(deg_x, &(ctrl->cur_map[i][j].y), &(ctrl->cur_map[i][j].z));
-			rotate_y(deg_y, &(ctrl->cur_map[i][j].x), &(ctrl->cur_map[i][j].z));
-			rotate_z(deg_z, &(ctrl->cur_map[i][j].x), &(ctrl->cur_map[i][j].y));
-		}
-	}
+			x = ctrl->cur_map[i][j].x;
+			y = ctrl->cur_map[i][j].y;
+			z = ctrl->cur_map[i][j].z;
 
-		// 元の位置に戻す
-	for (i = 0; i < ctrl->map_height; i++)
-	{
-		for (j = 0; j < ctrl->map_width; j++)
-		{
-			ctrl->cur_map[i][j].x += center_x;
-			ctrl->cur_map[i][j].y += center_y;
+			x -= center_x;
+			y -= center_y;
+
+			rotate_x(deg_x, &y, &z);
+			rotate_y(deg_y, &z, &x);
+			rotate_z(deg_z, &x, &y);
+
+			x += center_x;
+			y += center_y;
+
+			ctrl->cur_map[i][j].x = x;
+			ctrl->cur_map[i][j].y = y;
+			ctrl->cur_map[i][j].z = z;
+			ctrl->cur_map[i][j].color = ctrl->map[i][j].color;
+			j++;
 		}
+		i++;
 	}
 	// i = 0;
 	// while (i < ctrl->map_height)

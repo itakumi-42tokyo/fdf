@@ -43,8 +43,8 @@ void	init0_control(t_control *control)
 	control->mouse.x = 0;
 	control->mouse.y = 0;
 	control->mouse.is_pressed = false;
-	control->angle_x = 0;
-	control->angle_y = 0;
+	control->total_angle_x = 0;
+	control->total_angle_y = 0;
 	control->zoom = 0;
 }
 

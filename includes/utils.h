@@ -18,9 +18,10 @@
 
 #include "struct.h"
 
+void	copy_map(t_control *ctrl);
 double	deg_to_rad(double deg);
 double	rad_to_deg(double rad);
-t_cur_point	**copy_map(t_control	*ctrl);
+t_cur_point	**alloc_map(t_control	*ctrl);
 int		my_abs(int n);
 int		swap(int *a, int *b);
 void	errmsg_exit(const char *msg);

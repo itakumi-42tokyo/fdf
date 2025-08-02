@@ -103,23 +103,20 @@ int mouse_move(int x, int y, void *param)
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
-	delta_x = x - (*ctrl)->mouse.x;
-	delta_y = y - (*ctrl)->mouse.y;
-	(*ctrl)->mouse.x = x;
-	(*ctrl)->mouse.y = y;
 	if ((*ctrl)->mouse.is_pressed == true)
 	{
 		// rotate
 		// 差分だけコントロールするようにすればいいかな
-		double	deg_x = delta_x * 0.5;
-		double	deg_y = delta_y * 0.5;
-
-		calc_euler((*ctrl), deg_x, deg_y, 0);
+		delta_x = x - (*ctrl)->mouse.x;
+		delta_y = y - (*ctrl)->mouse.y;
+		(*ctrl)->total_angle_x += delta_x * 0.5;
+		(*ctrl)->total_angle_y += delta_y * 0.5;
 		render(param);
 		// (*ctrl)->angle_x += (y - prev_y) * 0.005;// unused
 		// (*ctrl)->angle_y += (x - prev_x) * 0.005;// unused
 	}
-	printf("x: %d; y: %d\n", x, y);
+	(*ctrl)->mouse.x = x;
+	(*ctrl)->mouse.y = y;
 	return (0);
 }
 

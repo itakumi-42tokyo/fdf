@@ -46,7 +46,7 @@ int	main(int argc, char *argv[])
 		errmsg_exit(MAP_READ_ERROR);
 	}
 	init_mlx(control);
-	control->cur_map = copy_map(control);
+	control->cur_map = alloc_map(control);
 	if (control->cur_map == NULL)
 	{
 		free_exit(&control);
