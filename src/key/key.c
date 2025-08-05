@@ -31,6 +31,26 @@ int key_press(int keycode, void	*param)
 		return (-1);
 	if (keycode == ESC_LINUX)
 		free_exit(ctrl);
+	else if (keycode == R_LINUX)
+	{
+		// Reset the view
+		(*ctrl)->total_angle_x = 0;
+		(*ctrl)->total_angle_y = 0;
+		(*ctrl)->scale = 1.0;
+		(*ctrl)->offset_x = 0;
+		(*ctrl)->offset_y = 0;
+		printf("View reset to default.\n");
+	}
+	else if (keycode == X_LINUX)
+	{
+		printf("X key pressed, performing action...\n");
+	}
+	else if (keycode == ESC_MACOS)
+		free_exit(ctrl);
+	else
+	{
+		printf("Unhandled keycode: %d\n", keycode);
+	}
 	printf("keycode: %d\n", keycode);
 	return (-1);
 }

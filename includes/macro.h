@@ -25,6 +25,7 @@
 # define ESC_LINUX 65307
 # define X_MACOS 7
 # define X_LINUX 120
+# define R_LINUX 114
 
 // window size
 # define DEFAULT_WIN_SIZE_X 1000

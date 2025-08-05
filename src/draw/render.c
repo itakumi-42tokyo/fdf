@@ -34,7 +34,7 @@ int	render(void *param)
 		return (-1);
 	mlx_clear_window((*ctrl)->mlx, (*ctrl)->win);
 	copy_map(*ctrl);
-	calc_euler(*ctrl, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y, 0);
+	calc_euler(*ctrl, (*ctrl)->total_angle_x, 0, 0);
 	if (PROJ == ISO)
 	{
 		if (iso_proj(*ctrl) == -1)// freeするか、値だけ、上書きしないといけない。
