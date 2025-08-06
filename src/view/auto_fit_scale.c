@@ -38,10 +38,14 @@ static void calc_bounds_local(t_control *ctrl, int min_xy[2], int max_xy[2])
  				ix = ctrl->persp_map[i][j].persp_x;
 				iy = ctrl->persp_map[i][j].persp_y;
 			}
-            if (ix < min_xy[0]) min_xy[0] = ix;
-            if (iy < min_xy[1]) min_xy[1] = iy;
-            if (ix > max_xy[0]) max_xy[0] = ix;
-            if (iy > max_xy[1]) max_xy[1] = iy;
+            if (ix < min_xy[0]) 
+				min_xy[0] = ix;
+            if (iy < min_xy[1]) 
+				min_xy[1] = iy;
+            if (ix > max_xy[0]) 
+				max_xy[0] = ix;
+            if (iy > max_xy[1]) 
+				max_xy[1] = iy;
         }
 }
 
