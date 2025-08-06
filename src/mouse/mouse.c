@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:28:50 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/01 23:09:34 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 08:10:10 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "view.h"
 #include "draw.h"
 #include "rotate.h"
+#include "macro.h"
 
 // increase scale
 int	mouse_scroll_up(int x, int y, void *param)
@@ -29,7 +30,8 @@ int	mouse_scroll_up(int x, int y, void *param)
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
-	(*ctrl)->zoom *= 1.1;
+	if ((*ctrl)->zoom < ZOOM_MAX)
+		(*ctrl)->zoom *= 1.1;
 	render(param);
 	puts("role_up");
 	return (0);
@@ -43,7 +45,8 @@ int		mouse_scroll_down(int x, int y, void *param)
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
-	(*ctrl)->zoom /= 1.1;
+	if ((*ctrl)->zoom > ZOOM_MIN)
+		(*ctrl)->zoom /= 1.1;
 	render(param);
 	puts("role_down");
 	return (0);

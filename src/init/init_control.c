@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/01 21:50:50 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 07:24:35 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,6 @@ void	init_control(t_control *control)
 	control->map_height = 0;
 	control->offset_x = DEFAULT_WIN_SIZE_X / 2;
 	control->offset_y = DEFAULT_WIN_SIZE_Y / 2;
-	control->bits_per_pixel = 
-	control->endian = 
-	control->size_line = 
 	control->scale = 30;
 	control->mag_rate = 45;
 	control->zoom = 0.9;

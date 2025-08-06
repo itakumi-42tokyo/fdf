@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/08/01 16:08:10 by itakumi          ###   ########.fr        #
+#    Updated: 2025/08/07 06:48:58 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,9 +67,11 @@ SRC					= \
 	utils/ut_isspace.c \
 	utils/ut_split.c \
 	view/auto_fit_scale.c \
+	view/3d_scale.c \
 	view/affine_transform.c \
 	view/offset.c \
 	view/scale.c \
+	view/viewport_trans.c \
 	main.c \
 
 OBJ_DIR				?= build

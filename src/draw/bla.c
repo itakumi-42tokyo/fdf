@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/28 20:03:50 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 07:50:32 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,10 +208,9 @@ int	drawline_iso(void *param)
                                      (*ctrl)->scale, (*ctrl)->offset_x);
                 y1 = transform_coord((*ctrl)->iso_map[i][j + 1].iso_y,
                                      (*ctrl)->scale, (*ctrl)->offset_y);
-                printf("--- Step 3: Draw Coords ---\n");
-                printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
+                // printf("--- Step 3: Draw Coords ---\n");
+                // printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
                 bla(x0, y0, x1, y1, *ctrl);
-                // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
             }
             if (i + 1 < (*ctrl)->map_height)
             {
@@ -219,10 +218,9 @@ int	drawline_iso(void *param)
                                      (*ctrl)->scale, (*ctrl)->offset_x);
                 y1 = transform_coord((*ctrl)->iso_map[i + 1][j].iso_y,
                                      (*ctrl)->scale, (*ctrl)->offset_y);
-                printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
-                printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
+                // printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
+                // printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
                 bla(x0, y0, x1, y1, *ctrl);
-                // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
             }
             j++;
         }

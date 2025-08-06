@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 04:14:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/08/01 21:55:26 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 07:26:14 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <linux/input-event-codes.h>
 #include <stdlib.h>
 #include "mlx.h"
+#include "draw.h"
 #include "struct.h"
 #include "macro.h"
 #include "exit.h"
@@ -36,9 +37,11 @@ int key_press(int keycode, void	*param)
 		// Reset the view
 		(*ctrl)->total_angle_x = 0;
 		(*ctrl)->total_angle_y = 0;
-		(*ctrl)->scale = 1.0;
-		(*ctrl)->offset_x = 0;
-		(*ctrl)->offset_y = 0;
+		(*ctrl)->scale = 30;
+		(*ctrl)->offset_x = DEFAULT_WIN_SIZE_X / 2;
+		(*ctrl)->offset_y = DEFAULT_WIN_SIZE_Y / 2;
+		(*ctrl)->zoom = 0.9;
+		render(param);
 		printf("View reset to default.\n");
 	}
 	else if (keycode == X_LINUX)

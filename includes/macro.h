@@ -21,6 +21,7 @@
 # define FAILED_MLX_WIN "failed mlx_window\n"
 # define FAILED_MLX_IMG "failed mlx_img\n"
 # define FAILED_MLX_DATA_ADDR "failed mlx_data_addr\n"
+# define ERROR_PROJ_MACRO "error: PROJ macro is incorrect\n"
 
 // keycode
 # define ESC_MACOS 53
@@ -67,5 +68,8 @@
 # ifndef PROJ
 # define PROJ ISO
 # endif
+
+# define ZOOM_MIN 0.1
+# define ZOOM_MAX 10.0
 
 #endif
