@@ -6,12 +6,16 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 07:24:35 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 08:42:40 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// XXX
+#include <stdio.h>
+
 #include <stddef.h>
 #include <stdbool.h>
+#include "mlx.h"
 #include "libft.h"
 #include "struct.h"
 #include "macro.h"
@@ -52,12 +56,8 @@ void	init_control(t_control *control)
 {
 	if (control == NULL)
 		return ;
-	init0_control(control);
-	control->win_size_x = DEFAULT_WIN_SIZE_X;
-	control->win_size_y = DEFAULT_WIN_SIZE_Y;
+	printf("sizex: %d\n sizey: %d\n", control->win_size_x, control->win_size_y);
 	control->title = DEFAULT_TITLE;
-	control->map_width = 0;
-	control->map_height = 0;
 	control->offset_x = DEFAULT_WIN_SIZE_X / 2;
 	control->offset_y = DEFAULT_WIN_SIZE_Y / 2;
 	control->scale = 30;

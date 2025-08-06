@@ -6,10 +6,11 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 20:52:59 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/07/26 16:20:13 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 08:21:38 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "struct.h"
 
 void	offset(t_control *ctrl)
