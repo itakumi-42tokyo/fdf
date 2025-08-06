@@ -14,6 +14,7 @@
 #include <stdio.h>
 
 #include <mlx.h>
+#include "libft.h"
 #include "struct.h"
 #include "view.h"
 #include "draw.h"
@@ -33,20 +34,19 @@ int	render(void *param)
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
 	mlx_clear_window((*ctrl)->mlx, (*ctrl)->win);
+	// 1) イメージバッファをゼロクリア
+	ft_bzero((*ctrl)->data_addr, (*ctrl)->size_line * (*ctrl)->win_size_y);
+	// 2) 各種マップ更新・投影
 	copy_map(*ctrl);
-	calc_euler(*ctrl, (*ctrl)->total_angle_x, 0, 0);
+	calc_euler(*ctrl, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y, 0);		
 	if (PROJ == ISO)
-	{
-		if (iso_proj(*ctrl) == -1)// freeするか、値だけ、上書きしないといけない。
-			free_exit(ctrl);
-	}
-	else if (PROJ == PERSP)
-	{
-		if (persp_proj(*ctrl) == -1)
-			free_exit(ctrl);
-	}
-	auto_fit_scale((*ctrl), (*ctrl)->zoom);
-	if (hook_bla(param) == -1)
-		return (-1);
+		iso_proj(*ctrl);
+	else
+		persp_proj(*ctrl);
+	auto_fit_scale(*ctrl, (*ctrl)->zoom);
+	// 3) 描画ルーチンは img_data に直接書き込むように改修済み
+	hook_bla(param);
+	// 4) 最後にウィンドウへ一度だけ転送
+	mlx_put_image_to_window((*ctrl)->mlx, (*ctrl)->win, (*ctrl)->img, 0, 0);
 	return (0);
 }

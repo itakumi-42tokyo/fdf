@@ -31,12 +31,24 @@
 #include "mlx.h"
 #include <math.h>
 #include <stdlib.h>
+#include "struct.h"
 
 static int	my_abs(int n)
 {
 	if (n < 0)
 		return (-n);
 	return (n);
+}
+
+static void set_pixel(t_control *ctrl, int x, int y, int color)
+{
+	int    bytes = ctrl->bits_per_pixel / 8;
+	char  *dst;
+
+	if (x < 0 || x >= ctrl->win_size_x || y < 0 || y >= ctrl->win_size_y)
+		return ;
+	dst = ctrl->data_addr + y * ctrl->size_line + x * bytes;
+	*(unsigned int *)dst = color;
 }
 
 void	dda(int x1, int y1, int x2, int y2, void *mlx, void *win)

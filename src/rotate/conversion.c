@@ -22,5 +22,5 @@ void	euler_to_quat(t_control *ctrl)
 
 void	quat_to_matrix(t_control *ctrl)
 {
-
+	
 }

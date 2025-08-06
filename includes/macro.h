@@ -19,6 +19,8 @@
 # define MAP_READ_ERROR "map read error\n"
 # define FAILED_MLX_INIT "failed mix_init\n"
 # define FAILED_MLX_WIN "failed mlx_window\n"
+# define FAILED_MLX_IMG "failed mlx_img\n"
+# define FAILED_MLX_DATA_ADDR "failed mlx_data_addr\n"
 
 // keycode
 # define ESC_MACOS 53

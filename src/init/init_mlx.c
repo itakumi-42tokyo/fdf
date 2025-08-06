@@ -28,4 +28,21 @@ void	init_mlx(t_control *ctrl)
 		free(ctrl->mlx);
 		errmsg_exit(FAILED_MLX_WIN);
 	}
+	ctrl->img = mlx_new_image(ctrl->mlx, ctrl->win_size_x, ctrl->win_size_y);
+	if (ctrl->img == NULL)
+	{
+		mlx_destroy_window(ctrl->mlx, ctrl->win);
+		mlx_destroy_display(ctrl->mlx);
+		free(ctrl->mlx);
+		errmsg_exit(FAILED_MLX_IMG);
+	}
+	ctrl->data_addr = mlx_get_data_addr(ctrl->img, &(ctrl->bits_per_pixel), &(ctrl->size_line), &(ctrl->endian));
+	if (ctrl->data_addr == NULL)
+	{
+		mlx_destroy_window(ctrl->mlx, ctrl->win);
+		mlx_destroy_image(ctrl->mlx, ctrl->img);
+		mlx_destroy_display(ctrl->mlx);
+		free(ctrl->mlx);
+		errmsg_exit(FAILED_MLX_DATA_ADDR);
+	}
 }

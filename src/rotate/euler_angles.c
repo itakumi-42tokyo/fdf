@@ -42,13 +42,13 @@ static void	rotate_y(double deg_y, double *z, double *x)
 
 static void	rotate_z(double deg_z, double *x, double *y)
 {
-	double	prev_y;
 	double	prev_x;
+	double	prev_y;
 
-	prev_y = *y;
 	prev_x = *x;
-	*y = prev_x * cos(deg_to_rad(deg_z)) - prev_y * sin(deg_to_rad(deg_z));
-	*x = prev_x * sin(deg_to_rad(deg_z)) + prev_y * cos(deg_to_rad(deg_z));
+	prev_y = *y;
+	*x = prev_x * cos(deg_to_rad(deg_z)) - prev_y * sin(deg_to_rad(deg_z));
+	*y = prev_x * sin(deg_to_rad(deg_z)) + prev_y * cos(deg_to_rad(deg_z));
 }
 
 
@@ -71,9 +71,9 @@ int	calc_euler(t_control *ctrl, double deg_x, double deg_y, double deg_z)
 		j = 0;
 		while (j < ctrl->map_width)
 		{
-			x = ctrl->cur_map[i][j].x;
-			y = ctrl->cur_map[i][j].y;
-			z = ctrl->cur_map[i][j].z;
+			x = ctrl->map[i][j].x;
+			y = ctrl->map[i][j].y;
+			z = ctrl->map[i][j].z;
 
 			x -= center_x;
 			y -= center_y;

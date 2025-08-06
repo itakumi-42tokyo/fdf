@@ -20,7 +20,18 @@
 #include "utils.h"
 #include "macro.h"
 
-void	bla_h(int x0, int y0, int x1, int y1, void *mlx, void *win)
+static void set_pixel(t_control *ctrl, int x, int y, int color)
+{
+    int    bytes = ctrl->bits_per_pixel / 8;
+    char  *dst;
+
+    if (x < 0 || x >= ctrl->win_size_x || y < 0 || y >= ctrl->win_size_y)
+        return;
+    dst = ctrl->data_addr + y * ctrl->size_line + x * bytes;
+    *(unsigned int *)dst = color;
+}
+
+void	bla_h(int x0, int y0, int x1, int y1, t_control *ctrl)
 {
 	int		dx;
 	int		dy;
@@ -48,7 +59,7 @@ void	bla_h(int x0, int y0, int x1, int y1, void *mlx, void *win)
 		p = 2*dy - dx;
 		while (i <= dx)
 		{
-			mlx_pixel_put(mlx, win, x0 + i, y, 0xFFFFFF);
+			set_pixel(ctrl, x0 + i, y, 0xFFFFFF);
 			if (p >= 0)
 			{
 				y += dir;
@@ -61,7 +72,7 @@ void	bla_h(int x0, int y0, int x1, int y1, void *mlx, void *win)
 	}
 }
 
-void	bla_v(int x0, int y0, int x1, int y1, void *mlx, void *win)
+void	bla_v(int x0, int y0, int x1, int y1, t_control *ctrl)
 {
 	int		dx;
 	int		dy;
@@ -89,7 +100,7 @@ void	bla_v(int x0, int y0, int x1, int y1, void *mlx, void *win)
 		p = 2*dx - dy;
 		while (i <= dy)
 		{
-			mlx_pixel_put(mlx, win, x, y0 + i, 0xFFFFFF);
+			set_pixel(ctrl, x, y0 + i, 0xFFFFFF);
 			if (p >= 0)
 			{
 				x += dir;
@@ -102,7 +113,7 @@ void	bla_v(int x0, int y0, int x1, int y1, void *mlx, void *win)
 	}
 }
 
-void	bla(int x0, int y0, int x1, int y1, void *mlx, void *win)
+void	bla(int x0, int y0, int x1, int y1, t_control *ctrl)
 {
 	int	dx;
 	int	dy;
@@ -110,9 +121,9 @@ void	bla(int x0, int y0, int x1, int y1, void *mlx, void *win)
 	dx = x1 - x0;
 	dy = y1 - y0;
 	if (my_abs(dx) > my_abs(dy))
-		bla_h(x0, y0, x1, y1, mlx, win);
+		bla_h(x0, y0, x1, y1, ctrl);
 	else
-		bla_v(x0, y0, x1, y1, mlx, win);
+		bla_v(x0, y0, x1, y1, ctrl);
 }
 
 static int	transform_coord(double value, double scale, int offset)
@@ -149,7 +160,7 @@ static int	drawline_persp(void *param)
                                      (*ctrl)->scale, (*ctrl)->offset_y);
                 printf("--- Step 3: Draw Coords ---\n");
                 printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
-                bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
+                bla(x0, y0, x1, y1, *ctrl);
                 // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
             }
             if (i + 1 < (*ctrl)->map_height)
@@ -160,7 +171,7 @@ static int	drawline_persp(void *param)
                                      (*ctrl)->scale, (*ctrl)->offset_y);
                 printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
                 printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
-                bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
+                bla(x0, y0, x1, y1, *ctrl);
                 // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
             }
             j++;
@@ -199,7 +210,7 @@ int	drawline_iso(void *param)
                                      (*ctrl)->scale, (*ctrl)->offset_y);
                 printf("--- Step 3: Draw Coords ---\n");
                 printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
-                bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
+                bla(x0, y0, x1, y1, *ctrl);
                 // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
             }
             if (i + 1 < (*ctrl)->map_height)
@@ -210,7 +221,7 @@ int	drawline_iso(void *param)
                                      (*ctrl)->scale, (*ctrl)->offset_y);
                 printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
                 printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
-                bla(x0, y0, x1, y1, (*ctrl)->mlx, (*ctrl)->win);
+                bla(x0, y0, x1, y1, *ctrl);
                 // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
             }
             j++;
