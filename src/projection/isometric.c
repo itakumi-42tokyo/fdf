@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 11:14:29 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 11:30:50 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	iso_proj(t_control *ctrl)
 
             // 標準的な等角投影変換
             // X軸周りに30°回転後、Y軸周りに45°回転
-            iso_x = ((x - y) / SQRT_2) * COS_45;
-            iso_y = ((x + y)/ SQRT_2) * SIN_45 * SIN_30 - z * COS_30;
+            iso_x = ((x - y)) * COS_30;
+            iso_y = ((x + y)) * SIN_30 - z;
 
             ctrl->iso_map[i][j].iso_x = iso_x;
             ctrl->iso_map[i][j].iso_y = iso_y;

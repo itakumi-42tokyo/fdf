@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 17:09:46 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 09:23:59 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 11:16:43 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	persp_proj(t_control *ctrl)
         return (-1);
 
     focal_length = 500.0;  // 焦点距離を固定値で設定
-    camera_distance = 1000.0;  // カメラ距離
+    camera_distance = 2000.0;  // カメラ距離
 
     i = 0;
     while (i < ctrl->map_height)
