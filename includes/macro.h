@@ -47,6 +47,21 @@
 # define M_PI 3.14159265359
 # endif
 
+// cos
+# define COS_MINUS_45 0.707107
+# define COS_MINUS_30 0.866025
+# define COS_30 0.866025
+# define COS_45 0.707107
+
+// sin
+# define SIN_MINUS_45 -0.707107
+# define SIN_MINUS_30 -0.500000
+# define SIN_30 0.500000
+# define SIN_45 0.707107
+
+// sqrt
+# define SQRT_2 1.41421356237
+
 // separate chars
 # define SEP " \t\n"
 

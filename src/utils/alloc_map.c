@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy.c                                             :+:      :+:    :+:   */
+/*   alloc_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 15:26:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 21:35:21 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 08:47:36 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "struct.h"
 #include "utils.h"
 
-t_cur_point	**alloc_map(t_control	*ctrl)
+t_cur_point	**alloc_map(t_control *ctrl)
 {
 	t_cur_point		**cur_map;
 	int				i;

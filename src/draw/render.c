@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 07:49:25 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 10:05:31 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,12 @@
 #include "utils.h"
 #include "rotate.h"
 
-// １．mapを変換する。
-// 2. 投影変換したマップをスケーリングする。
-// ３．描画する
+// １．mapを変換する。(モデル変換)
+// 2. 投影変換したマップをスケーリングする。（ビュー変換）
+// ３．描画する　（カメラ変換）
+
+// TODO
+// 現状だと、描画パイプラインの動作が重いので、MVP行列計算で最適化したい
 
 int	render(void *param)
 {
@@ -46,7 +49,6 @@ int	render(void *param)
 		iso_proj(*ctrl);
 	else
 		persp_proj(*ctrl);
-	printf("zoom: %f\n", (*ctrl)->zoom);
 	auto_fit_scale(*ctrl, (*ctrl)->zoom);
 	// apply_viewport_transform(*ctrl);
 	// 3) 描画ルーチンは img_data に直接書き込むように改修済み

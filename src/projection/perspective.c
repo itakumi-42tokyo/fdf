@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 17:09:46 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/01 16:06:00 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 09:23:59 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,76 @@
 #include "struct.h"
 #include "utils.h"
 
+// ...existing code...
 int	persp_proj(t_control *ctrl)
 {
-	int		i;
-	int		j;
-	double	x_new;
-	double	y_new;
-	double	z_new;
+    int		i;
+    int		j;
+    double	x, y, z;
+    double	focal_length;
+    double	camera_distance;
 
-	if (ctrl == NULL || ctrl->persp_map == NULL)
-		return (-1);
-	i = 0;
-	while (i < ctrl->map_height)
-	{
-		j = 0;
-		while (j < ctrl->map_width)
-		{
-			int x = ctrl->cur_map[i][j].x;
-			int y = ctrl->cur_map[i][j].y;
-			int	z = ctrl->cur_map[i][j].z;
+    if (ctrl == NULL || ctrl->persp_map == NULL)
+        return (-1);
 
-			ctrl->persp_map[i][j].persp_x = (x / (z * tan(ctrl->mag_rate)));
-			ctrl->persp_map[i][j].persp_y = (y / (z * tan(ctrl->mag_rate)));
-			ctrl->persp_map[i][j].color = ctrl->cur_map[i][j].color;
-			j++;
-		}
-		i++;
-	}
-	ctrl->persp_map[i] = NULL;
-	return (0);
+    focal_length = 500.0;  // 焦点距離を固定値で設定
+    camera_distance = 1000.0;  // カメラ距離
+
+    i = 0;
+    while (i < ctrl->map_height)
+    {
+        j = 0;
+        while (j < ctrl->map_width)
+        {
+            x = ctrl->cur_map[i][j].x;
+            y = ctrl->cur_map[i][j].y;
+            z = ctrl->cur_map[i][j].z + camera_distance;
+
+            if (z > 1.0)
+            {
+                ctrl->persp_map[i][j].persp_x = (x * focal_length) / z;
+                ctrl->persp_map[i][j].persp_y = (y * focal_length) / z;
+            }
+            else
+            {
+                ctrl->persp_map[i][j].persp_x = x * focal_length;
+                ctrl->persp_map[i][j].persp_y = y * focal_length;
+            }
+            ctrl->persp_map[i][j].color = ctrl->cur_map[i][j].color;
+            j++;
+        }
+        i++;
+    }
+    return (0);
 }
+
+// int	persp_proj(t_control *ctrl)
+// {
+// 	int		i;
+// 	int		j;
+// 	double	x;
+// 	double	y;
+// 	double	z;
+
+// 	if (ctrl == NULL || ctrl->persp_map == NULL)
+// 		return (-1);
+// 	i = 0;
+// 	while (i < ctrl->map_height)
+// 	{
+// 		j = 0;
+// 		while (j < ctrl->map_width)
+// 		{
+// 			x = ctrl->cur_map[i][j].x;
+// 			y = ctrl->cur_map[i][j].y;
+// 			z = ctrl->cur_map[i][j].z;
+
+// 			ctrl->persp_map[i][j].persp_x = (x / (z * tan(deg_torad((ctrl->mag_rate)))));
+// 			ctrl->persp_map[i][j].persp_y = (y / (z * tan(deg_to_rad(ctrl->mag_rate))));
+// 			ctrl->persp_map[i][j].color = ctrl->cur_map[i][j].color;
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	ctrl->persp_map[i] = NULL;
+// 	return (0);
+// }

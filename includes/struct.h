@@ -6,12 +6,29 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 15:24:08 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 09:51:08 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef struct s_camera
+{
+	double	pos_x;
+	double	pos_y;
+	double	pos_z;
+	double	look_x;
+	double	look_y;
+	double	look_z;
+	double	up_x;
+	double	up_y;
+	double	up_z;
+	double	fov;
+	double	aspect;
+	double	near;
+	double	far;
+}	t_camera;
 
 typedef struct s_vector3
 {
@@ -95,6 +112,7 @@ typedef struct s_control
 	double			total_angle_x; // 回転角度
 	double			total_angle_y; // 回転角度
 	float			zoom;
+	t_camera		camera;
 }	t_control;
 
 #endif
