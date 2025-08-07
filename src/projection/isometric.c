@@ -22,13 +22,54 @@
 
 // ...existing code...
 
+// 格納するアドレスは各自で確保してもらおう。
+// この関数は乗算だけを担当
+void	multipy_4x4_matrix(const double a[4][4], const double b[4][4], double **result)
+{
+	double	tmp[4][4];
+	int		i;
+	int		j;
+	int		k;
+
+	// なぜ，このような反復構造をしているのだろうか。
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			k = 0;
+			while (k < 4)
+			{
+				tmp[i][j] = a[i][k] * b[k][j];
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			result[i][j] = tmp[i][j];
+			j++;
+		}
+		i++;
+	}
+
+}
+
 int	apply_iso_to_matrix(double **matrix)
 {
-	const double	iso_matrix[3][3] = \
+	const double	iso_matrix[4][4] = \
 	{
-		{COS_30, -COS_30, 0},
-		{SIN_30, SIN_30, 1},
-			{1, 1, 1}
+		{COS_30, -COS_30, 0.0, 0.0},
+		{SIN_30, SIN_30, -1, 0.0},
+			{0.0, 0.0, 0.0, 0.0},
+			{0.0, 0.0, 0.0, 1}
 	};
 	if (matrix == NULL || *matrix == NULL)
         return (-1);
@@ -42,6 +83,7 @@ int	apply_iso_to_matrix(double **matrix)
 	matrix[1][2] *= iso_matrix[1][2];
 	// ここで、3行目は切り捨てて良いのだろうか。
 	// ->同軸次座標系
+
     return (0);
 }
 
