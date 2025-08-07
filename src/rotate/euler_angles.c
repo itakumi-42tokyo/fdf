@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:27:00 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 07:42:29 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 15:49:04 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include "struct.h"
 #include "utils.h"
 
-//
 static void	rotate_x(double deg_x, double *y, double *z)
 {
 	double	prev_y;
@@ -51,17 +50,19 @@ static void	rotate_z(double deg_z, double *x, double *y)
 	*y = prev_x * sin(deg_to_rad(deg_z)) + prev_y * cos(deg_to_rad(deg_z));
 }
 
-
-
+// 角度の入力に対して、その変換行列を返してくれるような関数
 int	calc_euler(t_control *ctrl, double deg_x, double deg_y, double deg_z)
 {
 	int		i;
 	int		j;
-	double center_x;
-	double center_y;
-	double x, y, z;
-		if (ctrl == NULL)
-			return (-1);
+	double	center_x;
+	double	center_y;
+	double	x;
+	double	y;
+	double	z;
+
+	if (ctrl == NULL)
+		return (-1);
 	center_x = (ctrl->map_width - 1) / 2.0;
 	center_y = (ctrl->map_height - 1) / 2.0;
 		// 回転の中心に移動
@@ -93,18 +94,19 @@ int	calc_euler(t_control *ctrl, double deg_x, double deg_y, double deg_z)
 		}
 		i++;
 	}
-	// i = 0;
-	// while (i < ctrl->map_height)
-	// {
-	// 	j = 0;
-	// 	while (j < ctrl->map_width)
-	// 	{
-	// 		rotate_x(deg_x, &(ctrl->cur_map[i][j].y), &(ctrl->cur_map[i][j].z));
-	// 		rotate_y(deg_y, &(ctrl->cur_map[i][j].x), &(ctrl->cur_map[i][j].z));
-	// 		rotate_z(deg_z, &(ctrl->cur_map[i][j].x), &(ctrl->cur_map[i][j].y));
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
 	return (0);
 }
+
+// i = 0;
+// while (i < ctrl->map_height)
+// {
+// j = 0;
+// while (j < ctrl->map_width)
+// {
+// rotate_x(deg_x, &(ctrl->cur_map[i][j].y), &(ctrl->cur_map[i][j].z));
+// rotate_y(deg_y, &(ctrl->cur_map[i][j].x), &(ctrl->cur_map[i][j].z));
+// rotate_z(deg_z, &(ctrl->cur_map[i][j].x), &(ctrl->cur_map[i][j].y));
+// j++;
+// }
+// i++;
+// }

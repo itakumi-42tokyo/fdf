@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 04:14:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/08/07 07:26:14 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 12:57:42 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,22 @@ int key_press(int keycode, void	*param)
 	{
 		printf("X key pressed, performing action...\n");
 	}
-	else if (keycode == ESC_MACOS)
-		free_exit(ctrl);
+	else if (keycode == W_LINUX)
+	{
+
+	}
+	else if (keycode == A_LINUX)
+	{
+
+	}
+	else if (keycode == S_LINUX)
+	{
+
+	}
+	else if (keycode == D_LINUX)
+	{
+
+	}
 	else
 	{
 		printf("Unhandled keycode: %d\n", keycode);

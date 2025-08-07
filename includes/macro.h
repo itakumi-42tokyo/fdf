@@ -29,6 +29,10 @@
 # define X_MACOS 7
 # define X_LINUX 120
 # define R_LINUX 114
+# define W_LINUX 119
+# define A_LINUX 97
+# define S_LINUX 115
+# define D_LINUX 100
 
 // window size
 # define DEFAULT_WIN_SIZE_X 1000

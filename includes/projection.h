@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 17:08:01 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 08:09:21 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 18:34:35 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # include "struct.h"
 
+int		apply_iso_to_matrix(double **matrix);
 int		iso_proj(t_control *ctrl);
+int		apply_persp_to_matrix(double **matrix);
 int		persp_proj(t_control *ctrl);
 
 #endif

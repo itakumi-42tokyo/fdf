@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 10:05:31 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 18:35:10 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 int	render(void *param)
 {
 	t_control	**ctrl;
+	double		**matrix;
 
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
@@ -42,15 +43,19 @@ int	render(void *param)
 	// 1) イメージバッファをゼロクリア
 	ft_bzero((*ctrl)->data_addr, (*ctrl)->size_line * (*ctrl)->win_size_y);
 	// 2) 各種マップ更新・投影
-	copy_map(*ctrl);
-	// apply_3d_scale(*ctrl, (*ctrl)->zoom);
-	calc_euler(*ctrl, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y, 0);
+	matrix = create_rotate_matrix(*ctrl, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y, 0);
+	if (matrix == NULL)
+		return (-1);
+	// calc_euler(*ctrl, (*ctrl)->total_angle_y, (*ctrl)->total_angle_x, 0);
 	if (PROJ == ISO)
-		iso_proj(*ctrl);
-	else
-		persp_proj(*ctrl);
+		apply_iso_to_matrix(matrix);
+	else if (PROJ == PERSP)
+		apply_persp_to_matrix(matrix);
+	// if (PROJ == ISO)
+	// 	iso_proj(*ctrl);
+	// else
+	// 	persp_proj(*ctrl);
 	auto_fit_scale(*ctrl, (*ctrl)->zoom);
-	// apply_viewport_transform(*ctrl);
 	// 3) 描画ルーチンは img_data に直接書き込むように改修済み
 	hook_bla(param);
 	// 4) 最後にウィンドウへ一度だけ転送

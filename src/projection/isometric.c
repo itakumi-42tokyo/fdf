@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 11:30:50 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 19:38:23 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,30 @@
 // 方針2. 上書きする（static）を用いて
 
 // ...existing code...
+
+int	apply_iso_to_matrix(double **matrix)
+{
+	const double	iso_matrix[3][3] = \
+	{
+		{COS_30, -COS_30, 0},
+		{SIN_30, SIN_30, 1},
+			{1, 1, 1}
+	};
+	if (matrix == NULL || *matrix == NULL)
+        return (-1);
+	// 等角投影の行列はどのような形だろうか。
+	// 行列の積
+	matrix[0][0] *= iso_matrix[0][0];
+	matrix[0][1] *= iso_matrix[0][1];
+	matrix[0][2] *= iso_matrix[0][2];
+	matrix[1][0] *= iso_matrix[1][0];
+	matrix[1][1] *= iso_matrix[1][1];
+	matrix[1][2] *= iso_matrix[1][2];
+	// ここで、3行目は切り捨てて良いのだろうか。
+	// ->同軸次座標系
+    return (0);
+}
+
 int	iso_proj(t_control *ctrl)
 {
     int		i;

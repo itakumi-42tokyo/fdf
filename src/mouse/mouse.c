@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:28:50 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 08:10:10 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/07 13:23:42 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		mouse_scroll_down(int x, int y, void *param)
 	return (0);
 }
 
+// 回転と拡大縮小を同時にしたら拡大縮小が優先された
 int	mouse_press(int button, int x, int y, void *param)
 {
 	t_control	**ctrl;
@@ -114,6 +115,8 @@ int mouse_move(int x, int y, void *param)
 		delta_y = y - (*ctrl)->mouse.y;
 		(*ctrl)->total_angle_x += delta_x * 0.5;
 		(*ctrl)->total_angle_y += delta_y * 0.5;
+		printf("deg_x: %lf\n", (*ctrl)->total_angle_x);
+		printf("deg_y: %lf\n", (*ctrl)->total_angle_y);
 		render(param);
 		// (*ctrl)->angle_x += (y - prev_y) * 0.005;// unused
 		// (*ctrl)->angle_y += (x - prev_x) * 0.005;// unused
