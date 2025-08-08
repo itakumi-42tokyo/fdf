@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/08 16:22:36 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/08 16:39:23 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include "utils.h"
 #include "rotate.h"
 #include "pipeline.h"
+#include "translate.h"
 
 // １．mapを変換する。(モデル変換)
 // 2. 投影変換したマップをスケーリングする。（ビュー変換）
@@ -56,15 +57,8 @@ int	render(void *param)
 	// else
 	// 	persp_proj(*ctrl);
 	apply_mvp(*ctrl, matrix);
+	apply_trans(*ctrl);
 	auto_fit_scale(*ctrl, (*ctrl)->zoom); // ここも行列にしたい。
-	for (int i = 0; i < (*ctrl)->map_height; i++)
-	{
-		for (int j = 0; j < (*ctrl)->map_width; j++)
-		{
-			printf("%d: ", i);
-			printf("x->%lf:y->%lf\n", (*ctrl)->iso_map[i][j].iso_x, (*ctrl)->iso_map[i][j].iso_y);
-		}
-	}
 	// 3) 描画ルーチンは img_data に直接書き込むように改修済み
 	hook_bla(param);
 	// 4) 最後にウィンドウへ一度だけ転送

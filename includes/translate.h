@@ -6,13 +6,13 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 18:15:48 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/28 18:17:22 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/08 16:39:16 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TLANSLATE_H
 # define TLANSLATE_H
 
-
+void	apply_trans(t_control *ctrl);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/08 11:17:04 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/08 16:52:13 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ typedef enum e_tag
 	ARRAY
 }	t_tag;
 
-typedef union u_vector4
+typedef union u_vec4
 {
-	t_tag	tag;
 	struct
 	{
 		double	x;
@@ -47,15 +46,13 @@ typedef union u_vector4
 		double	w;
 	};
 	double	xyzw[4];
-}	t_vector4_u;
+}	t_vec4_u;
 
-typedef struct s_vec4
+typedef struct s_vector4
 {
-	double		x;
-	double		y;
-	double		z;
-	double		w;
-}	t_vec4;
+	t_tag		tag;
+	t_vec4_u	vec;
+}	t_vector4;
 
 typedef struct s_quaternion
 {
