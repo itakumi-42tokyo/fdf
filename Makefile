@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/08/07 13:05:46 by itakumi          ###   ########.fr        #
+#    Updated: 2025/08/08 11:33:28 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,21 +43,24 @@ SRC					= \
 	read/atoi_base_with_check.c \
 	read/calc_row.c \
 	read/read_map.c \
-	rotate/conversion.c \
-	rotate/euler_angles.c \
-	rotate/quaternion.c \
-	rotate/rotate_matrix.c \
-	rotate/slerp.c \
-	translate/translate.c \
-	key/key.c \
-	mouse/mouse.c \
-	projection/isometric.c \
-	projection/perspective.c \
+	pipeline/model/rotate/conversion.c \
+	pipeline/model/rotate/euler_angles.c \
+	pipeline/model/rotate/quaternion.c \
+	pipeline/model/rotate/rotate_matrix.c \
+	pipeline/model/rotate/slerp.c \
+	pipeline/model/translate/translate.c \
+	interface/key/key.c \
+	interface/mouse/mouse.c \
+	pipeline/projection/isometric.c \
+	pipeline/projection/perspective.c \
+	pipeline/mvp.c \
 	utils/rad_deg.c \
 	utils/alloc_map.c \
 	utils/copy_map.c \
 	utils/errmsg_exit.c \
 	utils/free_2d.c \
+	utils/mul_mat4_vec4.c \
+	utils/mul4x4_mat.c \
 	utils/my_abs.c \
 	utils/swap.c \
 	utils/ut_atoi_with_check.c \
@@ -66,8 +69,8 @@ SRC					= \
 	utils/ut_issign.c \
 	utils/ut_isspace.c \
 	utils/ut_split.c \
-	view/auto_fit_scale.c \
-	view/affine_transform.c \
+	pipeline/view/auto_fit_scale.c \
+	pipeline/view/affine_transform.c \
 	main.c \
 
 OBJ_DIR				?= build

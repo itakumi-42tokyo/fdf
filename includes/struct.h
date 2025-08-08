@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 09:51:08 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/08 11:17:04 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,32 @@ typedef struct s_camera
 	double	far;
 }	t_camera;
 
-typedef struct s_vector3
+typedef enum e_tag
+{
+	STRUCT,
+	ARRAY
+}	t_tag;
+
+typedef union u_vector4
+{
+	t_tag	tag;
+	struct
+	{
+		double	x;
+		double	y;
+		double	z;
+		double	w;
+	};
+	double	xyzw[4];
+}	t_vector4_u;
+
+typedef struct s_vec4
 {
 	double		x;
 	double		y;
 	double		z;
-}	t_vector3;
+	double		w;
+}	t_vec4;
 
 typedef struct s_quaternion
 {

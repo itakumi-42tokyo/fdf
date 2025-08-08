@@ -6,9 +6,12 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 19:38:23 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/08 16:23:31 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+// XXX
+#include <stdio.h>
 
 #include <math.h>
 #include <stdlib.h>
@@ -24,68 +27,61 @@
 
 // 格納するアドレスは各自で確保してもらおう。
 // この関数は乗算だけを担当
-void	multipy_4x4_matrix(const double a[4][4], const double b[4][4], double **result)
+
+// 一次元配列として認識されてしまうのか？
+int	apply_iso_to_matrix(double matrix[4][4])  // double **に変更
 {
-	double	tmp[4][4];
-	int		i;
-	int		j;
-	int		k;
-
-	// なぜ，このような反復構造をしているのだろうか。
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			k = 0;
-			while (k < 4)
-			{
-				tmp[i][j] = a[i][k] * b[k][j];
-				k++;
-			}
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			result[i][j] = tmp[i][j];
-			j++;
-		}
-		i++;
-	}
-
-}
-
-int	apply_iso_to_matrix(double **matrix)
-{
-	const double	iso_matrix[4][4] = \
+	const double	matrix_iso[4][4] = \
 	{
 		{COS_30, -COS_30, 0.0, 0.0},
-		{SIN_30, SIN_30, -1, 0.0},
-			{0.0, 0.0, 0.0, 0.0},
-			{0.0, 0.0, 0.0, 1}
+		{SIN_30, SIN_30, -1.0, 0.0},
+		{0.0, 0.0, 0.0, 0.0},
+		{0.0, 0.0, 0.0, 1.0}  // 完全な初期化
 	};
-	if (matrix == NULL || *matrix == NULL)
+	double			matrix_cpy[4][4];
+	int				i;
+	int				j;
+	if (matrix == NULL)
         return (-1);
 	// 等角投影の行列はどのような形だろうか。
 	// 行列の積
-	matrix[0][0] *= iso_matrix[0][0];
-	matrix[0][1] *= iso_matrix[0][1];
-	matrix[0][2] *= iso_matrix[0][2];
-	matrix[1][0] *= iso_matrix[1][0];
-	matrix[1][1] *= iso_matrix[1][1];
-	matrix[1][2] *= iso_matrix[1][2];
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			matrix_cpy[i][j] = matrix[i][j]; // なぜこれができないのか？
+			j++;
+		}
+		i++;
+	}
+	mul_4x4_mat(matrix_iso, matrix_cpy, matrix);
 	// ここで、3行目は切り捨てて良いのだろうか。
 	// ->同軸次座標系
-
     return (0);
 }
+
+// int	main(void)
+// {
+// 	double	matrix[4][4] = {
+// 		{1, 0, 0, 0},
+// 		{0, 1, 0, 0},
+// 		{0, 0, 1, 0},
+// 		{0, 0, 0, 1}
+// 	};
+
+// 	int rtn = apply_iso_to_matrix(matrix);
+// 	for (int i = 0; i < 4; i++)
+// 	{
+// 		for(int j = 0; j < 4; j++)
+// 		{
+// 			printf("%lf ", matrix[i][j]);
+// 		}
+// 		puts("");
+// 	}
+// 	return (0);
+// }
 
 int	iso_proj(t_control *ctrl)
 {

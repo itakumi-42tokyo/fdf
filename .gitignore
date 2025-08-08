@@ -14,6 +14,7 @@ Code
 Cursor
 a.out
 *.bin
+test*
 
 #vscode
 .vscode

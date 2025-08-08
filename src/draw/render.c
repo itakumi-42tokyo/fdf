@@ -6,14 +6,14 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 18:35:10 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/08 16:22:36 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // XXX
 #include <stdio.h>
 
-#include <mlx.h>
+#include "mlx.h"
 #include "libft.h"
 #include "struct.h"
 #include "view.h"
@@ -23,6 +23,7 @@
 #include "exit.h"
 #include "utils.h"
 #include "rotate.h"
+#include "pipeline.h"
 
 // １．mapを変換する。(モデル変換)
 // 2. 投影変換したマップをスケーリングする。（ビュー変換）
@@ -34,7 +35,7 @@
 int	render(void *param)
 {
 	t_control	**ctrl;
-	double		**matrix;
+	double		matrix[4][4];
 
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
@@ -43,9 +44,8 @@ int	render(void *param)
 	// 1) イメージバッファをゼロクリア
 	ft_bzero((*ctrl)->data_addr, (*ctrl)->size_line * (*ctrl)->win_size_y);
 	// 2) 各種マップ更新・投影
-	matrix = create_rotate_matrix(*ctrl, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y, 0);
-	if (matrix == NULL)
-		return (-1);
+	// copy_map(*ctrl);
+	apply_rotate_matrix(matrix, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y, 0);
 	// calc_euler(*ctrl, (*ctrl)->total_angle_y, (*ctrl)->total_angle_x, 0);
 	if (PROJ == ISO)
 		apply_iso_to_matrix(matrix);
@@ -55,7 +55,16 @@ int	render(void *param)
 	// 	iso_proj(*ctrl);
 	// else
 	// 	persp_proj(*ctrl);
-	auto_fit_scale(*ctrl, (*ctrl)->zoom);
+	apply_mvp(*ctrl, matrix);
+	auto_fit_scale(*ctrl, (*ctrl)->zoom); // ここも行列にしたい。
+	for (int i = 0; i < (*ctrl)->map_height; i++)
+	{
+		for (int j = 0; j < (*ctrl)->map_width; j++)
+		{
+			printf("%d: ", i);
+			printf("x->%lf:y->%lf\n", (*ctrl)->iso_map[i][j].iso_x, (*ctrl)->iso_map[i][j].iso_y);
+		}
+	}
 	// 3) 描画ルーチンは img_data に直接書き込むように改修済み
 	hook_bla(param);
 	// 4) 最後にウィンドウへ一度だけ転送
