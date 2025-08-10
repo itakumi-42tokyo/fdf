@@ -15,7 +15,10 @@
 
 #include "struct.h"
 
-void	apply_trans(double matrix[4][4])
+// 平行移動はどのような設計にしようか。
+// ボタンが押されているときというのがあったはず，だからそのようなときに，連続して動くような仕様にする？
+// 
+void	apply_trans(double matrix[4][4], double )
 {
 	if (matrix == NULL)
 		return (-1);

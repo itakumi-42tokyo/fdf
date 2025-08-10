@@ -18,8 +18,8 @@
 // mvp行列をマップ座標に掛け合わせる。
 void	apply_mvp(t_control *ctrl, double matrix[4][4])
 {
-	t_vector4_u	vec_pre;
-	t_vector4_u	vec_new;
+	t_vector4	vec_pre;
+	t_vector4	vec_new;
 	int			i;
 	int			j;
 
@@ -31,21 +31,21 @@ void	apply_mvp(t_control *ctrl, double matrix[4][4])
 		j = 0;
 		while (j < ctrl->map_width)
 		{
-			vec_pre.x = ctrl->map[i][j].x;
-			vec_pre.y = ctrl->map[i][j].y;
-			vec_pre.z = ctrl->map[i][j].z;
-			vec_pre.w = 1;
+			vec_pre.com.x= ctrl->map[i][j].x;
+			vec_pre.com.y= ctrl->map[i][j].y;
+			vec_pre.com.z = ctrl->map[i][j].z;
+			vec_pre.com.w = 1;
 			vec_new = mul_mat4_vec4(matrix, vec_pre);
 			if (PROJ == ISO)
 			{
-				ctrl->iso_map[i][j].iso_x = vec_new.x;
-				ctrl->iso_map[i][j].iso_y = vec_new.y;
+				ctrl->iso_map[i][j].iso_x = vec_new.com.x;
+				ctrl->iso_map[i][j].iso_y = vec_new.com.y;
 				ctrl->iso_map[i][j].color = ctrl->map[i][j].color;
 			}
 			else
 			{
-				ctrl->persp_map[i][j].persp_x = vec_new.x;
-				ctrl->persp_map[i][j].persp_y = vec_new.y;
+				ctrl->persp_map[i][j].persp_x = vec_new.com.x;
+				ctrl->persp_map[i][j].persp_y = vec_new.com.y;
 				ctrl->persp_map[i][j].color = ctrl->map[i][j].color;
 			}
 			j++;

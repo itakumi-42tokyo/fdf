@@ -51,7 +51,7 @@ typedef union u_vec4
 typedef struct s_vector4
 {
 	t_tag		tag;
-	t_vec4_u	vec;
+	t_vec4_u	com;
 }	t_vector4;
 
 typedef struct s_quaternion

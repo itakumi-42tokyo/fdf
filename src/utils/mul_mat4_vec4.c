@@ -14,9 +14,9 @@
 #include "struct.h"
 
 // Matrix4x4 * Vector4 multiplication using union with anonymous struct
-t_vector4_u	mul_mat4_vec4(const double mat[4][4], t_vector4_u vec)
+t_vector4	mul_mat4_vec4(const double mat[4][4], t_vector4 vec)
 {
-	t_vector4_u	vec_new;
+	t_vector4	vec_new;
 	int			i;
 	int			j;
 
@@ -24,10 +24,10 @@ t_vector4_u	mul_mat4_vec4(const double mat[4][4], t_vector4_u vec)
 	while (i < 4)
 	{
 		j = 0;
-		vec_new.xyzw[i] = 0.0;
+		vec_new.com.xyzw[i] = 0.0;
 		while (j < 4)
 		{
-			vec_new.xyzw[i] += mat[i][j] * vec.xyzw[j];
+			vec_new.com.xyzw[i] += mat[i][j] * vec.com.xyzw[j];
 			j++;
 		}
 		i++;

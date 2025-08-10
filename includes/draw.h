@@ -14,9 +14,9 @@
 # define DRAW_H
 
 int		render(void *param);
-void	bla(int x0, int y0, int x1, int y1, void *mlx, void *win);
-void	dda(int x1, int y1, int x2, int y2, void *mlx, void *win);
-void	wla(int x0, int y0, int x1, int y1, void *mlx, void *win, void *img);
+void	bla(int xy1[2], int xy2[2], int color, t_control *ctrl);
+void	dda(int xy1[2], int xy2[2], int color, t_control *ctrl);
+void	wla(int x0, int y0, int x1, int y1, int color);
 int		hook_bla(void *param);
 int		hook_dda(void *param);
 int		hook_wla(void *param);
