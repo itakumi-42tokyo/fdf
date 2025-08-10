@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 04:14:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/08/07 12:57:42 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/10 16:12:15 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,25 @@ int key_press(int keycode, void	*param)
 	{
 
 	}
+	else if (keycode == CURSOR_UP_LINUX)
+	{
+
+	}
+	else if (keycode == CURSOR_DOWN_LINUX)
+	{
+
+	}
+	else if (keycode == CURSOR_LEFT_LINUX)
+	{
+
+	}
+	else if (keycode == CURSOR_RIGHT_LINUX)
+	{
+
+	}
 	else
 	{
-		printf("Unhandled keycode: %d\n", keycode);
+		printf("Unhandled keycode\n");
 	}
 	printf("keycode: %d\n", keycode);
 	return (-1);

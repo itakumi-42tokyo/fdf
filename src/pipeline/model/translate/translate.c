@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:25:46 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/08 16:54:42 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/10 16:20:26 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 // 平行移動はどのような設計にしようか。
 // ボタンが押されているときというのがあったはず，だからそのようなときに，連続して動くような仕様にする？
-// 
-void	apply_trans(double matrix[4][4], double )
+//
+void	apply_trans(double matrix[4][4], double x, double y, double z)
 {
 	if (matrix == NULL)
-		return (-1);
+		return ;
 
-	return (0);
+
 }

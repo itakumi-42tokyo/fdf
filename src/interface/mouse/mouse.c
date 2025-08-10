@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:28:50 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 13:23:42 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/10 16:23:10 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int	mouse_release(int button, int x, int y, void *param)
 	return (0);
 }
 
+// 60fpsくらいまで下げたいので、制限をつけよう。
+// マウス操作をやめよう。
 int mouse_move(int x, int y, void *param)
 {
 	t_control	**ctrl;
@@ -113,10 +115,13 @@ int mouse_move(int x, int y, void *param)
 		// 差分だけコントロールするようにすればいいかな
 		delta_x = x - (*ctrl)->mouse.x;
 		delta_y = y - (*ctrl)->mouse.y;
-		(*ctrl)->total_angle_x += delta_x * 0.5;
+
+		printf("delta_x: %lf\n", delta_x);
+		printf("delta_y: %lf\n", delta_y);
+		(*ctrl)->total_angle_x += delta_x * 0.5; // total_xとtotal_yがアンダー（オーバー）フローする危険性がある。
 		(*ctrl)->total_angle_y += delta_y * 0.5;
-		printf("deg_x: %lf\n", (*ctrl)->total_angle_x);
-		printf("deg_y: %lf\n", (*ctrl)->total_angle_y);
+		printf("total_x: %lf\n", (*ctrl)->total_angle_x);
+		printf("total_y: %lf\n", (*ctrl)->total_angle_y);
 		render(param);
 		// (*ctrl)->angle_x += (y - prev_y) * 0.005;// unused
 		// (*ctrl)->angle_y += (x - prev_x) * 0.005;// unused

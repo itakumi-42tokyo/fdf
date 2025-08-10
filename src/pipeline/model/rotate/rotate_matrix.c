@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:29:29 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/08 15:13:38 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/10 16:17:03 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "struct.h"
 
 // 回転具用列と
+// フレーム数が大きすぎるのかな？１秒間に何フレーム出力しているかを表示させてみよう。
 void	apply_rotate_matrix(double matrix[4][4], double deg_x, double deg_y, double deg_z)
 {
 	int		i;

@@ -33,6 +33,10 @@
 # define A_LINUX 97
 # define S_LINUX 115
 # define D_LINUX 100
+# define CURSOR_UP_LINUX 65362
+# define CURSOR_DOWN_LINUX 65364
+# define CURSOR_LEFT_LINUX 65361
+# define CURSOR_RIGHT_LINUX 65363
 
 // window size
 # define DEFAULT_WIN_SIZE_X 1000

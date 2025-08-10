@@ -6,12 +6,14 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:50:56 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/29 14:14:44 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/10 15:39:11 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DRAW_H
 # define DRAW_H
+
+#include "struct.h"
 
 int		render(void *param);
 void	bla(int xy1[2], int xy2[2], int color, t_control *ctrl);
