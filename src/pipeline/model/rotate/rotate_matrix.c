@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:29:29 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/10 16:17:03 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/10 18:36:12 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	apply_rotate_matrix(double matrix[4][4], double deg_x, double deg_y, double
 	matrix[2][2] = cos_x * cos_y;
 	matrix[2][3] = 1;
 	// matrix[2][4] = 0;
-	matrix[3][0] = 1;
-	matrix[3][1] = 1;
-	matrix[3][2] = 1;
+	matrix[3][0] = 0;
+	matrix[3][1] = 0;
+	matrix[3][2] = 0;
 	matrix[3][3] = 1;
 	// matrix[3][4] = 0;
 	// matrix[4] = NULL;

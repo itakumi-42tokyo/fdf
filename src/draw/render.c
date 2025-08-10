@@ -6,13 +6,14 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/08 16:39:23 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/10 21:05:06 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // XXX
 #include <stdio.h>
 
+#include <stdbool.h>
 #include "mlx.h"
 #include "libft.h"
 #include "struct.h"
@@ -37,6 +38,7 @@ int	render(void *param)
 {
 	t_control	**ctrl;
 	double		matrix[4][4];
+	static bool	count_render = false;
 
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
@@ -56,9 +58,16 @@ int	render(void *param)
 	// 	iso_proj(*ctrl);
 	// else
 	// 	persp_proj(*ctrl);
+	apply_trans(matrix, (*ctrl)->total_trans_x, (*ctrl)->total_trans_y, 0);
+	// 引き伸ばしたりする必要はあるか？
+	apply_scale(matrix, (*ctrl)->zoom, (*ctrl)->zoom, (*ctrl)->zoom);
 	apply_mvp(*ctrl, matrix);
-	apply_trans(*ctrl);
-	auto_fit_scale(*ctrl, (*ctrl)->zoom); // ここも行列にしたい。
+	if (count_render == false)
+	{
+		auto_fit_scale(*ctrl, (*ctrl)->zoom); // ここも行列にしたい。
+		count_render = true;
+	}
+
 	// 3) 描画ルーチンは img_data に直接書き込むように改修済み
 	hook_bla(param);
 	// 4) 最後にウィンドウへ一度だけ転送

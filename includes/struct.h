@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/08 16:52:13 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/10 17:47:52 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,12 @@ typedef struct s_control
 	double			scale;
 	double			mag_rate;
 	t_mouse			mouse;
-	double			total_angle_x; // 回転角度
-	double			total_angle_y; // 回転角度
+	float			total_angle_x; // 回転角度
+	float			total_angle_y; // 回転角度
 	float			zoom;
 	t_camera		camera;
+	int				total_trans_x;
+	int				total_trans_y;
 }	t_control;
 
 #endif

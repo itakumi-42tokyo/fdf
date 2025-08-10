@@ -1,52 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mul4x4_mat.c                                       :+:      :+:    :+:   */
+/*   scale.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/08 07:11:40 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/10 19:04:03 by itakumi          ###   ########.fr       */
+/*   Created: 2025/08/10 19:11:38 by itakumi           #+#    #+#             */
+/*   Updated: 2025/08/10 21:10:28 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+// XXX
+#include <stdio.h>
 
-void	mul_4x4_mat(const double a[4][4], const double b[4][4], double result[4][4])
+#include "struct.h"
+
+void	apply_scale(double matrix[4][4], double x, double y, double z)
 {
-	double	tmp[4][4];
-	int		i;
-	int		j;
-	int		k;
+	const double	matrix_scale[4][4] =
+	{
+		{x, 0, 0, 0},
+		{0, y, 0, 0},
+		{0, 0, z, 0},
+		{0, 0, 0, 1}
+	};
+	double			matrix_copy[4][4];
+	int				i;
+	int				j;
 
-	// 行列の乗算
+	if (matrix == NULL)
+		return ;
 	i = 0;
 	while (i < 4)
 	{
 		j = 0;
 		while (j < 4)
 		{
-			tmp[i][j] = 0.0; // 初期化
-			k = 0;
-			while (k < 4)
-			{
-				tmp[i][j] += a[i][k] * b[k][j];
-				k++;
-			}
+			matrix_copy[i][j] = matrix[i][j];
 			j++;
 		}
 		i++;
 	}
-	// 結果をコピー
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			result[i][j] = tmp[i][j];
-			j++;
-		}
-		i++;
-	}
+	mul_4x4_mat(matrix_scale, matrix_copy, matrix);
 }

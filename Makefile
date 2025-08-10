@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/08/08 11:33:28 by itakumi          ###   ########.fr        #
+#    Updated: 2025/08/10 19:11:07 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRC					= \
 	pipeline/model/rotate/quaternion.c \
 	pipeline/model/rotate/rotate_matrix.c \
 	pipeline/model/rotate/slerp.c \
+	pipeline/model/scale/scale.c \
 	pipeline/model/translate/translate.c \
 	interface/key/key.c \
 	interface/mouse/mouse.c \
@@ -70,7 +71,6 @@ SRC					= \
 	utils/ut_isspace.c \
 	utils/ut_split.c \
 	pipeline/view/auto_fit_scale.c \
-	pipeline/view/affine_transform.c \
 	main.c \
 
 OBJ_DIR				?= build

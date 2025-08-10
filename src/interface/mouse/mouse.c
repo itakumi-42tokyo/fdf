@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:28:50 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/10 16:23:10 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/10 17:46:18 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ int	mouse_release(int button, int x, int y, void *param)
 int mouse_move(int x, int y, void *param)
 {
 	t_control	**ctrl;
-	double		delta_x;
-	double		delta_y;
+	float		delta_x;
+	float		delta_y;
 
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
