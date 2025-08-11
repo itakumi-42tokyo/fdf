@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:29:29 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/10 18:36:12 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 14:01:31 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,19 @@ void	apply_rotate_matrix(double matrix[4][4], double deg_x, double deg_y, double
 	matrix[0][0] = cos_y * cos_z;
 	matrix[0][1] = -cos_y * sin_z;
 	matrix[0][2] = sin_y;
-	matrix[0][3] = 1;
-	// matrix[0][4] = 0;
+	matrix[0][3] = 0;
 	matrix[1][0] = sin_x * sin_y * cos_z + cos_x * sin_z;
 	matrix[1][1] = -sin_x * sin_y * sin_z + cos_x * cos_z;
 	matrix[1][2] = -sin_x * cos_y;
-	matrix[1][3] = 1;
-	// matrix[1][4] = 0;
+	matrix[1][3] = 0;
 	matrix[2][0] = -cos_x * sin_y * cos_z + sin_x * sin_z;
 	matrix[2][1] = cos_x * sin_y * sin_z + sin_x * cos_z;
 	matrix[2][2] = cos_x * cos_y;
-	matrix[2][3] = 1;
-	// matrix[2][4] = 0;
+	matrix[2][3] = 0;
 	matrix[3][0] = 0;
 	matrix[3][1] = 0;
 	matrix[3][2] = 0;
 	matrix[3][3] = 1;
-	// matrix[3][4] = 0;
-	// matrix[4] = NULL;
 }
 
 // 入力の行列に対して、回転操作の行列計算をかけてくれるような関数。

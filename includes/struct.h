@@ -6,12 +6,14 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/10 17:47:52 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 13:43:42 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+# include <stdbool.h>
 
 typedef struct s_camera
 {
@@ -132,6 +134,7 @@ typedef struct s_control
 	t_camera		camera;
 	int				total_trans_x;
 	int				total_trans_y;
+	bool			key_r_pressed;
 }	t_control;
 
 #endif

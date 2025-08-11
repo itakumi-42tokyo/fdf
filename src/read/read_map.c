@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/31 21:19:20 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 14:56:11 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,8 @@ t_point	**read_map(t_control *control, char *file_path)
 	t_point		**map;
 	int			fd;
 
-	if (file_path == NULL)
+	if (file_path == NULL
+		|| check_extention(file_path, (int)CORRECT_FILE_EXTENSION) == -1)
 		return (NULL);
 	if (calc_map_size(control, file_path) == -1)
 		return (NULL);
@@ -150,10 +151,6 @@ t_point	**read_map(t_control *control, char *file_path)
 		return (NULL);
 	}
 	// read_map.c の read_map 関数の最後に追加
-// ...
-// printf("--- Step 1: Map Read Check ---\n");
-// printf("Map[0][0] -> x:%d, y:%d, z:%d\n", map[0][0].x, map[0][0].y, map[0][0].z);
-// printf("Last Point -> x:%d, y:%d, z:%d\n", map[control->map_height - 1][control->map_width - 1].x, map[control->map_height - 1][control->map_width - 1].y, map[control->map_height - 1][control->map_width - 1].z);
 	close(fd);
 	return (map);
 }

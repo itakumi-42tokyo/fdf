@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 04:14:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/08/10 18:17:57 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 14:01:06 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <linux/input-event-codes.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "mlx.h"
 #include "draw.h"
 #include "struct.h"
@@ -38,9 +39,13 @@ int key_press(int keycode, void	*param)
 		(*ctrl)->total_angle_x = 0;
 		(*ctrl)->total_angle_y = 0;
 		(*ctrl)->scale = 30;
-		(*ctrl)->offset_x = DEFAULT_WIN_SIZE_X / 2;
-		(*ctrl)->offset_y = DEFAULT_WIN_SIZE_Y / 2;
+		(*ctrl)->offset_x = (*ctrl)->win_size_x / 2;
+		(*ctrl)->offset_y = (*ctrl)->win_size_y / 2;
+		(*ctrl)->total_trans_x = 0;
+		(*ctrl)->total_trans_y = 0;
 		(*ctrl)->zoom = 0.9;
+		(*ctrl)->mag_rate = 45;
+		(*ctrl)->key_r_pressed = true;
 		render(param);
 		printf("View reset to default.\n");
 	}
@@ -93,6 +98,21 @@ int key_press(int keycode, void	*param)
 	}
 	printf("keycode: %d\n", keycode);
 	return (-1);
+}
+
+int	key_release(int keycode, void *param)
+{
+	t_control	**ctrl;
+
+	ctrl = (t_control **)param;
+	if (ctrl == NULL || *ctrl == NULL)
+		return (-1);
+	if (keycode == R_LINUX)
+	{
+		(*ctrl)->key_r_pressed = false;
+		puts("release!!");
+	}
+	return (0);
 }
 
 // int	main(void)

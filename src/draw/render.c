@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/10 21:05:06 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 13:42:08 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,15 @@ int	render(void *param)
 	// 	iso_proj(*ctrl);
 	// else
 	// 	persp_proj(*ctrl);
-	apply_trans(matrix, (*ctrl)->total_trans_x, (*ctrl)->total_trans_y, 0);
 	// 引き伸ばしたりする必要はあるか？
 	apply_scale(matrix, (*ctrl)->zoom, (*ctrl)->zoom, (*ctrl)->zoom);
+	apply_trans(matrix, (*ctrl)->total_trans_x, (*ctrl)->total_trans_y, 0);
 	apply_mvp(*ctrl, matrix);
-	if (count_render == false)
+	if (count_render == false || (*ctrl)->key_r_pressed == true)
 	{
 		auto_fit_scale(*ctrl, (*ctrl)->zoom); // ここも行列にしたい。
 		count_render = true;
 	}
-
 	// 3) 描画ルーチンは img_data に直接書き込むように改修済み
 	hook_bla(param);
 	// 4) 最後にウィンドウへ一度だけ転送

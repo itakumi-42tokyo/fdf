@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/10 17:50:18 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 13:42:42 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	init0_control(t_control *control)
 	control->zoom = 0;
 	control->total_trans_x = 0;
 	control->total_trans_y = 0;
+	control->key_r_pressed = false;
 }
 
 void	init_control(t_control *control)

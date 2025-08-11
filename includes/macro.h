@@ -44,6 +44,7 @@
 
 // title
 # define DEFAULT_TITLE "FDF"
+# define CORRECT_FILE_EXTENSION ".fdf"
 
 // buffer size
 # ifndef BUFFER_SIZE
@@ -57,8 +58,8 @@
 
 // cos
 # define COS_MINUS_45 0.707107
-# define COS_MINUS_30 0.866025
-# define COS_30 0.866025
+# define COS_MINUS_300 0.86602540378
+# define COS_30 0.86602540378
 # define COS_45 0.707107
 
 // sin

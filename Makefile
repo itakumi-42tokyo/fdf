@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/08/10 19:11:07 by itakumi          ###   ########.fr        #
+#    Updated: 2025/08/11 14:55:39 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SRC					= \
 	pipeline/mvp.c \
 	utils/rad_deg.c \
 	utils/alloc_map.c \
+	utils/check_extension.c \
 	utils/copy_map.c \
 	utils/errmsg_exit.c \
 	utils/free_2d.c \
