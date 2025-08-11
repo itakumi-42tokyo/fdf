@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 11:50:56 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 18:39:56 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 02:06:37 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "struct.h"
 
+void	set_pixel(t_control *ctrl, int x, int y, int color);
 int		render(void *param);
 void	bla(int xy1[2], int xy2[2], int color, t_control *ctrl);
 // void	dda(int xy1[2], int xy2[2], int color, t_control *ctrl);

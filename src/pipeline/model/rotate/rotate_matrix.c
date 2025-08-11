@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:29:29 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 18:18:37 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 01:26:32 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void	init_cos(double cos_xyz[3], \
+static void	init_cos(double cos_xyz[3],
 		double deg_x, double deg_y, double deg_z)
 {
 	cos_xyz[0] = cos(deg_to_rad(deg_x));
@@ -25,7 +25,7 @@ static void	init_cos(double cos_xyz[3], \
 	cos_xyz[2] = cos(deg_to_rad(deg_z));
 }
 
-static void	init_sin(double sin_xyz[3], \
+static void	init_sin(double sin_xyz[3],
 		double deg_x, double deg_y, double deg_z)
 {
 	sin_xyz[0] = sin(deg_to_rad(deg_x));
@@ -45,16 +45,16 @@ void	apply_rotate_matrix(double matrix[4][4],
 	matrix[0][1] = -cos_xyz[1] * sin_xyz[2];
 	matrix[0][2] = sin_xyz[1];
 	matrix[0][3] = 0;
-	matrix[1][0] = \
-		sin_xyz[0] * sin_xyz[1] * cos_xyz[2] + cos_xyz[0] * sin_xyz[2];
-	matrix[1][1] = \
-		-sin_xyz[0] * sin_xyz[1] * sin_xyz[2] + cos_xyz[0] * cos_xyz[2];
+	matrix[1][0]
+		= sin_xyz[0] * sin_xyz[1] * cos_xyz[2] + cos_xyz[0] * sin_xyz[2];
+	matrix[1][1]
+		= -sin_xyz[0] * sin_xyz[1] * sin_xyz[2] + cos_xyz[0] * cos_xyz[2];
 	matrix[1][2] = -sin_xyz[0] * cos_xyz[1];
 	matrix[1][3] = 0;
-	matrix[2][0] = \
-		-cos_xyz[0] * sin_xyz[1] * cos_xyz[2] + sin_xyz[0] * sin_xyz[2];
-	matrix[2][1] = \
-		cos_xyz[0] * sin_xyz[1] * sin_xyz[2] + sin_xyz[0] * cos_xyz[2];
+	matrix[2][0]
+		= -cos_xyz[0] * sin_xyz[1] * cos_xyz[2] + sin_xyz[0] * sin_xyz[2];
+	matrix[2][1]
+		= cos_xyz[0] * sin_xyz[1] * sin_xyz[2] + sin_xyz[0] * cos_xyz[2];
 	matrix[2][2] = cos_xyz[0] * cos_xyz[1];
 	matrix[2][3] = 0;
 	matrix[3][0] = 0;

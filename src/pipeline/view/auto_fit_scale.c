@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 21:34:39 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/08/11 20:46:00 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 01:29:04 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,32 @@
 #include <math.h>
 #include <unistd.h>
 
+static void	judge_max_min(int ix, int iy, int min_xy[2], int max_xy[2])
+{
+	if (ix < min_xy[0])
+		min_xy[0] = ix;
+	if (iy < min_xy[1])
+		min_xy[1] = iy;
+	if (ix > max_xy[0])
+		max_xy[0] = ix;
+	if (iy > max_xy[1])
+		max_xy[1] = iy;
+}
+
+static void	init_max_min(int min_xy[2], int max_xy[2])
+{
+	min_xy[0] = INT_MAX;
+	min_xy[1] = INT_MAX;
+	max_xy[0] = INT_MIN;
+	max_xy[1] = INT_MIN;
+}
+
+static void	subs_xy(int *ix, int *iy, int x, int y)
+{
+	*ix = x;
+	*iy = y;
+}
+
 // zはスケーリングしなくてよいのか。
 static void	calc_bounds_local(t_control *ctrl, int min_xy[2], int max_xy[2])
 {
@@ -26,8 +52,6 @@ static void	calc_bounds_local(t_control *ctrl, int min_xy[2], int max_xy[2])
 	int	ix;
 	int	iy;
 
-	min_xy[0] = min_xy[1] = INT_MAX;
-	max_xy[0] = max_xy[1] = -INT_MAX;
 	i = 0;
 	while (i < ctrl->map_height)
 	{
@@ -35,25 +59,14 @@ static void	calc_bounds_local(t_control *ctrl, int min_xy[2], int max_xy[2])
 		while (j < ctrl->map_width)
 		{
 			if (PROJ == ISO)
-			{
-				ix = ctrl->iso_map[i][j].iso_x;
-				iy = ctrl->iso_map[i][j].iso_y;
-			}
+				subs_xy(&ix, &iy,
+					ctrl->iso_map[i][j].iso_x, ctrl->iso_map[i][j].iso_y);
 			else if (PROJ == PERSP)
-			{
-				ix = ctrl->persp_map[i][j].persp_x;
-				iy = ctrl->persp_map[i][j].persp_y;
-			}
+				subs_xy(&ix, &iy, ctrl->persp_map[i][j].persp_x,
+					ctrl->persp_map[i][j].persp_y);
 			else
 				ft_putstr_fd(ERROR_PROJ_MACRO, STDERR_FILENO);
-			if (ix < min_xy[0])
-				min_xy[0] = ix;
-			if (iy < min_xy[1])
-				min_xy[1] = iy;
-			if (ix > max_xy[0])
-				max_xy[0] = ix;
-			if (iy > max_xy[1])
-				max_xy[1] = iy;
+			judge_max_min(ix, iy, min_xy, max_xy);
 			j++;
 		}
 		i++;
@@ -70,6 +83,7 @@ void	auto_fit_scale(t_control *ctrl, float fit_ratio)
 	double	h;
 	double	sx_sy[2];
 
+	init_max_min(min_xy, max_xy);
 	calc_bounds_local(ctrl, min_xy, max_xy);
 	w = max_xy[0] - min_xy[0];
 	h = max_xy[1] - min_xy[1];

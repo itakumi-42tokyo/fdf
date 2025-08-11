@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 07:29:03 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 18:46:52 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 01:26:45 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	apply_mvp(t_control *ctrl, double matrix[4][4])
 		j = 0;
 		while (j < ctrl->map_width)
 		{
-			init_vector(&vec_pre, \
+			init_vector(&vec_pre,
 				ctrl->map[i][j].x, ctrl->map[i][j].y, ctrl->map[i][j].z);
 			vec_new = mul_mat4_vec4(matrix, vec_pre);
 			substitute_screen(vec_new, ctrl, i, j);

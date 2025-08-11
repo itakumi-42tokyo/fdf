@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scale.c                                            :+:      :+:    :+:   */
+/*   set_pixel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/10 19:11:38 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/12 01:25:15 by itakumi          ###   ########.fr       */
+/*   Created: 2025/08/12 02:05:10 by itakumi           #+#    #+#             */
+/*   Updated: 2025/08/12 02:05:26 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// XXX
-#include <stdio.h>
-
+#include "draw.h"
+#include "macro.h"
 #include "struct.h"
 
-void	apply_scale(double matrix[4][4], double x, double y, double z)
+void	set_pixel(t_control *ctrl, int x, int y, int color)
 {
-	const double	matrix_scale[4][4] = {
-	{x, 0, 0, 0},
-	{0, y, 0, 0},
-	{0, 0, z, 0},
-	{0, 0, 0, 1}};
-	double			matrix_copy[4][4];
-	int				i;
-	int				j;
+	int		bytes;
+	char	*dst;
 
-	if (matrix == NULL)
+	bytes = ctrl->bits_per_pixel / 8;
+	if (x < 0 || x >= ctrl->win_size_x || y < 0 || y >= ctrl->win_size_y)
 		return ;
-	i = 0;
-	while (i < 4)
-	{
-		j = 0;
-		while (j < 4)
-		{
-			matrix_copy[i][j] = matrix[i][j];
-			j++;
-		}
-		i++;
-	}
-	mul_4x4_mat(matrix_scale, matrix_copy, matrix);
+	dst = ctrl->data_addr + y * ctrl->size_line + x * bytes;
+	*(unsigned int *)dst = color;
 }

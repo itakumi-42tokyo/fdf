@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 05:32:36 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/08/11 19:49:36 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 01:27:04 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 int				check_extention(char *file_path, char *ext_correct);
 t_vector4		mul_mat4_vec4(const double mat[4][4], t_vector4 vec);
-void			mul_4x4_mat(const double a[4][4], \
+void			mul_4x4_mat(const double a[4][4],
 					const double b[4][4], double result[4][4]);
 void			copy_map(t_control *ctrl);
 double			deg_to_rad(double deg);

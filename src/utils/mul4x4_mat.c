@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 07:11:40 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 19:53:08 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 01:19:46 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	copy_mat(double result[4][4], double tmp[4][4])
 	}
 }
 
-void	mul_4x4_mat(const double a[4][4], const double b[4][4], \
+void	mul_4x4_mat(const double a[4][4], const double b[4][4],
 		double result[4][4])
 {
 	double	tmp[4][4];

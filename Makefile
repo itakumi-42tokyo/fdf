@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/08/11 19:19:39 by itakumi          ###   ########.fr        #
+#    Updated: 2025/08/12 02:06:07 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,11 @@ SRC_DIR				?= src
 
 SRC					= \
 	draw/bla.c \
+	draw/bla2.c \
 	draw/dda.c \
 	draw/wla.c \
 	draw/render.c \
+	draw/set_pixel.c \
 	execute/exec.c \
 	exit/free_exit.c \
 	init/alloc_proj.c \
