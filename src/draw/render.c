@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/12 03:31:36 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 04:45:10 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	render(void *param)
 	init_mat(mat);
 	apply_rotate_matrix(mat, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y, 0);
 	if (PROJ == PERSP)
-		apply_persp_to_matrix(mat);
+		apply_persp_to_matrix(mat, *ctrl);
 	else
 		apply_iso_to_matrix(mat);
 	apply_scale(mat, (*ctrl)->zoom, (*ctrl)->zoom, (*ctrl)->zoom);

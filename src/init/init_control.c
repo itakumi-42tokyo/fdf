@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 20:08:10 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 04:39:08 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ void	init0_control(t_control *control)
 	control->total_angle_x = 0;
 	control->total_angle_y = 0;
 	control->zoom = 0;
+	control->camera.pos_x = 0;
+	control->camera.pos_y = 0;
+	control->camera.pos_z = 0;
 	control->total_trans_x = 0;
 	control->total_trans_y = 0;
 	control->key_r_pressed = false;
@@ -71,4 +74,10 @@ void	init_control(t_control *control)
 	control->scale = 30;
 	control->mag_rate = 45;
 	control->zoom = 0.9;
+	control->camera.fov = M_PI / 4;
+	control->camera.aspect
+		= (double)((double)control->win_size_x / (double)control->win_size_y);
+	control->camera.near = 0.1;
+	control->camera.far = 1000.0;
+	control->camera.focus = 1.0 / tan(control->camera.fov / 2.0);
 }

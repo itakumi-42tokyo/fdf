@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 17:09:46 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/12 03:20:44 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 04:43:52 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,54 @@
 
 // take 2
 
-int	apply_persp_to_matrix(double matrix[4][4])
+static void	init_persp(double mat_persp[4][4], t_control *ctrl)
 {
-	(void)matrix;
+	mat_persp[0][0] = ctrl->camera.focus / ctrl->camera.aspect;
+	mat_persp[0][1] = 0;
+	mat_persp[0][2] = 0;
+	mat_persp[0][3] = 0;
+	mat_persp[1][0] = 0;
+	mat_persp[1][1] = ctrl->camera.focus;
+	mat_persp[1][2] = 0;
+	mat_persp[1][3] = 0;
+	mat_persp[2][0] = 0;
+	mat_persp[2][1] = 0;
+	mat_persp[2][2] = (ctrl->camera.far + ctrl->camera.near)
+		/ (ctrl->camera.near - ctrl->camera.far);
+	mat_persp[2][3] = (2.0 * ctrl->camera.far * ctrl->camera.near)
+		/ (ctrl->camera.near - ctrl->camera.far);
+	mat_persp[3][0] = 0;
+	mat_persp[3][1] = 0;
+	mat_persp[3][2] = -1.0;
+	mat_persp[3][3] = 0;
+}
+
+static void	copy_matrix(double mat_copy[4][4], double mat[4][4])
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			mat_copy[i][j] = mat[i][j];
+			j++;
+		}
+		i++;
+	}
+}
+
+int	apply_persp_to_matrix(double matrix[4][4], t_control *ctrl)
+{
+	double	matrix_persp[4][4];
+	double	matrix_copy[4][4];
+
+	init_persp(matrix_persp, ctrl);
+	copy_matrix(matrix_copy, matrix);
+	mul_4x4_mat(matrix_persp, matrix_copy, matrix);
 	return (0);
 }
 

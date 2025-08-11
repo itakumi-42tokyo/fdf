@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 12:00:52 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 13:43:42 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 04:25:58 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_camera
 	double	aspect;
 	double	near;
 	double	far;
+	double	focus;
 }	t_camera;
 
 typedef enum e_tag
