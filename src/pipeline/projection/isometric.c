@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/08 16:23:31 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 17:22:57 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,36 +29,30 @@
 // この関数は乗算だけを担当
 
 // 一次元配列として認識されてしまうのか？
-int	apply_iso_to_matrix(double matrix[4][4])  // double **に変更
+int	apply_iso_to_matrix(double matrix[4][4])
 {
-	const double	matrix_iso[4][4] = \
-	{
-		{COS_30, -COS_30, 0.0, 0.0},
-		{SIN_30, SIN_30, -1.0, 0.0},
-		{0.0, 0.0, 0.0, 0.0},
-		{0.0, 0.0, 0.0, 1.0}  // 完全な初期化
-	};
+	const double	matrix_iso[4][4] = {\
+		{COS_30, -COS_30, 0.0, 0.0}, \
+		{SIN_30, SIN_30, -1.0, 0.0}, \
+		{0.0, 0.0, 0.0, 0.0}, \
+		{0.0, 0.0, 0.0, 1.0}};
 	double			matrix_cpy[4][4];
 	int				i;
 	int				j;
 	if (matrix == NULL)
         return (-1);
-	// 等角投影の行列はどのような形だろうか。
-	// 行列の積
 	i = 0;
 	while (i < 4)
 	{
 		j = 0;
 		while (j < 4)
 		{
-			matrix_cpy[i][j] = matrix[i][j]; // なぜこれができないのか？
+			matrix_cpy[i][j] = matrix[i][j];
 			j++;
 		}
 		i++;
 	}
 	mul_4x4_mat(matrix_iso, matrix_cpy, matrix);
-	// ここで、3行目は切り捨てて良いのだろうか。
-	// ->同軸次座標系
     return (0);
 }
 

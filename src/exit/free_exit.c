@@ -6,18 +6,17 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 19:13:23 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/01 22:05:28 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 16:52:01 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /// XXX
-#include <stdio.h>
-
-#include <stdlib.h>
-#include "mlx.h"
 #include "libft.h"
+#include "mlx.h"
 #include "struct.h"
 #include "utils.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 void	free_exit(t_control **ctrl)
 {

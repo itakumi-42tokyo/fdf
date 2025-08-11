@@ -6,47 +6,47 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:22 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/07 07:50:32 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 18:42:15 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // XXX
-#include <stdio.h>
-
-#include <stdlib.h>
-#include <math.h>
+#include "macro.h"
 #include "mlx.h"
 #include "struct.h"
 #include "utils.h"
-#include "macro.h"
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-static void set_pixel(t_control *ctrl, int x, int y, int color)
+static void	set_pixel(t_control *ctrl, int x, int y, int color)
 {
-    int    bytes = ctrl->bits_per_pixel / 8;
-    char  *dst;
+	int		bytes;
+	char	*dst;
 
-    if (x < 0 || x >= ctrl->win_size_x || y < 0 || y >= ctrl->win_size_y)
-        return;
-    dst = ctrl->data_addr + y * ctrl->size_line + x * bytes;
-    *(unsigned int *)dst = color;
+	bytes = ctrl->bits_per_pixel / 8;
+	if (x < 0 || x >= ctrl->win_size_x || y < 0 || y >= ctrl->win_size_y)
+		return ;
+	dst = ctrl->data_addr + y * ctrl->size_line + x * bytes;
+	*(unsigned int *)dst = color;
 }
 
-void	bla_h(int x0, int y0, int x1, int y1, t_control *ctrl)
+void	bla_h(int xy0[2], int xy1[2], t_control *ctrl)
 {
-	int		dx;
-	int		dy;
-	int		dir;
-	int		y;
-	int		i;
-	int		p;
+	int	dx;
+	int	dy;
+	int	dir;
+	int	y;
+	int	i;
+	int	p;
 
-	if (x0 > x1)
+	if (xy0[0] > xy1[0])
 	{
-		swap(&x0, &x1);
-		swap(&y0, &y1);
+		swap(&xy0[0], &xy1[0]);
+		swap(&xy0[1], &xy1[1]);
 	}
-	dx = x1 - x0;
-	dy = y1 - y0;
+	dx = xy1[0] - xy0[0];
+	dy = xy1[1] - xy0[1];
 	if (dy < 0)
 		dir = -1;
 	else
@@ -54,40 +54,40 @@ void	bla_h(int x0, int y0, int x1, int y1, t_control *ctrl)
 	dy *= dir;
 	if (dx != 0)
 	{
-		y = y0;
+		y = xy0[1];
 		i = 0;
-		p = 2*dy - dx;
+		p = 2 * dy - dx;
 		while (i <= dx)
 		{
-			set_pixel(ctrl, x0 + i, y, 0xFFFFFF);
+			set_pixel(ctrl, xy0[0] + i, y, 0xFFFFFF);
 			if (p >= 0)
 			{
 				y += dir;
-				p = p + 2*dy - 2*dx;
+				p = p + 2 * dy - 2 * dx;
 			}
 			else
-				p = p + 2*dy;
+				p = p + 2 * dy;
 			i++;
 		}
 	}
 }
 
-void	bla_v(int x0, int y0, int x1, int y1, t_control *ctrl)
+void	bla_v(int xy0[2], int xy1[2], t_control *ctrl)
 {
-	int		dx;
-	int		dy;
-	int		dir;
-	int		x;
-	int		i;
-	int		p;
+	int	dx;
+	int	dy;
+	int	dir;
+	int	x;
+	int	i;
+	int	p;
 
-	if (y0 > y1)
+	if (xy0[1] > xy1[1])
 	{
-		swap(&x0, &x1);
-		swap(&y0, &y1);
+		swap(&xy0[0], &xy1[0]);
+		swap(&xy0[1], &xy1[1]);
 	}
-	dx = x1 - x0;
-	dy = y1 - y0;
+	dx = xy1[0] - xy0[0];
+	dy = xy1[1] - xy0[1];
 	if (dx < 0)
 		dir = -1;
 	else
@@ -95,146 +95,133 @@ void	bla_v(int x0, int y0, int x1, int y1, t_control *ctrl)
 	dx *= dir;
 	if (dy != 0)
 	{
-		x = x0;
+		x = xy0[0];
 		i = 0;
-		p = 2*dx - dy;
+		p = 2 * dx - dy;
 		while (i <= dy)
 		{
-			set_pixel(ctrl, x, y0 + i, 0xFFFFFF);
+			set_pixel(ctrl, x, xy0[1] + i, 0xFFFFFF);
 			if (p >= 0)
 			{
 				x += dir;
-				p = p + 2*dx - 2*dy;
+				p = p + 2 * dx - 2 * dy;
 			}
 			else
-				p = p + 2*dx;
+				p = p + 2 * dx;
 			i++;
 		}
 	}
 }
 
-void	bla(int x0, int y0, int x1, int y1, t_control *ctrl)
+void	bla(int xy0[2], int xy1[2], t_control *ctrl)
 {
 	int	dx;
 	int	dy;
 
-	dx = x1 - x0;
-	dy = y1 - y0;
+	dx = xy1[0] - xy0[0];
+	dy = xy1[1] - xy0[1];
 	if (my_abs(dx) > my_abs(dy))
-		bla_h(x0, y0, x1, y1, ctrl);
+		bla_h(xy0, xy1, ctrl);
 	else
-		bla_v(x0, y0, x1, y1, ctrl);
+		bla_v(xy0, xy1, ctrl);
 }
 
 static int	transform_coord(double value, double scale, int offset)
 {
-    return ((int)round(value * scale + offset));
+	return ((int)round(value * scale + offset));
 }
 
-static int	drawline_persp(void *param)
+static int	drawline_persp(t_control *ctrl)
 {
-    t_control	**ctrl = (t_control **)param;
-    int			i;
-    int			j;
-    int			x0;
-    int			y0;
-    int			x1;
-    int			y1;
+	int			i;
+	int			j;
+	int			xy0[2];
+	int			xy1[2];
 
-    i = 0;
-    while (i < (*ctrl)->map_height)
-    {
-        j = 0;
-        while (j < (*ctrl)->map_width)
-        {
-            x0 = transform_coord((*ctrl)->persp_map[i][j].persp_x,
-                                 (*ctrl)->scale, (*ctrl)->offset_x);
-            y0 = transform_coord((*ctrl)->persp_map[i][j].persp_y,
-                                 (*ctrl)->scale, (*ctrl)->offset_y);
-            if (j + 1 < (*ctrl)->map_width)
-            {
-
-                x1 = transform_coord((*ctrl)->persp_map[i][j + 1].persp_x,
-                                     (*ctrl)->scale, (*ctrl)->offset_x);
-                y1 = transform_coord((*ctrl)->persp_map[i][j + 1].persp_y,
-                                     (*ctrl)->scale, (*ctrl)->offset_y);
-                printf("--- Step 3: Draw Coords ---\n");
-                printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
-                bla(x0, y0, x1, y1, *ctrl);
-                // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
-            }
-            if (i + 1 < (*ctrl)->map_height)
-            {
-                x1 = transform_coord((*ctrl)->persp_map[i + 1][j].persp_x,
-                                     (*ctrl)->scale, (*ctrl)->offset_x);
-                y1 = transform_coord((*ctrl)->persp_map[i + 1][j].persp_y,
-                                     (*ctrl)->scale, (*ctrl)->offset_y);
-                printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
-                printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
-                bla(x0, y0, x1, y1, *ctrl);
-                // mlx_pixel_put((*ctrl)->mlx, (*ctrl)->win, x0, y0, 0xFF0000);
-            }
-            j++;
-        }
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (i < ctrl->map_height)
+	{
+		j = 0;
+		while (j < ctrl->map_width)
+		{
+			xy0[0] = transform_coord(ctrl->persp_map[i][j].persp_x,
+					ctrl->scale, ctrl->offset_x);
+			xy0[1] = transform_coord(ctrl->persp_map[i][j].persp_y,
+					ctrl->scale, ctrl->offset_y);
+			if (j + 1 < ctrl->map_width)
+			{
+				xy1[0] = transform_coord(ctrl->persp_map[i][j + 1].persp_x,
+						ctrl->scale, ctrl->offset_x);
+				xy1[1] = transform_coord(ctrl->persp_map[i][j + 1].persp_y,
+						ctrl->scale, ctrl->offset_y);
+				bla(xy0, xy1, ctrl);
+			}
+			if (i + 1 < ctrl->map_height)
+			{
+				xy1[0] = transform_coord(ctrl->persp_map[i + 1][j].persp_x,
+						ctrl->scale, ctrl->offset_x);
+				xy1[1] = transform_coord(ctrl->persp_map[i + 1][j].persp_y,
+						ctrl->scale, ctrl->offset_y);
+				bla(xy0, xy1, ctrl);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
-int	drawline_iso(void *param)
+int	drawline_iso(t_control *ctrl)
 {
-	t_control	**ctrl = (t_control **)param;
-    int			i;
-    int			j;
-    int			x0;
-    int			y0;
-    int			x1;
-    int			y1;
+	int			i;
+	int			j;
+	int			xy0[2];
+	int			xy1[2];
 
-    i = 0;
-    while (i < (*ctrl)->map_height)
-    {
-        j = 0;
-        while (j < (*ctrl)->map_width)
-        {
-            x0 = transform_coord((*ctrl)->iso_map[i][j].iso_x,
-                                 (*ctrl)->scale, (*ctrl)->offset_x);
-            y0 = transform_coord((*ctrl)->iso_map[i][j].iso_y,
-                                 (*ctrl)->scale, (*ctrl)->offset_y);
-            if (j + 1 < (*ctrl)->map_width)
-            {
-
-                x1 = transform_coord((*ctrl)->iso_map[i][j + 1].iso_x,
-                                     (*ctrl)->scale, (*ctrl)->offset_x);
-                y1 = transform_coord((*ctrl)->iso_map[i][j + 1].iso_y,
-                                     (*ctrl)->scale, (*ctrl)->offset_y);
-                // printf("--- Step 3: Draw Coords ---\n");
-                // printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
-                bla(x0, y0, x1, y1, *ctrl);
-            }
-            if (i + 1 < (*ctrl)->map_height)
-            {
-                x1 = transform_coord((*ctrl)->iso_map[i + 1][j].iso_x,
-                                     (*ctrl)->scale, (*ctrl)->offset_x);
-                y1 = transform_coord((*ctrl)->iso_map[i + 1][j].iso_y,
-                                     (*ctrl)->scale, (*ctrl)->offset_y);
-                // printf("--- Step 3: Draw Coords ---\n"); // ループの最初だけ確認するため、if (i == 0 && j == 0) で囲んでも良い
-                // printf("Drawing line from (%d, %d) to (%d, %d)\n", x0, y0, x1, y1);
-                bla(x0, y0, x1, y1, *ctrl);
-            }
-            j++;
-        }
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (i < ctrl->map_height)
+	{
+		j = 0;
+		while (j < ctrl->map_width)
+		{
+			xy0[0] = transform_coord(ctrl->iso_map[i][j].iso_x, ctrl->scale,
+					ctrl->offset_x);
+			xy0[1] = transform_coord(ctrl->iso_map[i][j].iso_y, ctrl->scale,
+					ctrl->offset_y);
+			if (j + 1 < ctrl->map_width)
+			{
+				xy1[0] = transform_coord(ctrl->iso_map[i][j + 1].iso_x,
+						ctrl->scale, ctrl->offset_x);
+				xy1[1] = transform_coord(ctrl->iso_map[i][j + 1].iso_y,
+						ctrl->scale, ctrl->offset_y);
+				bla(xy0, xy1, ctrl);
+			}
+			if (i + 1 < ctrl->map_height)
+			{
+				xy1[0] = transform_coord(ctrl->iso_map[i + 1][j].iso_x,
+						ctrl->scale, ctrl->offset_x);
+				xy1[1] = transform_coord(ctrl->iso_map[i + 1][j].iso_y,
+						ctrl->scale, ctrl->offset_y);
+				bla(xy0, xy1, ctrl);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
 int	hook_bla(void *param)
 {
+	t_control	**ctrl;
+
+	ctrl = (t_control **)param;
+	if (ctrl == NULL || *ctrl == NULL)
+		return (-1);
 	if (PROJ == ISO)
-		drawline_iso(param);
+		drawline_iso(*ctrl);
 	else if (PROJ == PERSP)
-		drawline_persp(param);
+		drawline_persp(*ctrl);
 	return (0);
 }
 // int	hook_bla(void *param)

@@ -6,21 +6,20 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:28:50 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/10 17:46:18 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 16:53:20 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // XXX
-#include <stdio.h>
-
+#include "draw.h"
+#include "exit.h"
+#include "macro.h"
+#include "rotate.h"
+#include "struct.h"
+#include "view.h"
 #include <mlx.h>
 #include <stdbool.h>
-#include "struct.h"
-#include "exit.h"
-#include "view.h"
-#include "draw.h"
-#include "rotate.h"
-#include "macro.h"
+#include <stdio.h>
 
 // increase scale
 int	mouse_scroll_up(int x, int y, void *param)
@@ -38,7 +37,7 @@ int	mouse_scroll_up(int x, int y, void *param)
 }
 
 // decrease scale
-int		mouse_scroll_down(int x, int y, void *param)
+int	mouse_scroll_down(int x, int y, void *param)
 {
 	t_control	**ctrl;
 
@@ -100,7 +99,7 @@ int	mouse_release(int button, int x, int y, void *param)
 
 // 60fpsくらいまで下げたいので、制限をつけよう。
 // マウス操作をやめよう。
-int mouse_move(int x, int y, void *param)
+int	mouse_move(int x, int y, void *param)
 {
 	t_control	**ctrl;
 	float		delta_x;
@@ -111,20 +110,16 @@ int mouse_move(int x, int y, void *param)
 		return (-1);
 	if ((*ctrl)->mouse.is_pressed == true)
 	{
-		// rotate
-		// 差分だけコントロールするようにすればいいかな
 		delta_x = x - (*ctrl)->mouse.x;
 		delta_y = y - (*ctrl)->mouse.y;
-
 		printf("delta_x: %lf\n", delta_x);
 		printf("delta_y: %lf\n", delta_y);
-		(*ctrl)->total_angle_x += delta_x * 0.5; // total_xとtotal_yがアンダー（オーバー）フローする危険性がある。
+		(*ctrl)->total_angle_x += delta_x * 0.5;
+			// total_xとtotal_yがアンダー（オーバー）フローする危険性がある。
 		(*ctrl)->total_angle_y += delta_y * 0.5;
 		printf("total_x: %lf\n", (*ctrl)->total_angle_x);
 		printf("total_y: %lf\n", (*ctrl)->total_angle_y);
 		render(param);
-		// (*ctrl)->angle_x += (y - prev_y) * 0.005;// unused
-		// (*ctrl)->angle_y += (x - prev_x) * 0.005;// unused
 	}
 	(*ctrl)->mouse.x = x;
 	(*ctrl)->mouse.y = y;
@@ -133,7 +128,7 @@ int mouse_move(int x, int y, void *param)
 
 int	close_window(void *param)
 {
-	t_control **ctrl;
+	t_control	**ctrl;
 
 	ctrl = (t_control **)param;
 	free_exit(ctrl);

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/08 15:22:39 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 18:42:28 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <stdio.h>
 
 #include <stdlib.h>
-#include "fdf.h"
 #include "mlx.h"
 #include "utils.h"
 #include "macro.h"

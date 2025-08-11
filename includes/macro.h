@@ -48,12 +48,12 @@
 
 // buffer size
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 8192
+#  define BUFFER_SIZE 8192
 # endif
 
 // π
 # ifndef M_PI
-# define M_PI 3.14159265359
+#  define M_PI 3.14159265359
 # endif
 
 // cos
@@ -76,12 +76,12 @@
 
 // color information in map
 # ifndef COLOR_INFO
-# define COLOR_INFO "0x"
+#  define COLOR_INFO "0x"
 # endif
 
 // hexadecimal table
 # ifndef HEX_TABLE
-# define HEX_TABLE "0123456789ABCDEF"
+#  define HEX_TABLE "0123456789ABCDEF"
 # endif
 
 // projection select
@@ -90,7 +90,7 @@
 // PROJはMakefileから渡される
 
 # ifndef PROJ
-# define PROJ ISO
+#  define PROJ ISO
 # endif
 
 # define ZOOM_MIN 0.1

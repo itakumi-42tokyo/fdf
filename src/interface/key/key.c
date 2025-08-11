@@ -6,25 +6,23 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 04:14:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/08/11 14:01:06 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 16:52:34 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // XXX
-#include <stdio.h>
-
-#include <linux/input-event-codes.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include "mlx.h"
 #include "draw.h"
-#include "struct.h"
-#include "macro.h"
 #include "exit.h"
-
+#include "macro.h"
+#include "mlx.h"
+#include "struct.h"
+#include <linux/input-event-codes.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 // macOS 対応は要検討
-int key_press(int keycode, void	*param)
+int	key_press(int keycode, void *param)
 {
 	t_control	**ctrl;
 
@@ -35,7 +33,6 @@ int key_press(int keycode, void	*param)
 		free_exit(ctrl);
 	else if (keycode == R_LINUX)
 	{
-		// Reset the view
 		(*ctrl)->total_angle_x = 0;
 		(*ctrl)->total_angle_y = 0;
 		(*ctrl)->scale = 30;
@@ -54,7 +51,7 @@ int key_press(int keycode, void	*param)
 		printf("X key pressed, performing action...\n");
 	}
 	else if (keycode == W_LINUX) // 奥行きを移動させることと縮小することは何が違うのだろうか。
-	{// 投影変換したものを移動させたほうがわかりやすさはある
+	{                            // 投影変換したものを移動させたほうがわかりやすさはある
 		(*ctrl)->total_trans_y++;
 		printf("trans_y: %d\n", (*ctrl)->total_trans_y);
 		render(param);
@@ -62,7 +59,7 @@ int key_press(int keycode, void	*param)
 	else if (keycode == A_LINUX)
 	{
 		(*ctrl)->total_trans_x--;
-			printf("trans_x: %d\n", (*ctrl)->total_trans_x);
+		printf("trans_x: %d\n", (*ctrl)->total_trans_x);
 		render(param);
 	}
 	else if (keycode == S_LINUX)
@@ -82,15 +79,12 @@ int key_press(int keycode, void	*param)
 	}
 	else if (keycode == CURSOR_DOWN_LINUX)
 	{
-
 	}
 	else if (keycode == CURSOR_LEFT_LINUX)
 	{
-
 	}
 	else if (keycode == CURSOR_RIGHT_LINUX)
 	{
-
 	}
 	else
 	{

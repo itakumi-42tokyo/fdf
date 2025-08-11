@@ -6,26 +6,25 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 13:42:08 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 18:18:53 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // XXX
-#include <stdio.h>
-
-#include <stdbool.h>
-#include "mlx.h"
-#include "libft.h"
-#include "struct.h"
-#include "view.h"
 #include "draw.h"
-#include "macro.h"
-#include "projection.h"
 #include "exit.h"
-#include "utils.h"
-#include "rotate.h"
+#include "libft.h"
+#include "macro.h"
+#include "mlx.h"
 #include "pipeline.h"
+#include "projection.h"
+#include "rotate.h"
+#include "struct.h"
 #include "translate.h"
+#include "utils.h"
+#include "view.h"
+#include <stdbool.h>
+#include <stdio.h>
 
 // １．mapを変換する。(モデル変換)
 // 2. 投影変換したマップをスケーリングする。（ビュー変換）
@@ -44,32 +43,22 @@ int	render(void *param)
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
 	mlx_clear_window((*ctrl)->mlx, (*ctrl)->win);
-	// 1) イメージバッファをゼロクリア
 	ft_bzero((*ctrl)->data_addr, (*ctrl)->size_line * (*ctrl)->win_size_y);
-	// 2) 各種マップ更新・投影
-	// copy_map(*ctrl);
-	apply_rotate_matrix(matrix, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y, 0);
-	// calc_euler(*ctrl, (*ctrl)->total_angle_y, (*ctrl)->total_angle_x, 0);
+	apply_rotate_matrix(matrix, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y,
+		0);
 	if (PROJ == ISO)
 		apply_iso_to_matrix(matrix);
 	else if (PROJ == PERSP)
 		apply_persp_to_matrix(matrix);
-	// if (PROJ == ISO)
-	// 	iso_proj(*ctrl);
-	// else
-	// 	persp_proj(*ctrl);
-	// 引き伸ばしたりする必要はあるか？
 	apply_scale(matrix, (*ctrl)->zoom, (*ctrl)->zoom, (*ctrl)->zoom);
 	apply_trans(matrix, (*ctrl)->total_trans_x, (*ctrl)->total_trans_y, 0);
 	apply_mvp(*ctrl, matrix);
 	if (count_render == false || (*ctrl)->key_r_pressed == true)
 	{
-		auto_fit_scale(*ctrl, (*ctrl)->zoom); // ここも行列にしたい。
+		auto_fit_scale(*ctrl, (*ctrl)->zoom);
 		count_render = true;
 	}
-	// 3) 描画ルーチンは img_data に直接書き込むように改修済み
 	hook_bla(param);
-	// 4) 最後にウィンドウへ一度だけ転送
 	mlx_put_image_to_window((*ctrl)->mlx, (*ctrl)->win, (*ctrl)->img, 0, 0);
 	return (0);
 }

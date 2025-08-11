@@ -6,23 +6,22 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:00:29 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/01 22:05:09 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 16:52:09 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // XXX
-#include <stdio.h>
-
-#include <stdlib.h>
 #include "libft.h"
-#include "struct.h"
 #include "macro.h"
+#include "struct.h"
 #include "utils.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 t_isometric	**calloc_iso(int height, int width)
 {
-	t_isometric		**iso_map;
-	int				i;
+	t_isometric	**iso_map;
+	int			i;
 
 	iso_map = ft_calloc(sizeof(t_isometric *) * (height + 1), 1);
 	if (iso_map == NULL)
@@ -52,7 +51,7 @@ t_perspective	**calloc_persp(int height, int width)
 	{
 		persp_map[i] = ft_calloc(sizeof(t_perspective) * width, 1);
 		if (persp_map[i] == NULL)
-			return (free_2d((void **)persp_map), NULL);// FIXME
+			return (free_2d((void **)persp_map), NULL); // FIXME
 		i++;
 	}
 	persp_map[i] = NULL;

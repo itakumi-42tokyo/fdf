@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 17:09:46 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 16:02:27 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 17:24:20 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,53 +163,50 @@
 
 int	apply_persp_to_matrix(double marix[4][4])
 {
-	// const double	matrix_persp =
-	// {
-	// };
 	return (0);
 }
 
-int	persp_proj(t_control *ctrl)
-{
-    int		i;
-    int		j;
-    double	x, y, z;
-    double	focal_length;
-    double	camera_distance;
+// int	persp_proj(t_control *ctrl)
+// {
+//     int		i;
+//     int		j;
+//     double	x, y, z;
+//     double	focal_length;
+//     double	camera_distance;
 
-    if (ctrl == NULL || ctrl->persp_map == NULL)
-        return (-1);
+//     if (ctrl == NULL || ctrl->persp_map == NULL)
+//         return (-1);
 
-    focal_length = 500.0;  // 焦点距離を固定値で設定
-    camera_distance = 2000.0;  // カメラ距離
+//     focal_length = 500.0;  // 焦点距離を固定値で設定
+//     camera_distance = 2000.0;  // カメラ距離
 
-    i = 0;
-    while (i < ctrl->map_height)
-    {
-        j = 0;
-        while (j < ctrl->map_width)
-        {
-            x = ctrl->cur_map[i][j].x;
-            y = ctrl->cur_map[i][j].y;
-            z = ctrl->cur_map[i][j].z + camera_distance;
+//     i = 0;
+//     while (i < ctrl->map_height)
+//     {
+//         j = 0;
+//         while (j < ctrl->map_width)
+//         {
+//             x = ctrl->cur_map[i][j].x;
+//             y = ctrl->cur_map[i][j].y;
+//             z = ctrl->cur_map[i][j].z + camera_distance;
 
-            if (z > 1.0)
-            {
-                ctrl->persp_map[i][j].persp_x = (x * focal_length) / z;
-                ctrl->persp_map[i][j].persp_y = (y * focal_length) / z;
-            }
-            else
-            {
-                ctrl->persp_map[i][j].persp_x = x * focal_length;
-                ctrl->persp_map[i][j].persp_y = y * focal_length;
-            }
-            ctrl->persp_map[i][j].color = ctrl->cur_map[i][j].color;
-            j++;
-        }
-        i++;
-    }
-    return (0);
-}
+//             if (z > 1.0)
+//             {
+//                 ctrl->persp_map[i][j].persp_x = (x * focal_length) / z;
+//                 ctrl->persp_map[i][j].persp_y = (y * focal_length) / z;
+//             }
+//             else
+//             {
+//                 ctrl->persp_map[i][j].persp_x = x * focal_length;
+//                 ctrl->persp_map[i][j].persp_y = y * focal_length;
+//             }
+//             ctrl->persp_map[i][j].color = ctrl->cur_map[i][j].color;
+//             j++;
+//         }
+//         i++;
+//     }
+//     return (0);
+// }
 
 // (take 1)
 

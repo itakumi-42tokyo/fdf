@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 19:11:38 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/10 21:10:28 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 17:07:00 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 
 void	apply_scale(double matrix[4][4], double x, double y, double z)
 {
-	const double	matrix_scale[4][4] =
-	{
-		{x, 0, 0, 0},
-		{0, y, 0, 0},
-		{0, 0, z, 0},
-		{0, 0, 0, 1}
-	};
+	const double	matrix_scale[4][4] = {\
+		{x, 0, 0, 0}, \
+		{0, y, 0, 0}, \
+		{0, 0, z, 0}, \
+		{0, 0, 0, 1}};
 	double			matrix_copy[4][4];
 	int				i;
 	int				j;
