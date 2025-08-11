@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/12 01:21:13 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 02:33:52 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	parse_tokens(t_point **map, char **tokens, const int y, const int width)
 			(map[y][i]).color
 				= atoi_base_with_check(tokens[i], HEX_TABLE, &check);
 		else
-			(map[y][i]).color = 0;
+			(map[y][i]).color = 0xFFFFFF;
 		if (check == -1)
 			return (-1);
 		substitute_map(map, i, y, token);
