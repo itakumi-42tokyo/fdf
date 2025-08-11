@@ -6,10 +6,12 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 14:19:43 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 14:52:24 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 15:48:43 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+// XXX
+#include <stdio.h>
 
 #include "libft.h"
 #include "struct.h"
@@ -21,7 +23,7 @@ int	check_extention(char *file_path, char *ext_correct)
 	int		file_ext_len;
 	int		ext_len;
 
-	file_ext = ft_strrchr(file_path, ".");
+	file_ext = ft_strrchr(file_path, (int)'.');
 	if (file_ext == NULL)
 		return (-1);
 	file_ext_len = ft_strlen(file_ext);

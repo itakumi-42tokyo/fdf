@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 14:56:11 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 15:47:32 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ t_point	**read_map(t_control *control, char *file_path)
 	int			fd;
 
 	if (file_path == NULL
-		|| check_extention(file_path, (int)CORRECT_FILE_EXTENSION) == -1)
+		|| check_extention(file_path, CORRECT_FILE_EXTENSION) == -1)
 		return (NULL);
 	if (calc_map_size(control, file_path) == -1)
 		return (NULL);
