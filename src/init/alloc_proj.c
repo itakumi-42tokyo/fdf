@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:00:29 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 16:52:09 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 18:49:53 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_perspective	**calloc_persp(int height, int width)
 	{
 		persp_map[i] = ft_calloc(sizeof(t_perspective) * width, 1);
 		if (persp_map[i] == NULL)
-			return (free_2d((void **)persp_map), NULL); // FIXME
+			return (free_2d((void **)persp_map), NULL);
 		i++;
 	}
 	persp_map[i] = NULL;

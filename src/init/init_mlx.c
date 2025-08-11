@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:58 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 16:52:23 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 18:53:50 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "utils.h"
 #include <stdlib.h>
 
-void	init_mlx(t_control *ctrl)
+static void	process_init_mlx(t_control *ctrl)
 {
 	ctrl->mlx = mlx_init();
 	if (ctrl->mlx == NULL)
@@ -35,6 +35,11 @@ void	init_mlx(t_control *ctrl)
 		free(ctrl->mlx);
 		errmsg_exit(FAILED_MLX_WIN);
 	}
+}
+
+void	init_mlx(t_control *ctrl)
+{
+	process_init_mlx(ctrl);
 	ctrl->img = mlx_new_image(ctrl->mlx, ctrl->win_size_x, ctrl->win_size_y);
 	if (ctrl->img == NULL)
 	{

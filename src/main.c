@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 22:59:45 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 18:42:28 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 18:55:31 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,6 @@ int	main(int argc, char *argv[])
 	}
 	init_mlx(control);
 	init_control(control);
-	control->cur_map = alloc_map(control);
-	if (control->cur_map == NULL)
-	{
-		free_exit(&control);
-	}
 	if (alloc_proj(control) == -1)
 	{
 		free_exit(&control);

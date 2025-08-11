@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 10:31:01 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 13:45:16 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 19:39:58 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static bool	move_pointer(const char **nptr)
 static int	get_unit_digit(const char *table, char digit)
 {
 	int			count;
-	const char d = (const char)digit;
+	const char	d = (const char)digit;
 	const char	*table_x = "0123456789abcdef";
 
 	if (table == NULL)

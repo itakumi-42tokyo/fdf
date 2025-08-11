@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 09:16:48 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/26 13:23:20 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 19:55:01 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,16 @@ int	ut_atoi_with_check(const char *nptr, int *check)
 		nptr++;
 	if (ut_issign(*nptr))
 	{
-		if (*nptr == '-')
+		if (*nptr++ == '-')
 			sign = -sign;
-		nptr++;
 	}
 	while (ft_isdigit(*nptr))
 	{
-		result = result * 10 + *nptr - '0';
+		result = result * 10 + *nptr++ - '0';
 		if (sign == 1 && result > INT_MAX)
 			return (*check = -1, -1);
 		if (sign == -1 && (sign * result) < INT_MIN)
 			return (*check = -1, -1);
-		nptr++;
 	}
 	if (*nptr == ',')
 		return (*check = 1, sign * (int)result);

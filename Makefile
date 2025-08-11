@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/08/11 14:55:39 by itakumi          ###   ########.fr        #
+#    Updated: 2025/08/11 19:19:39 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRC					= \
 	pipeline/model/translate/translate.c \
 	interface/key/key.c \
 	interface/mouse/mouse.c \
+	interface/mouse/operate_win.c \
 	pipeline/projection/isometric.c \
 	pipeline/projection/perspective.c \
 	pipeline/mvp.c \

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 21:31:46 by itakumi           #+#    #+#             */
-/*   Updated: 2025/07/20 22:26:00 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 19:55:12 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	*cpy_word(const char *str, const char *sep)
 	return (cpy);
 }
 
-static int process(char **new, const char *str, const char *sep)
+static int	process(char **new, const char *str, const char *sep)
 {
 	int	i;
 

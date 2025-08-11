@@ -22,6 +22,13 @@
 # define FAILED_MLX_IMG "failed mlx_img\n"
 # define FAILED_MLX_DATA_ADDR "failed mlx_data_addr\n"
 # define ERROR_PROJ_MACRO "error: PROJ macro is incorrect\n"
+# define ERROR_KEY "Error: the key is not supported.\n"
+# define TRANSLATE "translate!!\n"
+# define RESET_RENDER "View reset to default.\n"
+# define MOUSE_LEFT_BUTTON "mouse_left_button\n"
+# define MOUSE_MIDDLE_BUTTON "mouse_middle_button\n"
+# define MOUSE_RIGHT_BUTTON "mouse_right_button\n"
+# define MOUSE_RELEASE "mouse_button is release\n"
 
 // keycode
 # define ESC_MACOS 53
@@ -95,5 +102,9 @@
 
 # define ZOOM_MIN 0.1
 # define ZOOM_MAX 10.0
+
+# ifndef FLT_MAX
+#  define FLT_MAX 3.40282347e+38F
+# endif
 
 #endif

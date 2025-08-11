@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_2d.c                                          :+:      :+:    :+:   */
+/*   operate_win.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 21:02:12 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 19:50:28 by itakumi          ###   ########.fr       */
+/*   Created: 2025/08/11 19:18:38 by itakumi           #+#    #+#             */
+/*   Updated: 2025/08/11 19:18:57 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "struct.h"
 
-// NULL 終端を約束していたがそうではないこともあることを理解しないといけない。
-void	free_2d(void **array)
+int	close_window(void *param)
 {
-	int	i;
+	t_control	**ctrl;
 
-	if (array == NULL)
-		return ;
-	i = 0;
-	while (array[i] != NULL)
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
+	ctrl = (t_control **)param;
+	free_exit(ctrl);
+	return (-1);
 }

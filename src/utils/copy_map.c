@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   copy_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tigarashi <tigarashi@student.42.fr>        #+#  +:+       +#+        */
+/*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-08-02 07:37:28 by tigarashi         #+#    #+#             */
-/*   Updated: 2025-08-02 07:37:28 by tigarashi        ###   ########.fr       */
+/*   Created: 2025/08/02 07:37:28 by tigarashi         #+#    #+#             */
+/*   Updated: 2025/08/11 19:50:02 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // XXX
-#include <stdio.h>
-
 #include "struct.h"
+#include <stdio.h>
 
 // 必要最小限の引数権限しか持たせないようにしよう。
 void	copy_map(t_control *ctrl)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	if (ctrl == NULL || ctrl->map == NULL || ctrl->cur_map == NULL)
 		return ;

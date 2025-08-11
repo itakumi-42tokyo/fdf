@@ -6,20 +6,19 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:28:50 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 16:53:20 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 19:38:54 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// XXX
+#include <mlx.h>
+#include <stddef.h>
+#include <stdbool.h>
 #include "draw.h"
 #include "exit.h"
 #include "macro.h"
 #include "rotate.h"
 #include "struct.h"
 #include "view.h"
-#include <mlx.h>
-#include <stdbool.h>
-#include <stdio.h>
 
 // increase scale
 int	mouse_scroll_up(int x, int y, void *param)
@@ -32,7 +31,7 @@ int	mouse_scroll_up(int x, int y, void *param)
 	if ((*ctrl)->zoom < ZOOM_MAX)
 		(*ctrl)->zoom *= 1.1;
 	render(param);
-	puts("role_up");
+	write(1, "scroll up!\n", ft_strlen("scroll up!\n"));
 	return (0);
 }
 
@@ -47,7 +46,7 @@ int	mouse_scroll_down(int x, int y, void *param)
 	if ((*ctrl)->zoom > ZOOM_MIN)
 		(*ctrl)->zoom /= 1.1;
 	render(param);
-	puts("role_down");
+	write(1, "scroll down!\n", ft_strlen("scroll down!\n"));
 	return (0);
 }
 
@@ -64,24 +63,16 @@ int	mouse_press(int button, int x, int y, void *param)
 		(*ctrl)->mouse.is_pressed = true;
 		(*ctrl)->mouse.x = x;
 		(*ctrl)->mouse.y = y;
-		puts("left_mouse_button");
+		write(1, MOUSE_LEFT_BUTTON, ft_strlen(MOUSE_LEFT_BUTTON));
 	}
 	else if (button == 2)
-	{
-		puts("middle_mouse_button");
-	}
+		write(1, MOUSE_MIDDLE_BUTTON, ft_strlen(MOUSE_MIDDLE_BUTTON));
 	else if (button == 3)
-	{
-		puts("right_mouse_button");
-	}
+		write(1, MOUSE_RIGHT_BUTTON, ft_strlen(MOUSE_RIGHT_BUTTON));
 	else if (button == 4)
-	{
 		mouse_scroll_up(x, y, param);
-	}
 	else if (button == 5)
-	{
 		mouse_scroll_down(x, y, param);
-	}
 	return (0);
 }
 
@@ -93,12 +84,10 @@ int	mouse_release(int button, int x, int y, void *param)
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
 	(*ctrl)->mouse.is_pressed = false;
-	puts("release_button");
+	write(1, MOUSE_RELEASE, ft_strlen(MOUSE_RELEASE));
 	return (0);
 }
 
-// 60fpsくらいまで下げたいので、制限をつけよう。
-// マウス操作をやめよう。
 int	mouse_move(int x, int y, void *param)
 {
 	t_control	**ctrl;
@@ -112,25 +101,13 @@ int	mouse_move(int x, int y, void *param)
 	{
 		delta_x = x - (*ctrl)->mouse.x;
 		delta_y = y - (*ctrl)->mouse.y;
-		printf("delta_x: %lf\n", delta_x);
-		printf("delta_y: %lf\n", delta_y);
-		(*ctrl)->total_angle_x += delta_x * 0.5;
-			// total_xとtotal_yがアンダー（オーバー）フローする危険性がある。
-		(*ctrl)->total_angle_y += delta_y * 0.5;
-		printf("total_x: %lf\n", (*ctrl)->total_angle_x);
-		printf("total_y: %lf\n", (*ctrl)->total_angle_y);
+		if ((*ctrl)->total_angle_x < FLT_MAX)
+			(*ctrl)->total_angle_x += delta_x * 0.5;
+		if ((*ctrl)->total_angle_y < FLT_MAX)
+			(*ctrl)->total_angle_y += delta_y * 0.5;
 		render(param);
 	}
 	(*ctrl)->mouse.x = x;
 	(*ctrl)->mouse.y = y;
 	return (0);
-}
-
-int	close_window(void *param)
-{
-	t_control	**ctrl;
-
-	ctrl = (t_control **)param;
-	free_exit(ctrl);
-	return (-1);
 }

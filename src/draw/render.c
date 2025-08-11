@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 18:18:53 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 20:12:26 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 int	render(void *param)
 {
 	t_control	**ctrl;
-	double		matrix[4][4];
+	double		mat[4][4];
 	static bool	count_render = false;
 
 	ctrl = (t_control **)param;
@@ -44,15 +44,14 @@ int	render(void *param)
 		return (-1);
 	mlx_clear_window((*ctrl)->mlx, (*ctrl)->win);
 	ft_bzero((*ctrl)->data_addr, (*ctrl)->size_line * (*ctrl)->win_size_y);
-	apply_rotate_matrix(matrix, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y,
-		0);
+	apply_rotate_matrix(mat, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y, 0);
 	if (PROJ == ISO)
-		apply_iso_to_matrix(matrix);
+		apply_iso_to_matrix(mat);
 	else if (PROJ == PERSP)
-		apply_persp_to_matrix(matrix);
-	apply_scale(matrix, (*ctrl)->zoom, (*ctrl)->zoom, (*ctrl)->zoom);
-	apply_trans(matrix, (*ctrl)->total_trans_x, (*ctrl)->total_trans_y, 0);
-	apply_mvp(*ctrl, matrix);
+		apply_persp_to_matrix(mat);
+	apply_scale(mat, (*ctrl)->zoom, (*ctrl)->zoom, (*ctrl)->zoom);
+	apply_trans(mat, (*ctrl)->total_trans_x, (*ctrl)->total_trans_y, 0);
+	apply_mvp(*ctrl, mat);
 	if (count_render == false || (*ctrl)->key_r_pressed == true)
 	{
 		auto_fit_scale(*ctrl, (*ctrl)->zoom);

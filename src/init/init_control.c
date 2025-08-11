@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 16:52:13 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 20:08:10 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 #include "macro.h"
 
 // 本当に必要であるか
-void	init0_control(t_control *control)
+
+static void	_init0(t_control *control)
 {
 	control->mlx = NULL;
 	control->win = NULL;
@@ -38,6 +39,11 @@ void	init0_control(t_control *control)
 	control->iso_map = NULL;
 	ft_bzero(control->iso_min_x0_y1, 2);
 	control->persp_map = NULL;
+}
+
+void	init0_control(t_control *control)
+{
+	_init0(control);
 	control->map_width = 0;
 	control->map_height = 0;
 	control->offset_x = 0;
@@ -59,7 +65,6 @@ void	init_control(t_control *control)
 {
 	if (control == NULL)
 		return ;
-	printf("sizex: %d\n sizey: %d\n", control->win_size_x, control->win_size_y);
 	control->title = DEFAULT_TITLE;
 	control->offset_x = DEFAULT_WIN_SIZE_X / 2;
 	control->offset_y = DEFAULT_WIN_SIZE_Y / 2;

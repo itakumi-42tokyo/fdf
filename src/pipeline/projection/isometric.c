@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 17:22:57 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/11 20:17:40 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ int	apply_iso_to_matrix(double matrix[4][4])
 	double			matrix_cpy[4][4];
 	int				i;
 	int				j;
+
 	if (matrix == NULL)
-        return (-1);
+		return (-1);
 	i = 0;
 	while (i < 4)
 	{
@@ -53,7 +54,7 @@ int	apply_iso_to_matrix(double matrix[4][4])
 		i++;
 	}
 	mul_4x4_mat(matrix_iso, matrix_cpy, matrix);
-    return (0);
+	return (0);
 }
 
 // int	main(void)
@@ -79,41 +80,8 @@ int	apply_iso_to_matrix(double matrix[4][4])
 
 int	iso_proj(t_control *ctrl)
 {
-    int		i;
-	int		j;
-    double	x;
-	double	y;
-	double	z;
-    double	iso_x;
-	double	iso_y;
-
-    if (ctrl == NULL || ctrl->cur_map == NULL)
-        return (-1);
-    i = 0;
-    while (i < ctrl->map_height)
-    {
-        j = 0;
-        while (j < ctrl->map_width)
-        {
-            x = ctrl->cur_map[i][j].x;
-            y = ctrl->cur_map[i][j].y;
-            z = ctrl->cur_map[i][j].z;
-
-            // 標準的な等角投影変換
-            // X軸周りに30°回転後、Y軸周りに45°回転
-            iso_x = ((x - y)) * COS_30;
-            iso_y = ((x + y)) * SIN_30 - z;
-
-            ctrl->iso_map[i][j].iso_x = iso_x;
-            ctrl->iso_map[i][j].iso_y = iso_y;
-            ctrl->iso_map[i][j].color = ctrl->cur_map[i][j].color;
-            j++;
-        }
-        i++;
-    }
-    return (0);
+	return (0);
 }
-
 // int	iso_proj(t_control *ctrl)
 // {
 // 	t_cur_point	**cur_map;
@@ -154,12 +122,14 @@ int	iso_proj(t_control *ctrl)
 // ___OLD___
 // while (j < ctrl->map_width)
 // {
-// 	x_new = (map[i][j]).x * cos(deg_to_rad(45)) + (map[i][j]).z * sin(deg_to_rad(45));
+// 	x_new =
+// (map[i][j]).x * cos(deg_to_rad(45)) + (map[i][j]).z * sin(deg_to_rad(45));
 // 	// y_new = (map[i][j]).y;
-// 	z_new = -1 * (map[i][j]).x * sin(deg_to_rad(45)) + (map[i][j]).z * cos(deg_to_rad(45));
-
+// 	z_new = -1 * (map[i][j]).x * sin(deg_to_rad(45))
+// + (map[i][j]).z * cos(deg_to_rad(45));
 // 	// x_new = x_new;
-// 	y_new = (map[i][j]).y * cos(deg_to_rad(-35.26)) - z_new * sin(deg_to_rad(-35.26));
+// 	y_new = (map[i][j]).y * cos(deg_to_rad(-35.26))
+// - z_new * sin(deg_to_rad(-35.26));
 // 	ctrl->iso_map[i][j].iso_x = round(x_new);
 // 	ctrl->iso_map[i][j].iso_y = round(y_new);
 // 	j++;
