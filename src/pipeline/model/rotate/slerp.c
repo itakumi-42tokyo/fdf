@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 14:19:58 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 17:21:08 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 03:05:19 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 
 int	slerp(t_control *ctrl)
 {
+	(void)ctrl;
 	return (0);
 }

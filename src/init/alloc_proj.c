@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 19:00:29 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 18:49:53 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 03:03:58 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_isometric	**calloc_iso(int height, int width)
 			return (free_2d((void **)iso_map), NULL);
 		i++;
 	}
-	iso_map[i] == NULL;
+	iso_map[i] = NULL;
 	return (iso_map);
 }
 

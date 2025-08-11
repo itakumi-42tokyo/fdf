@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 04:14:11 by tigarashi         #+#    #+#             */
-/*   Updated: 2025/08/11 19:08:53 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 03:18:03 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 #include "struct.h"
 #include <linux/input-event-codes.h>
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include "libft.h"
 
 static void	key_trans(int keycode, t_control **ctrl, void *param)
 {
@@ -48,7 +49,7 @@ static void	key_trans(int keycode, t_control **ctrl, void *param)
 	write(2, TRANSLATE, ft_strlen(TRANSLATE));
 }
 
-static void	key_reset(int keycode, t_control **ctrl, void *param)
+static void	key_reset(t_control **ctrl, void *param)
 {
 	(*ctrl)->total_angle_x = 0;
 	(*ctrl)->total_angle_y = 0;
@@ -74,7 +75,7 @@ int	key_press(int keycode, void *param)
 	if (keycode == ESC_LINUX)
 		free_exit(ctrl);
 	else if (keycode == R_LINUX)
-		key_reset(keycode, ctrl, param);
+		key_reset(ctrl, param);
 	else if (keycode == W_LINUX || keycode == A_LINUX || keycode == S_LINUX
 		|| keycode == D_LINUX)
 		key_trans(keycode, ctrl, param);
@@ -93,7 +94,6 @@ int	key_release(int keycode, void *param)
 	if (keycode == R_LINUX)
 	{
 		(*ctrl)->key_r_pressed = false;
-		puts("release!!");
 	}
 	return (0);
 }

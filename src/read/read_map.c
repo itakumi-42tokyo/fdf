@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 18:59:19 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/12 02:33:52 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 03:04:19 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ int	calc_map_size(t_control *control, char *file_path)
 {
 	int		fd;
 	char	*line;
-	char	buffer[BUFFER_SIZE];
-	ssize_t	read_bytes;
 
 	if (control == NULL || file_path == NULL)
 		return (-1);

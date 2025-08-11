@@ -6,13 +6,14 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 15:28:50 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 19:38:54 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 03:19:42 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include "libft.h"
 #include "draw.h"
 #include "exit.h"
 #include "macro.h"
@@ -21,7 +22,7 @@
 #include "view.h"
 
 // increase scale
-int	mouse_scroll_up(int x, int y, void *param)
+int	mouse_scroll_up(void *param)
 {
 	t_control	**ctrl;
 
@@ -36,7 +37,7 @@ int	mouse_scroll_up(int x, int y, void *param)
 }
 
 // decrease scale
-int	mouse_scroll_down(int x, int y, void *param)
+int	mouse_scroll_down(void *param)
 {
 	t_control	**ctrl;
 
@@ -70,9 +71,9 @@ int	mouse_press(int button, int x, int y, void *param)
 	else if (button == 3)
 		write(1, MOUSE_RIGHT_BUTTON, ft_strlen(MOUSE_RIGHT_BUTTON));
 	else if (button == 4)
-		mouse_scroll_up(x, y, param);
+		mouse_scroll_up(param);
 	else if (button == 5)
-		mouse_scroll_down(x, y, param);
+		mouse_scroll_down(param);
 	return (0);
 }
 
@@ -80,6 +81,9 @@ int	mouse_release(int button, int x, int y, void *param)
 {
 	t_control	**ctrl;
 
+	(void)button;
+	(void)x;
+	(void)y;
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 20:12:26 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 03:31:36 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,26 @@
 // TODO
 // 現状だと、描画パイプラインの動作が重いので、MVP行列計算で最適化したい
 
+static void	init_mat(double mat[4][4])
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			mat[i][j] = 0.0;
+			if (i == j)
+				mat[i][j] = 1.0;
+			j++;
+		}
+		i++;
+	}
+}
+
 int	render(void *param)
 {
 	t_control	**ctrl;
@@ -42,13 +62,13 @@ int	render(void *param)
 	ctrl = (t_control **)param;
 	if (ctrl == NULL || *ctrl == NULL)
 		return (-1);
-	mlx_clear_window((*ctrl)->mlx, (*ctrl)->win);
 	ft_bzero((*ctrl)->data_addr, (*ctrl)->size_line * (*ctrl)->win_size_y);
+	init_mat(mat);
 	apply_rotate_matrix(mat, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y, 0);
-	if (PROJ == ISO)
-		apply_iso_to_matrix(mat);
-	else if (PROJ == PERSP)
+	if (PROJ == PERSP)
 		apply_persp_to_matrix(mat);
+	else
+		apply_iso_to_matrix(mat);
 	apply_scale(mat, (*ctrl)->zoom, (*ctrl)->zoom, (*ctrl)->zoom);
 	apply_trans(mat, (*ctrl)->total_trans_x, (*ctrl)->total_trans_y, 0);
 	apply_mvp(*ctrl, mat);

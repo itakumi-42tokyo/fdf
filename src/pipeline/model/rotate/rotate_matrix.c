@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:29:29 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/12 01:26:32 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 03:15:49 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,43 +33,70 @@ static void	init_sin(double sin_xyz[3],
 	sin_xyz[2] = sin(deg_to_rad(deg_z));
 }
 
+static void	copy_matrix(double matrix_copy[4][4], double matrix_src[4][4])
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			matrix_copy[i][j] = matrix_src[i][j];
+			j++;
+		}
+		i++;
+	}
+}
+
+static void	init_rot(double rot[4][4], double cos_xyz[3], double sin_xyz[3])
+{
+	rot[0][0] = cos_xyz[1] * cos_xyz[2];
+	rot[0][1] = -cos_xyz[1] * sin_xyz[2];
+	rot[0][2] = sin_xyz[1];
+	rot[0][3] = 0.0;
+	rot[1][0] = sin_xyz[0] * sin_xyz[1] * cos_xyz[2] + cos_xyz[0] * sin_xyz[2];
+	rot[1][1] = -sin_xyz[0] * sin_xyz[1] * sin_xyz[2] + cos_xyz[0] * cos_xyz[2];
+	rot[1][2] = -sin_xyz[0] * cos_xyz[1];
+	rot[1][3] = 0.0;
+	rot[2][0] = -cos_xyz[0] * sin_xyz[1] * cos_xyz[2] + sin_xyz[0] * sin_xyz[2];
+	rot[2][1] = cos_xyz[0] * sin_xyz[1] * sin_xyz[2] + sin_xyz[0] * cos_xyz[2];
+	rot[2][2] = cos_xyz[0] * cos_xyz[1];
+	rot[2][3] = 0.0;
+	rot[3][0] = 0.0;
+	rot[3][1] = 0.0;
+	rot[3][2] = 0.0;
+	rot[3][3] = 1.0;
+}
+
 void	apply_rotate_matrix(double matrix[4][4],
 			double deg_x, double deg_y, double deg_z)
 {
 	double	cos_xyz[3];
 	double	sin_xyz[3];
+	double	rot[4][4];
+	double	prev[4][4];
 
+	if (matrix == NULL)
+		return ;
 	init_cos(cos_xyz, deg_x, deg_y, deg_z);
 	init_sin(sin_xyz, deg_x, deg_y, deg_z);
-	matrix[0][0] = cos_xyz[1] * cos_xyz[2];
-	matrix[0][1] = -cos_xyz[1] * sin_xyz[2];
-	matrix[0][2] = sin_xyz[1];
-	matrix[0][3] = 0;
-	matrix[1][0]
-		= sin_xyz[0] * sin_xyz[1] * cos_xyz[2] + cos_xyz[0] * sin_xyz[2];
-	matrix[1][1]
-		= -sin_xyz[0] * sin_xyz[1] * sin_xyz[2] + cos_xyz[0] * cos_xyz[2];
-	matrix[1][2] = -sin_xyz[0] * cos_xyz[1];
-	matrix[1][3] = 0;
-	matrix[2][0]
-		= -cos_xyz[0] * sin_xyz[1] * cos_xyz[2] + sin_xyz[0] * sin_xyz[2];
-	matrix[2][1]
-		= cos_xyz[0] * sin_xyz[1] * sin_xyz[2] + sin_xyz[0] * cos_xyz[2];
-	matrix[2][2] = cos_xyz[0] * cos_xyz[1];
-	matrix[2][3] = 0;
-	matrix[3][0] = 0;
-	matrix[3][1] = 0;
-	matrix[3][2] = 0;
-	matrix[3][3] = 1;
+	init_rot(rot, cos_xyz, sin_xyz);
+	copy_matrix(prev, matrix);
+	mul_4x4_mat(rot, prev, matrix);
 }
 
-int	calc_matrix(t_control *ctrl, double deg_x, double deg_y, double deg_z)
-{
-	return (0);
-}
-
+// int	calc_matrix(t_control *ctrl, double deg_x, double deg_y, double deg_z)
+// {
+// 	(void)ctrl;
+// 	(void)deg_x;
+// 	(void)deg_y;
+// 	(void)deg_z;
+// 	return (0);
+// }
 // content!!
-
 	// double	matrix[3][3];
 	// double	cos_x;
 	// double	cos_y;

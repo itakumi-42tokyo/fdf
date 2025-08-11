@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 19:11:38 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/12 01:25:15 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 03:16:29 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 
 #include "struct.h"
+#include "utils.h"
 
 void	apply_scale(double matrix[4][4], double x, double y, double z)
 {

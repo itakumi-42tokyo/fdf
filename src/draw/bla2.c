@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 01:34:34 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/12 02:54:34 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 03:03:23 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ static int	drawline_persp(t_control *ctrl)
 {
 	int			i;
 	int			j;
-	int			xy0[2];
-	int			xy1[2];
 
 	i = 0;
 	while (i < ctrl->map_height)
@@ -95,8 +93,6 @@ int	drawline_iso(t_control *ctrl)
 {
 	int			i;
 	int			j;
-	int			xy0[2];
-	int			xy1[2];
 
 	i = 0;
 	while (i < ctrl->map_height)

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 17:09:46 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 20:14:25 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 03:20:44 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 
 // take 2
 
-int	apply_persp_to_matrix(double marix[4][4])
+int	apply_persp_to_matrix(double matrix[4][4])
 {
+	(void)matrix;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:58:47 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/12 01:24:44 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 03:20:21 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	apply_iso_to_matrix(double matrix[4][4])
 
 int	iso_proj(t_control *ctrl)
 {
+	(void)ctrl;
 	return (0);
 }
 // int	iso_proj(t_control *ctrl)

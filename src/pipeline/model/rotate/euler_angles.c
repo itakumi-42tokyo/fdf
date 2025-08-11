@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 17:27:00 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/11 17:19:14 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 03:07:25 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,24 @@ static void	rotate_z(double deg_z, double *x, double *y)
 
 int	calc_euler(t_control *ctrl, double deg_x, double deg_y, double deg_z)
 {
-	int		i;
-	int		j;
-	double	x;
-	double	y;
-	double	z;
-
+	(void)ctrl;
+	(void)deg_x;
+	(void)deg_y;
+	(void)deg_z;
 	if (ctrl == NULL)
 		return (-1);
-	i = 0;
+	rotate_x(0, 0, 0);
+	rotate_y(0, 0, 0);
+	rotate_z(0, 0, 0);
 	return (0);
 }
 
 // content!!!
-
+	// int		i;
+	// int		j;
+	// double	x;
+	// double	y;
+	// double	z;
 // 	while (i < ctrl->map_height)
 // 	{
 // 		j = 0;
