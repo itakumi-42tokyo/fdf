@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 14:13:20 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/12 04:45:10 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 05:26:07 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ int	render(void *param)
 		return (-1);
 	ft_bzero((*ctrl)->data_addr, (*ctrl)->size_line * (*ctrl)->win_size_y);
 	init_mat(mat);
+	apply_scale(mat, (*ctrl)->zoom, (*ctrl)->zoom, (*ctrl)->zoom);
 	apply_rotate_matrix(mat, (*ctrl)->total_angle_x, (*ctrl)->total_angle_y, 0);
+	apply_trans(mat, (*ctrl)->total_trans_x, (*ctrl)->total_trans_y, 0);
 	if (PROJ == PERSP)
 		apply_persp_to_matrix(mat, *ctrl);
 	else
 		apply_iso_to_matrix(mat);
-	apply_scale(mat, (*ctrl)->zoom, (*ctrl)->zoom, (*ctrl)->zoom);
-	apply_trans(mat, (*ctrl)->total_trans_x, (*ctrl)->total_trans_y, 0);
 	apply_mvp(*ctrl, mat);
 	if (count_render == false || (*ctrl)->key_r_pressed == true)
 	{

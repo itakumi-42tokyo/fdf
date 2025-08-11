@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/12 04:39:08 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 05:22:30 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <stddef.h>
 #include <stdbool.h>
+#include <math.h>
 #include "mlx.h"
 #include "libft.h"
 #include "struct.h"
