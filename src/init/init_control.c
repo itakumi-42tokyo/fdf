@@ -6,7 +6,7 @@
 /*   By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 18:02:53 by itakumi           #+#    #+#             */
-/*   Updated: 2025/08/12 05:22:30 by itakumi          ###   ########.fr       */
+/*   Updated: 2025/08/12 08:46:25 by itakumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void	init_control(t_control *control)
 	control->scale = 30;
 	control->mag_rate = 45;
 	control->zoom = 0.9;
-	control->camera.fov = M_PI / 4;
+	control->camera.fov = M_PI / 2;
 	control->camera.aspect
 		= (double)((double)control->win_size_x / (double)control->win_size_y);
-	control->camera.near = 0.1;
+	control->camera.near = 1.0;
 	control->camera.far = 1000.0;
 	control->camera.focus = 1.0 / tan(control->camera.fov / 2.0);
 }

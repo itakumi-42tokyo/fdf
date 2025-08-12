@@ -6,7 +6,7 @@
 #    By: itakumi <itakumi@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/11 09:28:50 by tigarashi         #+#    #+#              #
-#    Updated: 2025/08/12 02:57:17 by itakumi          ###   ########.fr        #
+#    Updated: 2025/08/12 08:30:45 by itakumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -161,9 +161,11 @@ fclean: clean
 	rm -rf $(NAME)
 	$(foreach l, $(LIB), $(MAKE) -C $(LIB_DIR)/$(l) fclean;)
 
-re: fclean all
+re:
+	$(MAKE) fclean
+	$(MAKE) all
 
-bonus:
+bonus: all
 
 debug: CFLAGS=
 debug: all
